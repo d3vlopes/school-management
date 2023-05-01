@@ -7,11 +7,12 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup src",
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/infra/server/index.ts",
     "lint": "eslint . --max-warnings=0",
-    "start": "node ./dist/server.js",
+    "start": "node ./dist/infra/server/index.js",
     "test": "vitest run --silent",
     "test:ci": "yarn test --coverage",
+    "test:staged": "yarn test related src/*.test.ts",
     "test:verbose": "vitest",
     "test:unit": "vitest watch --silent",
     "prepare": "husky install",
@@ -27,22 +28,24 @@
     "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "tsup": "^6.7.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4",
-    "vitest": "^0.30.1",
-    "husky": "^8.0.0"
+    "vitest": "^0.30.1"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0"
   },
   "lint-staged": {
     "*.ts": [
       "yarn lint --fix",
-      "yarn test"
+      "yarn test:staged"
     ]
   }
 }

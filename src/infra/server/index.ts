@@ -1,7 +1,15 @@
 /* eslint-disable no-console */
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
 import express, { Response } from 'express'
 
 import { controllerTest } from '@/controller'
+
+import { Database } from '@/infra/database/mongoDB'
+
+Database.getInstance()
 
 const app = express()
 
