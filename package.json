@@ -11,7 +11,7 @@
     "lint": "eslint . --max-warnings=0",
     "start": "node ./dist/server.js",
     "test": "vitest run --silent",
-    "test:ci": "vitest --coverage",
+    "test:ci": "yarn test --coverage",
     "test:verbose": "vitest",
     "test:unit": "vitest watch --silent",
     "prepare": "husky install",
