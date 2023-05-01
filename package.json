@@ -14,7 +14,8 @@
     "test:ci": "vitest --coverage",
     "test:verbose": "vitest",
     "test:unit": "vitest watch --silent",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
