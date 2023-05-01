@@ -1,0 +1,11 @@
+{
+  "name": "school-management",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:d3vlopes/school-management.git",
+  "author": "Leandro Lopes <leandro-lopes46@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
