@@ -9,7 +9,9 @@ export const badRequest = (error: Error): IHttpResponse => {
   }
 }
 
-export const ok = (data: Record<string, unknown>): IHttpResponse => ({
+export const ok = (
+  data: Record<string, unknown> | any,
+): IHttpResponse => ({
   statusCode: 200,
   body: data,
 })
