@@ -1,5 +1,5 @@
 import { IHttpResponse } from '@/presentation/contracts'
 
-export interface IController {
-  handle(request: Record<string, unknown>): Promise<IHttpResponse>
+export interface IController<T = Record<string, unknown>> {
+  handle(request: T): Promise<IHttpResponse>
 }
