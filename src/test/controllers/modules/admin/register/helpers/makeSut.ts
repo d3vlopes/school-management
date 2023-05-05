@@ -6,7 +6,7 @@ import {
   IUseCaseResponse,
 } from '@/useCases/contracts/shared'
 
-import { AdminRegisterController } from '@/presentation/controller/modules/admin/register/adminRegisterController'
+import { AdminRegisterController } from '@/presentation/controllers/modules/admin'
 
 export const makeSut = () => {
   class AdminRegisterUseCaseStub
