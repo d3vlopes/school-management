@@ -4,5 +4,5 @@ export interface IUseCaseResponse<T> {
 }
 
 export interface IUseCase<T, U> {
-  execute(data: T): Promise<IUseCaseResponse<U>>
+  execute(data: T): Promise<IUseCaseResponse<U | null>>
 }
