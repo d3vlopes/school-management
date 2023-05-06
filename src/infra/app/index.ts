@@ -1,17 +1,9 @@
-import express, { Response } from 'express'
+import express from 'express'
 
-import { controllerTest } from '@/presentation/controller'
-
-import { auth } from '@/main/middlewares/auth'
+import { setupMiddleware, setupRoutes } from '@/main/config'
 
 export const app = express()
 
-app.use(express.json())
+setupMiddleware(app)
 
-app.get('/', (_, res: Response) => {
-  controllerTest(res)
-})
-
-app.get('/auth', auth, (_, res: Response) => {
-  controllerTest(res)
-})
+setupRoutes(app)
