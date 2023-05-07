@@ -20,4 +20,12 @@ export class AdminRepository implements IAdminRepository {
 
     return Boolean(existsEmail)
   }
+
+  async findOne(
+    data: Partial<AdminModel>,
+  ): Promise<AdminModel | null> {
+    const user = await Admin.findOne(data)
+
+    return user
+  }
 }
