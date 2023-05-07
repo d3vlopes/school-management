@@ -8,9 +8,9 @@ import {
 import { TOKEN_SECRET } from '@/config'
 
 export class JsonWebTokenAdapter implements IToken {
-  generateToken(payload: any, expired: string): string {
+  generateToken(payload: Record<string, unknown>): string {
     return jwt.sign(payload, TOKEN_SECRET!, {
-      expiresIn: expired,
+      expiresIn: '5d',
     })
   }
 

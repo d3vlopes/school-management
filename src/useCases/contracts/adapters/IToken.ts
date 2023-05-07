@@ -3,9 +3,6 @@ export interface IVerifyResponse {
 }
 
 export interface IToken {
-  generateToken(
-    payload: Record<string, unknown>,
-    expired: string,
-  ): string
+  generateToken(payload: Record<string, unknown>): string
   verify(token: string, secretKey: string): string
 }
