@@ -2,7 +2,7 @@ import {
   adminRepositoryStub,
   encrypterStub,
   tokenStub,
-} from '@/test/stubs'
+} from '@/__test__/stubs'
 
 import { AdminLoginUseCase } from '@/useCases/modules/admin'
 

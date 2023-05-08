@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest'
 
-import { mockFactory } from '@/test/helpers'
+import { mockFactory } from '@/__test__/helpers'
 
 import { MissingParamError, ServerError } from '@/presentation/errors'
 
