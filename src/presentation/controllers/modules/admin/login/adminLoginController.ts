@@ -39,7 +39,7 @@ export class AdminLoginController implements IController {
         return badRequest(new Error(error))
       }
 
-      return ok(data)
+      return ok({ token: data })
     } catch {
       return serverError()
     }

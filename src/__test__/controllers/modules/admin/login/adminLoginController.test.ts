@@ -86,6 +86,6 @@ describe('AdminLoginController', () => {
     )
 
     expect(response.statusCode).toBe(200)
-    expect(response.body).toEqual('generated_token')
+    expect(response.body).toEqual({ token: 'generated_token' })
   })
 })
