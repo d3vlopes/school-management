@@ -12,6 +12,12 @@ class AdminRepositoryStub implements IAdminRepository {
   async findByEmail(email: string): Promise<Boolean> {
     return false
   }
+
+  async findOne(
+    data: Partial<AdminModel>,
+  ): Promise<AdminModel | null> {
+    return createAdminMockFactory
+  }
 }
 
 export const adminRepositoryStub = new AdminRepositoryStub()

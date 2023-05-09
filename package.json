@@ -12,7 +12,7 @@
     "start": "node ./dist/infra/server/index.js",
     "test": "vitest run --silent",
     "test:ci": "yarn test --coverage",
-    "test:staged": "yarn test related src/test/useCases/**/**/**/*.test.ts src/test/controllers/**/**/**/*.test.ts",
+    "test:staged": "yarn test related src/__test__/useCases/**/**/**/*.test.ts src/__test__/controllers/**/**/**/*.test.ts",
     "test:verbose": "vitest",
     "test:unit": "vitest watch --silent",
     "prepare": "husky install",

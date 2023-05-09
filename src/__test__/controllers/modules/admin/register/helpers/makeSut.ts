@@ -1,6 +1,6 @@
 import { AdminRegisterRequestDTO } from '@/core/dtos/admin'
 import { AdminModel } from '@/core/models'
-import { createAdminMockFactory } from '@/test/mock'
+import { createAdminMockFactory } from '@/__test__/mock'
 import {
   IUseCase,
   IUseCaseResponse,

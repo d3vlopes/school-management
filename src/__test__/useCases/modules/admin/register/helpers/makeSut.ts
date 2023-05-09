@@ -1,4 +1,4 @@
-import { adminRepositoryStub, encrypterStub } from '@/test/stubs'
+import { adminRepositoryStub, encrypterStub } from '@/__test__/stubs'
 
 import { AdminRegisterUseCase } from '@/useCases/modules/admin/register/adminRegisterUseCase'
 
