@@ -2,13 +2,25 @@ import { AdminRegisterRequestDTO } from '@/core/dtos/admin'
 import { AdminModel } from '@/core/models'
 import { IAdminRepository } from '@/core/repositories'
 
-import { IEncrypter } from '@/useCases/contracts/adapters'
 import {
   IUseCase,
   IUseCaseResponse,
 } from '@/useCases/contracts/shared'
+import { IEncrypter, IValidator } from '@/useCases/contracts/adapters'
 
-import { handleUseCaseReturn } from '@/useCases/helpers'
+import { validationLengthFields } from '@/presentation/helpers'
+
+import {
+  ILengthValidationFieldsParams,
+  lengthValidationFields,
+} from './validation'
+
+import {
+  returnExistsEmailError,
+  returnInvalidEmailError,
+  returnLengthValidationError,
+  returnSuccess,
+} from './helpers'
 
 export class AdminRegisterUseCase
   implements IUseCase<AdminRegisterRequestDTO, AdminModel>
@@ -16,22 +28,40 @@ export class AdminRegisterUseCase
   constructor(
     private readonly adminRepository: IAdminRepository,
     private readonly encrypter: IEncrypter,
+    private readonly validator: IValidator,
   ) {}
 
   async execute({
-    name,
     email,
+    name,
     password,
   }: AdminRegisterRequestDTO): Promise<
     IUseCaseResponse<AdminModel | null>
   > {
+    const lengthFields: ILengthValidationFieldsParams = {
+      fields: { password, name },
+    }
+
+    const isEmailValid = this.validator.isEmail(email)
+
+    if (!isEmailValid) {
+      return returnInvalidEmailError()
+    }
+
     const isEmailAlreadyRegistered =
       await this.adminRepository.findByEmail(email)
 
     if (isEmailAlreadyRegistered) {
-      const errorMessage = 'Admin already registered with this email'
+      return returnExistsEmailError()
+    }
 
-      return handleUseCaseReturn(null, errorMessage)
+    const lengthValidationError = validationLengthFields(
+      lengthValidationFields({ ...lengthFields }),
+      this.validator,
+    )
+
+    if (lengthValidationError) {
+      return returnLengthValidationError(lengthValidationError)
     }
 
     const cryptedPassword = await this.encrypter.encrypt(password)
@@ -42,6 +72,6 @@ export class AdminRegisterUseCase
       password: cryptedPassword,
     })
 
-    return handleUseCaseReturn<AdminModel>(user, null)
+    return returnSuccess(user)
   }
 }

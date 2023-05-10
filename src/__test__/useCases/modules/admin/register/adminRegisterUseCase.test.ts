@@ -1,10 +1,70 @@
 import { describe, expect, it, vitest } from 'vitest'
 
+import { mockError } from '@/__test__/mock'
+
 import { makeSut } from './helpers'
 
-import { requestMockFactory } from './mock'
+import { requestMockFactory, returnMockFactory } from './mocks'
+
+const request = requestMockFactory['valid']
 
 describe('AdminRegisterUseCase', () => {
+  it('should return error if email is invalid', async () => {
+    const { sut, validatorStub } = makeSut()
+
+    const spyOnValidatorStub = vitest
+      .spyOn(validatorStub, 'isEmail')
+      .mockReturnValueOnce(false)
+
+    const response = await sut.execute(
+      requestMockFactory['invalid-email'],
+    )
+
+    expect(spyOnValidatorStub).toHaveBeenCalledWith('invalid_email')
+    expect(response).toStrictEqual(returnMockFactory['invalid-email'])
+  })
+
+  it('should return error if password less length 6 characters', async () => {
+    const { sut, validatorStub } = makeSut()
+
+    const spyOnValidatorStub = vitest
+      .spyOn(validatorStub, 'isLength')
+      .mockReturnValueOnce(false)
+
+    const response = await sut.execute(
+      requestMockFactory['invalid-password'],
+    )
+
+    const input = '12345'
+    const min = 6
+    const max = 30
+
+    expect(spyOnValidatorStub).toHaveBeenCalledWith(input, min, max)
+    expect(response).toStrictEqual(
+      returnMockFactory['invalid-password'],
+    )
+  })
+
+  it('should return error if name less length 3 characters', async () => {
+    const { sut, validatorStub } = makeSut()
+
+    const spyOnValidatorStub = vitest
+      .spyOn(validatorStub, 'isLength')
+      .mockReturnValueOnce(true)
+      .mockReturnValueOnce(false)
+
+    const response = await sut.execute(
+      requestMockFactory['invalid-name'],
+    )
+
+    const input = 'Jo'
+    const min = 3
+    const max = 30
+
+    expect(spyOnValidatorStub).toHaveBeenCalledWith(input, min, max)
+    expect(response).toStrictEqual(returnMockFactory['invalid-name'])
+  })
+
   it('should not register if email is exists', async () => {
     const { sut, adminRepositoryStub } = makeSut()
 
@@ -17,14 +77,13 @@ describe('AdminRegisterUseCase', () => {
       .spyOn(adminRepositoryStub, 'findByEmail')
       .mockResolvedValueOnce(true)
 
-    const response = await sut.execute(requestMockFactory)
+    const response = await sut.execute(
+      requestMockFactory['exists-email'],
+    )
 
     expect(adminRepositorySpyOn).toHaveBeenCalledTimes(0)
 
-    expect(response).toStrictEqual({
-      data: null,
-      error: 'Admin already registered with this email',
-    })
+    expect(response).toStrictEqual(returnMockFactory['exists-email'])
   })
 
   it('should register a new admin user', async () => {
@@ -35,29 +94,11 @@ describe('AdminRegisterUseCase', () => {
       'create',
     )
 
-    const response = await sut.execute(requestMockFactory)
+    const response = await sut.execute(request)
 
     expect(adminRepositorySpyOn).toHaveBeenCalledTimes(1)
 
-    expect(response).toStrictEqual({
-      data: {
-        id: '1234',
-        name: 'User Name',
-        email: 'user@email.com',
-        role: 'admin',
-        password: 'password_encrypted',
-        academicTerms: [],
-        academicYears: [],
-        classLevels: [],
-        programs: [],
-        students: [],
-        teachers: [],
-        yearGroups: [],
-        createdAt: new Date(23, 5),
-        updatedAt: new Date(23, 5),
-      },
-      error: null,
-    })
+    expect(response).toStrictEqual(returnMockFactory['success'])
   })
 
   it('should call encrypt method of encrypter', async () => {
@@ -65,20 +106,18 @@ describe('AdminRegisterUseCase', () => {
 
     const encrypterStubSpyOn = vitest.spyOn(encrypterStub, 'encrypt')
 
-    await sut.execute(requestMockFactory)
+    await sut.execute(request)
 
     expect(encrypterStubSpyOn).toHaveBeenCalledTimes(1)
-    expect(encrypterStubSpyOn).toHaveBeenCalledWith('any_password')
+    expect(encrypterStubSpyOn).toHaveBeenCalledWith('valid_password')
   })
 
   it('should throw if encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut()
 
-    vitest
-      .spyOn(encrypterStub, 'encrypt')
-      .mockRejectedValueOnce(new Error())
+    mockError(encrypterStub, 'encrypt' as never)
 
-    const promise = sut.execute(requestMockFactory)
+    const promise = sut.execute(request)
 
     await expect(promise).rejects.toThrow()
   })

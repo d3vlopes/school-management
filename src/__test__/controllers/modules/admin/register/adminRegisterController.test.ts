@@ -1,10 +1,23 @@
-import { it, describe, expect, vitest } from 'vitest'
+import { it, describe, expect } from 'vitest'
 
 import { MissingParamError, ServerError } from '@/presentation/errors'
 
 import { makeSut } from './helpers/makeSut'
 
-import { requestMockFactory, returnMockFactory } from './mocks'
+import {
+  mockUseCaseError,
+  requestMockFactory,
+  returnMockFactory,
+} from './mocks'
+
+import {
+  ADMIN_REGISTER_EXISTS_EMAIL_ERROR_MESSAGE,
+  ADMIN_REGISTER_INVALID_EMAIL_ADDRESS_ERROR_MESSAGE,
+  ADMIN_REGISTER_INVALID_NAME_ERROR_MESSAGE,
+  ADMIN_REGISTER_INVALID_PASSWORD_ERROR_MESSAGE,
+} from '@/useCases/modules/admin/register/constants'
+
+import { mockError } from '@/__test__/mock'
 
 const requestMock = requestMockFactory
 
@@ -42,27 +55,74 @@ describe('AdminRegisterController', () => {
     expect(response.body).toEqual(new MissingParamError('password'))
   })
 
-  it('should return status code 400 if UseCase return error', async () => {
-    const errorMessage = 'Admin already registered with this email'
-
+  it('should return status code 400 if email already registered', async () => {
     const { sut, adminRegisterUseCaseStub } = makeSut()
 
-    vitest
-      .spyOn(adminRegisterUseCaseStub, 'execute')
-      .mockResolvedValueOnce({ data: null, error: errorMessage })
+    mockUseCaseError(
+      adminRegisterUseCaseStub,
+      ADMIN_REGISTER_EXISTS_EMAIL_ERROR_MESSAGE,
+    )
 
     const response = await sut.handle(requestMock)
 
     expect(response.statusCode).toBe(400)
-    expect(response.body).toEqual(new Error(errorMessage))
+    expect(response.body).toEqual(
+      new Error(ADMIN_REGISTER_EXISTS_EMAIL_ERROR_MESSAGE),
+    )
+  })
+
+  it('should return status code 400 if email is invalid', async () => {
+    const { sut, adminRegisterUseCaseStub } = makeSut()
+
+    mockUseCaseError(
+      adminRegisterUseCaseStub,
+      ADMIN_REGISTER_INVALID_EMAIL_ADDRESS_ERROR_MESSAGE,
+    )
+
+    const response = await sut.handle(requestMock)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toEqual(
+      new Error(ADMIN_REGISTER_INVALID_EMAIL_ADDRESS_ERROR_MESSAGE),
+    )
+  })
+
+  it('should return status code 400 if password is invalid', async () => {
+    const { sut, adminRegisterUseCaseStub } = makeSut()
+
+    mockUseCaseError(
+      adminRegisterUseCaseStub,
+      ADMIN_REGISTER_INVALID_PASSWORD_ERROR_MESSAGE,
+    )
+
+    const response = await sut.handle(requestMock)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toEqual(
+      new Error(ADMIN_REGISTER_INVALID_PASSWORD_ERROR_MESSAGE),
+    )
+  })
+
+  it('should return status code 400 if name is invalid', async () => {
+    const { sut, adminRegisterUseCaseStub } = makeSut()
+
+    mockUseCaseError(
+      adminRegisterUseCaseStub,
+      ADMIN_REGISTER_INVALID_NAME_ERROR_MESSAGE,
+    )
+
+    const response = await sut.handle(requestMock)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toEqual(
+      new Error(ADMIN_REGISTER_INVALID_NAME_ERROR_MESSAGE),
+    )
   })
 
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, adminRegisterUseCaseStub } = makeSut()
 
-    vitest
-      .spyOn(adminRegisterUseCaseStub, 'execute')
-      .mockRejectedValueOnce(new Error())
+    mockError(adminRegisterUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(requestMock)
 
