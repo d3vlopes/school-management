@@ -1,1 +1,1 @@
-export * from './returnUseCaseResponses'
+export * from './useCaseResponses'
