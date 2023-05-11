@@ -17,7 +17,7 @@ import {
   ADMIN_REGISTER_INVALID_PASSWORD_ERROR_MESSAGE,
 } from '@/useCases/modules/admin/register/constants'
 
-import { mockError } from '@/__test__/mock'
+import { mockError } from '@/__test__/mocks'
 
 const requestMock = requestMockFactory
 

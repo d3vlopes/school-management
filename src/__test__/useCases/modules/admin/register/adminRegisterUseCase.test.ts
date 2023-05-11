@@ -1,6 +1,6 @@
 import { describe, expect, it, vitest } from 'vitest'
 
-import { mockError } from '@/__test__/mock'
+import { mockError } from '@/__test__/mocks'
 
 import { makeSut } from './helpers'
 
