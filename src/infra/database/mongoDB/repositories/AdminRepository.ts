@@ -24,7 +24,13 @@ export class AdminRepository implements IAdminRepository {
   async findOne(
     data: Partial<AdminModel>,
   ): Promise<AdminModel | null> {
-    const user = await Admin.findOne(data)
+    let user = null
+
+    if (data.id) {
+      user = await Admin.findOne({ _id: data.id })
+    } else {
+      user = await Admin.findOne(data)
+    }
 
     return user
   }
