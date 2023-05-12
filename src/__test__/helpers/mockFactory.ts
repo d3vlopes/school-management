@@ -1,4 +1,4 @@
-import { mockError } from '../mock'
+import { mockError } from '../mocks'
 
 export const mockFactory = () => {
   return {
