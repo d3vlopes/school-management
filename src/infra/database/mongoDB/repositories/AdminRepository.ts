@@ -34,4 +34,10 @@ export class AdminRepository implements IAdminRepository {
 
     return user
   }
+
+  async findAll(): Promise<AdminModel[]> {
+    const users = await Admin.find()
+
+    return users
+  }
 }

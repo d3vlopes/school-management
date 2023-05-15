@@ -2,7 +2,9 @@ import { AdminRegisterRequestDTO } from '@/core/dtos/admin'
 import { AdminModel } from '@/core/models'
 import { IAdminRepository } from '@/core/repositories'
 
-import { createAdminMockFactory } from '../mocks'
+import { createAdminMockFactory, adminsMockFactory } from '../mocks'
+
+const adminMock = createAdminMockFactory
 
 class AdminRepositoryStub implements IAdminRepository {
   async create(data: AdminRegisterRequestDTO): Promise<AdminModel> {
@@ -16,7 +18,11 @@ class AdminRepositoryStub implements IAdminRepository {
   async findOne(
     data: Partial<AdminModel>,
   ): Promise<AdminModel | null> {
-    return createAdminMockFactory
+    return adminMock
+  }
+
+  async findAll(): Promise<AdminModel[]> {
+    return adminsMockFactory
   }
 }
 
