@@ -6,6 +6,7 @@ import {
   makeAdminRegisterController,
   makeAdminLoginController,
   makeAdminGetProfileController,
+  makeAdminGetAllController,
 } from '@/main/factories/controllers/modules/admin'
 
 import { authMiddleware } from '@/main/middlewares'
@@ -24,5 +25,11 @@ export default (router: Router): void => {
     '/admin/profile',
     authMiddleware,
     adaptRoute(makeAdminGetProfileController()),
+  )
+
+  router.get(
+    '/admin',
+    authMiddleware,
+    adaptRoute(makeAdminGetAllController()),
   )
 }
