@@ -1,2 +1,2 @@
-export * from './createAdminMockFactory'
+export * from './adminMockFactory'
 export * from './mockError'
