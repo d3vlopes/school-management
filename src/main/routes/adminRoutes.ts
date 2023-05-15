@@ -9,7 +9,10 @@ import {
   makeAdminGetAllController,
 } from '@/main/factories/controllers/modules/admin'
 
-import { authMiddleware } from '@/main/middlewares'
+import {
+  authMiddleware,
+  adminRoleMiddleware,
+} from '@/main/middlewares'
 
 export const usersRoutes = Router()
 
@@ -23,6 +26,7 @@ export default (router: Router): void => {
 
   router.get(
     '/admin/profile',
+    adminRoleMiddleware,
     authMiddleware,
     adaptRoute(makeAdminGetProfileController()),
   )
