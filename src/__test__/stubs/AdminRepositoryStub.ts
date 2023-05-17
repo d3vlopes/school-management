@@ -24,6 +24,21 @@ class AdminRepositoryStub implements IAdminRepository {
   async findAll(): Promise<AdminModel[]> {
     return adminsMockFactory
   }
+
+  async findByIdAndUpdate(
+    id: string,
+    data: {
+      name?: string
+      email?: string
+      password?: string
+    },
+  ): Promise<AdminModel> {
+    return {
+      ...adminMock,
+      name: 'Updated Admin Name',
+      email: 'updated_admin@email.com',
+    }
+  }
 }
 
 export const adminRepositoryStub = new AdminRepositoryStub()
