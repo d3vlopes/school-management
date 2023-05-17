@@ -64,12 +64,12 @@ export class AdminRegisterUseCase
       return lengthValidationError(lengthError)
     }
 
-    const cryptedPassword = await this.encrypter.encrypt(password)
+    const passwordEncrypted = await this.encrypter.encrypt(password)
 
     const user = await this.adminRepository.create({
       name,
       email,
-      password: cryptedPassword,
+      password: passwordEncrypted,
     })
 
     return success(user)
