@@ -44,9 +44,9 @@ export class AdminRepository implements IAdminRepository {
   async findByIdAndUpdate(
     id: string,
     data: {
-      name?: string | undefined
-      email?: string | undefined
-      password?: string | undefined
+      name?: string
+      email?: string
+      password?: string
     },
   ): Promise<AdminModel | null> {
     const admin = await Admin.findByIdAndUpdate(id, data, {

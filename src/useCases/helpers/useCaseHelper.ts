@@ -21,6 +21,6 @@ export const invalidNameError = () => {
   return handleUseCaseReturn(null, INVALID_NAME_ERROR_MESSAGE)
 }
 
-export const success = <T>(data?: T) => {
-  return handleUseCaseReturn<T>(data ?? null, null)
+export const success = <T>(data: T) => {
+  return handleUseCaseReturn<T>(data, null)
 }

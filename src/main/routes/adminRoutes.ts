@@ -7,6 +7,7 @@ import {
   makeAdminLoginController,
   makeAdminGetProfileController,
   makeAdminGetAllController,
+  makeAdminUpdateController,
 } from '@/main/factories/controllers/modules/admin'
 
 import {
@@ -35,5 +36,12 @@ export default (router: Router): void => {
     '/admin',
     authMiddleware,
     adaptRoute(makeAdminGetAllController()),
+  )
+
+  router.put(
+    '/admin',
+    adminRoleMiddleware,
+    authMiddleware,
+    adaptRoute(makeAdminUpdateController()),
   )
 }
