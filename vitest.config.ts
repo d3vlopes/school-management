@@ -9,6 +9,10 @@ export default defineConfig({
     exclude: ['node_modules', 'dist', '.idea', '.git', '.cache'],
     coverage: {
       provider: 'istanbul',
+      include: [
+        'src/__test__/useCases/**/**/**/*.ts',
+        'src/__test__/controllers/**/**/**/*.ts',
+      ],
     },
   },
 })
