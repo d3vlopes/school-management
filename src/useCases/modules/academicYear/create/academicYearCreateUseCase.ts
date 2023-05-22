@@ -1,4 +1,4 @@
-import { AcademicYearCreateDTO } from '@/core/dtos/academicYear'
+import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
 import { IAcademicYearRepository } from '@/core/repositories'
 
@@ -16,7 +16,8 @@ import { IValidator } from '@/useCases/contracts/adapters'
 import { existsAcademicYearError, invalidYearError } from './helpers'
 
 export class AcademicYearCreateUseCase
-  implements IUseCase<AcademicYearCreateDTO, AcademicYearModel>
+  implements
+    IUseCase<AcademicYearCreateRequestDTO, AcademicYearModel>
 {
   constructor(
     private readonly academicYearRepository: IAcademicYearRepository,
@@ -27,7 +28,7 @@ export class AcademicYearCreateUseCase
     name,
     year,
     createdBy,
-  }: AcademicYearCreateDTO): Promise<
+  }: AcademicYearCreateRequestDTO): Promise<
     IUseCaseResponse<AcademicYearModel | null>
   > {
     const isNameValid = this.validator.isLength(name, 4, 20)

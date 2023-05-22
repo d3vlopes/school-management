@@ -1,4 +1,4 @@
-import { AcademicYearCreateDTO } from '@/core/dtos/academicYear'
+import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
 import { IAcademicYearRepository } from '@/core/repositories'
 
@@ -12,7 +12,7 @@ class AcademicYearRepositoryStub implements IAcademicYearRepository {
   }
 
   async create(
-    data: AcademicYearCreateDTO,
+    data: AcademicYearCreateRequestDTO,
   ): Promise<AcademicYearModel> {
     return academicYearMockFactory
   }

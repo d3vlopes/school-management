@@ -1,4 +1,4 @@
-import { AcademicYearCreateDTO } from '@/core/dtos/academicYear'
+import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 
 type RequestMockType =
   | 'invalid-name'
@@ -8,7 +8,7 @@ type RequestMockType =
 
 export const requestMockFactory: Record<
   RequestMockType,
-  AcademicYearCreateDTO
+  AcademicYearCreateRequestDTO
 > = {
   'invalid-name': {
     name: '123',

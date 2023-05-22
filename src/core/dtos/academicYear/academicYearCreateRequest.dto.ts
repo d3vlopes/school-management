@@ -1,6 +1,6 @@
 import { AcademicYearModel } from '@/core/models'
 
-export type AcademicYearCreateDTO = Pick<
+export type AcademicYearCreateRequestDTO = Pick<
   AcademicYearModel,
   'name' | 'createdBy' | 'year'
->
+> & { id?: string }

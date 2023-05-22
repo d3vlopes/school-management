@@ -1,5 +1,5 @@
 import { AcademicYearModel } from '@/core/models'
-import { AcademicYearCreateDTO } from '@/core/dtos/academicYear'
+import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 import { IAcademicYearRepository } from '@/core/repositories'
 
 import { AcademicYear } from '../models'
@@ -22,7 +22,7 @@ export class AcademicYearRepository
   }
 
   async create(
-    data: AcademicYearCreateDTO,
+    data: AcademicYearCreateRequestDTO,
   ): Promise<AcademicYearModel> {
     const academicYear = new AcademicYear(data)
 
