@@ -18,4 +18,12 @@ export class ZodValidatorAdapter implements IValidator {
 
     return success
   }
+
+  isNumber(value: number, min: number, max: number): boolean {
+    const schema = z.number().min(min).max(max)
+
+    const { success } = schema.safeParse(value)
+
+    return success
+  }
 }
