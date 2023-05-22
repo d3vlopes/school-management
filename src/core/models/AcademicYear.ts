@@ -1,7 +1,7 @@
 export interface AcademicYearModel {
   id: string
   name: string
-  year: Date
+  year: number
   isCurrent?: boolean
   createdBy: string
   students?: string[]

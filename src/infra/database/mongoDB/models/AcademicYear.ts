@@ -9,7 +9,7 @@ const schema = new Schema<AcademicYearModel>(
       required: true,
     },
     year: {
-      type: Date,
+      type: Number,
       required: true,
     },
     isCurrent: {
