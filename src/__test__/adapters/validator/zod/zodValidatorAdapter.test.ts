@@ -1,4 +1,4 @@
-import { vitest, expect, it, describe } from 'vitest'
+import { expect, it, describe } from 'vitest'
 
 import { ZodValidatorAdapter } from '@/infra/adapters/validator/zod'
 
@@ -64,6 +64,48 @@ describe('ZodValidatorAdapter', () => {
       const isLengthValid = sut.isLength(input, 3, 5)
 
       expect(isLengthValid).toBe(true)
+    })
+  })
+
+  describe('isNumber', () => {
+    it('should return false if input is less min value', () => {
+      const sut = new ZodValidatorAdapter()
+
+      const input = 1993
+
+      const isNumberValid = sut.isNumber(input, 1994, 2023)
+
+      expect(isNumberValid).toBe(false)
+    })
+
+    it('should return false if input is than max value', () => {
+      const sut = new ZodValidatorAdapter()
+
+      const input = 2050
+
+      const isNumberValid = sut.isNumber(input, 1994, 2023)
+
+      expect(isNumberValid).toBe(false)
+    })
+
+    it('should return true if input is than min value', () => {
+      const sut = new ZodValidatorAdapter()
+
+      const input = 1994
+
+      const isNumberValid = sut.isNumber(input, 1994, 2023)
+
+      expect(isNumberValid).toBe(true)
+    })
+
+    it('should return true if input is less or equal max value', () => {
+      const sut = new ZodValidatorAdapter()
+
+      const input = 2023
+
+      const isNumberValid = sut.isNumber(input, 1994, 2023)
+
+      expect(isNumberValid).toBe(true)
     })
   })
 })

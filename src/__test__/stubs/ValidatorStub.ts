@@ -8,6 +8,10 @@ export class ValidatorStub implements IValidator {
   isLength(value: string, min: number, max: number): boolean {
     return true
   }
+
+  isNumber(value: number, min: number, max: number): boolean {
+    return true
+  }
 }
 
 export const validatorStub = new ValidatorStub()
