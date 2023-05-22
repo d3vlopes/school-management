@@ -17,8 +17,11 @@ export const invalidPasswordError = () => {
   return handleUseCaseReturn(null, INVALID_PASSWORD_ERROR_MESSAGE)
 }
 
-export const invalidNameError = () => {
-  return handleUseCaseReturn(null, INVALID_NAME_ERROR_MESSAGE)
+export const invalidNameError = (error?: string) => {
+  return handleUseCaseReturn(
+    null,
+    error ?? INVALID_NAME_ERROR_MESSAGE,
+  )
 }
 
 export const success = <T>(data: T) => {
