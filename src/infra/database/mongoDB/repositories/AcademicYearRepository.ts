@@ -32,4 +32,10 @@ export class AcademicYearRepository
 
     return academicYear
   }
+
+  async findAll(): Promise<AcademicYearModel[]> {
+    const academicYears = await AcademicYear.find()
+
+    return academicYears
+  }
 }

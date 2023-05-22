@@ -8,4 +8,5 @@ export interface IAcademicYearRepository {
   create(
     data: AcademicYearCreateRequestDTO,
   ): Promise<AcademicYearModel>
+  findAll(): Promise<AcademicYearModel[]>
 }
