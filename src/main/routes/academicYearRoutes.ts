@@ -5,6 +5,7 @@ import { adaptRoute } from '@/infra/adapters/http/express/adaptRoute'
 import {
   makeAcademicYearCreateController,
   makeAcademicYearGetAllController,
+  makeAcademicYearGetByIdController,
 } from '@/main/factories/controllers/modules/academicYear'
 
 import {
@@ -27,5 +28,12 @@ export default (router: Router): void => {
     authMiddleware,
     adminRoleMiddleware,
     adaptRoute(makeAcademicYearGetAllController()),
+  )
+
+  router.get(
+    '/academic-year/:id',
+    authMiddleware,
+    adminRoleMiddleware,
+    adaptRoute(makeAcademicYearGetByIdController()),
   )
 }
