@@ -6,3 +6,6 @@ export const ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE =
 
 export const ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE =
   'Academic year already exists'
+
+export const ACADEMIC_YEAR_NOT_FOUND_ERROR_MESSAGE =
+  'Academic year not found'
