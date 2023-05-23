@@ -2,7 +2,10 @@ import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
 import { IAcademicYearRepository } from '@/core/repositories'
 
-import { academicYearMockFactory } from '../mocks'
+import {
+  academicYearMockFactory,
+  academicYearsMockFactory,
+} from '../mocks'
 
 class AcademicYearRepositoryStub implements IAcademicYearRepository {
   async findOne(
@@ -15,6 +18,10 @@ class AcademicYearRepositoryStub implements IAcademicYearRepository {
     data: AcademicYearCreateRequestDTO,
   ): Promise<AcademicYearModel> {
     return academicYearMockFactory
+  }
+
+  async findAll(): Promise<AcademicYearModel[]> {
+    return academicYearsMockFactory
   }
 }
 

@@ -3,10 +3,12 @@ import { vitest } from 'vitest'
 export const successMock = (
   stub: unknown,
   methodName: never,
-  data: Record<string, unknown>,
+  data: unknown,
 ) => {
-  vitest.spyOn(stub, methodName).mockResolvedValueOnce({
+  const spyOn = vitest.spyOn(stub, methodName).mockResolvedValueOnce({
     data,
     error: null,
   })
+
+  return spyOn
 }
