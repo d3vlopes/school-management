@@ -24,6 +24,10 @@ export const invalidNameError = (error?: string) => {
   )
 }
 
+export const notFoundError = (error: string) => {
+  return handleUseCaseReturn(null, error)
+}
+
 export const success = <T>(data: T) => {
   return handleUseCaseReturn<T>(data, null)
 }
