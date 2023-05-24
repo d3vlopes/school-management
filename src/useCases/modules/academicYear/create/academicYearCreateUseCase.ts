@@ -9,7 +9,7 @@ import {
 
 import { ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE } from '@/useCases/constants/errors/academicYear'
 
-import { invalidNameError, success } from '@/useCases/helpers'
+import { error, success } from '@/useCases/helpers'
 
 import { IValidator } from '@/useCases/contracts/adapters'
 
@@ -41,9 +41,7 @@ export class AcademicYearCreateUseCase
     )
 
     if (!isNameValid) {
-      return invalidNameError(
-        ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE,
-      )
+      return error(ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE)
     }
 
     if (!isYearValid) {

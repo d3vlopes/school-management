@@ -8,7 +8,7 @@ import {
   IUseCaseResponse,
 } from '@/useCases/contracts/shared'
 
-import { notFoundError, success } from '@/useCases/helpers'
+import { error, success } from '@/useCases/helpers'
 
 export class AcademicYearGetByIdUseCase
   implements IUseCase<string, AcademicYearModel>
@@ -25,7 +25,7 @@ export class AcademicYearGetByIdUseCase
     })
 
     if (!academicYear) {
-      return notFoundError(ACADEMIC_YEAR_NOT_FOUND_ERROR_MESSAGE)
+      return error(ACADEMIC_YEAR_NOT_FOUND_ERROR_MESSAGE)
     }
 
     return success(academicYear)
