@@ -31,8 +31,14 @@ export class AcademicYearCreateUseCase
   }: AcademicYearCreateRequestDTO): Promise<
     IUseCaseResponse<AcademicYearModel | null>
   > {
+    const currentYear = new Date().getFullYear()
+
     const isNameValid = this.validator.isLength(name, 4, 20)
-    const isYearValid = this.validator.isNumber(year, 1994, 2023)
+    const isYearValid = this.validator.isNumber(
+      year,
+      1994,
+      currentYear,
+    )
 
     if (!isNameValid) {
       return invalidNameError(
