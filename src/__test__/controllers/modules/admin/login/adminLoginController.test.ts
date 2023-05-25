@@ -10,8 +10,6 @@ import { makeSut } from './helpers'
 
 import { invalidCredentialsMock, requestMockFactory } from './mocks'
 
-const factory = mockFactory()
-
 describe('AdminLoginController', () => {
   it('should return status code 400 if email is not provided', async () => {
     const { sut } = makeSut()
@@ -68,7 +66,7 @@ describe('AdminLoginController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, adminLoginUseCaseStub } = makeSut()
 
-    factory.mockError(adminLoginUseCaseStub, 'execute' as never)
+    mockFactory().errorMock(adminLoginUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(
       requestMockFactory['invalid-email'],

@@ -3,8 +3,8 @@ import { expect, it, describe } from 'vitest'
 import { UseCaseStub } from '@/__test__/stubs'
 import {
   academicYearsMockFactory,
-  mockError,
-  successMock,
+  errorMock,
+  useCaseSuccessMock,
 } from '@/__test__/mocks'
 
 import { AcademicYearModel } from '@/core/models'
@@ -33,7 +33,7 @@ describe('AcademicYearGetAllController', () => {
   it('should return status code 500 if UseCase throws', async () => {
     const { sut, academicYearGetAllUseCaseStub } = makeSut()
 
-    const useCaseStub = mockError(
+    const useCaseStub = errorMock(
       academicYearGetAllUseCaseStub,
       'execute' as never,
     )
@@ -49,9 +49,8 @@ describe('AcademicYearGetAllController', () => {
   it('should return status code 200 if not error', async () => {
     const { sut, academicYearGetAllUseCaseStub } = makeSut()
 
-    const useCaseStub = successMock(
+    const useCaseStub = useCaseSuccessMock(
       academicYearGetAllUseCaseStub,
-      'execute' as never,
       academicYearsMockFactory,
     )
 

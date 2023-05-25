@@ -1,8 +1,8 @@
-import { mockError } from '../mocks'
+import { errorMock } from '../mocks'
 
 export const mockFactory = () => {
   return {
-    mockError: (stub: unknown, methodName: never) =>
-      mockError(stub, methodName),
+    errorMock: (stub: unknown, methodName: never) =>
+      errorMock(stub, methodName),
   }
 }

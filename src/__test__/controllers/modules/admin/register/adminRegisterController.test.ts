@@ -17,7 +17,7 @@ import {
   ADMIN_REGISTER_INVALID_PASSWORD_ERROR_MESSAGE,
 } from '@/useCases/modules/admin/register/constants'
 
-import { mockError } from '@/__test__/mocks'
+import { errorMock } from '@/__test__/mocks'
 
 const requestMock = requestMockFactory
 
@@ -122,7 +122,7 @@ describe('AdminRegisterController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, adminRegisterUseCaseStub } = makeSut()
 
-    mockError(adminRegisterUseCaseStub, 'execute' as never)
+    errorMock(adminRegisterUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(requestMock)
 

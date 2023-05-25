@@ -1,7 +1,7 @@
 import { vitest, it, expect, describe } from 'vitest'
 
 import { adminRepositoryStub } from '@/__test__/stubs'
-import { adminsMockFactory, mockError } from '@/__test__/mocks'
+import { adminsMockFactory, errorMock } from '@/__test__/mocks'
 
 import { AdminGetAllUseCase } from '@/useCases/modules/admin'
 
@@ -36,7 +36,7 @@ describe('AdminGetAllUseCase', () => {
   it('should throw if AdminRepository throws', async () => {
     const { sut, adminRepositoryStub } = makeSut()
 
-    mockError(adminRepositoryStub, 'findAll' as never)
+    errorMock(adminRepositoryStub, 'findAll' as never)
 
     const response = sut.execute()
 

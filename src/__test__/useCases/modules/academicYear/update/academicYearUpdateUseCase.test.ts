@@ -1,7 +1,7 @@
 import { vitest, it, describe, expect } from 'vitest'
 
 import {
-  mockError,
+  errorMock,
   invalidLengthMock,
   invalidNumberMock,
 } from '@/__test__/mocks'
@@ -77,7 +77,7 @@ describe('AcademicYearUpdateUseCase', () => {
   it('should throw if AcademicYearRepository throws', async () => {
     const { sut, academicYearRepositoryStub } = makeSut()
 
-    mockError(academicYearRepositoryStub, 'findOne' as never)
+    errorMock(academicYearRepositoryStub, 'findOne' as never)
 
     const response = sut.execute(requestMockFactory['exists-name'])
 

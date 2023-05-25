@@ -1,5 +1,7 @@
 import { vitest, expect, it, describe } from 'vitest'
 
+import { errorMock } from '@/__test__/mocks'
+
 import { makeSut } from './helpers'
 
 import {
@@ -10,7 +12,6 @@ import {
   updateAdminMock,
   validEmailMock,
 } from './mocks'
-import { mockError } from '@/__test__/mocks'
 
 describe('AdminUpdateUseCase', () => {
   it('should return error if email is invalid', async () => {
@@ -180,7 +181,7 @@ describe('AdminUpdateUseCase', () => {
 
     validEmailMock(adminRepositoryStub)
 
-    mockError(encrypterStub, 'encrypt' as never)
+    errorMock(encrypterStub, 'encrypt' as never)
 
     const promise = sut.execute(requestMockFactory['update-password'])
 

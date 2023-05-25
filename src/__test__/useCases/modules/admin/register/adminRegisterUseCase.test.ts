@@ -1,6 +1,6 @@
 import { describe, expect, it, vitest } from 'vitest'
 
-import { mockError } from '@/__test__/mocks'
+import { errorMock } from '@/__test__/mocks'
 
 import { makeSut } from './helpers'
 
@@ -115,7 +115,7 @@ describe('AdminRegisterUseCase', () => {
   it('should throw if encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut()
 
-    mockError(encrypterStub, 'encrypt' as never)
+    errorMock(encrypterStub, 'encrypt' as never)
 
     const promise = sut.execute(request)
 
