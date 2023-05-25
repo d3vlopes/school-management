@@ -8,9 +8,9 @@ import { IUseCase } from '@/useCases/contracts/shared'
 
 import { adminUpdateMapper } from './mappers'
 
-type CommomRequestType = Omit<AdminUpdateRequestDTO, 'id'>
+type CommonRequestType = Omit<AdminUpdateRequestDTO, 'id'>
 
-interface IRequest extends CommomRequestType {
+interface IRequest extends CommonRequestType {
   user: { id: string }
 }
 
