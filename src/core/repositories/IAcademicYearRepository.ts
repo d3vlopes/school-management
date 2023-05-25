@@ -1,5 +1,8 @@
 import { AcademicYearModel } from '@/core/models'
-import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
+import {
+  AcademicYearCreateRequestDTO,
+  AcademicYearUpdateRequestDTO,
+} from '@/core/dtos/academicYear'
 
 export interface IAcademicYearRepository {
   findOne: (
@@ -9,4 +12,8 @@ export interface IAcademicYearRepository {
     data: AcademicYearCreateRequestDTO,
   ): Promise<AcademicYearModel>
   findAll(): Promise<AcademicYearModel[]>
+  update(
+    id: string,
+    data: AcademicYearUpdateRequestDTO,
+  ): Promise<AcademicYearModel | null>
 }
