@@ -1,5 +1,8 @@
 import { AcademicYearModel } from '@/core/models'
-import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
+import {
+  AcademicYearCreateRequestDTO,
+  AcademicYearUpdateRequestDTO,
+} from '@/core/dtos/academicYear'
 import { IAcademicYearRepository } from '@/core/repositories'
 
 import { AcademicYear } from '../models'
@@ -37,5 +40,20 @@ export class AcademicYearRepository
     const academicYears = await AcademicYear.find()
 
     return academicYears
+  }
+
+  async update(
+    id: string,
+    data: AcademicYearUpdateRequestDTO,
+  ): Promise<AcademicYearModel | null> {
+    const academicYear = await AcademicYear.findByIdAndUpdate(
+      id,
+      data,
+      {
+        new: true,
+      },
+    )
+
+    return academicYear
   }
 }

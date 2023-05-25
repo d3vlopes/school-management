@@ -6,6 +6,7 @@ import {
   makeAcademicYearCreateController,
   makeAcademicYearGetAllController,
   makeAcademicYearGetByIdController,
+  makeAcademicYearUpdateController,
 } from '@/main/factories/controllers/modules/academicYear'
 
 import {
@@ -35,5 +36,12 @@ export default (router: Router): void => {
     authMiddleware,
     adminRoleMiddleware,
     adaptRoute(makeAcademicYearGetByIdController()),
+  )
+
+  router.put(
+    '/academic-year/:id',
+    authMiddleware,
+    adminRoleMiddleware,
+    adaptRoute(makeAcademicYearUpdateController()),
   )
 }

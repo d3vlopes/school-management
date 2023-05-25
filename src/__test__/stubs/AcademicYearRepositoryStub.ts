@@ -23,6 +23,21 @@ class AcademicYearRepositoryStub implements IAcademicYearRepository {
   async findAll(): Promise<AcademicYearModel[]> {
     return academicYearsMockFactory
   }
+
+  async update(
+    id: string,
+    data: Partial<
+      Pick<
+        AcademicYearModel,
+        'name' | 'createdBy' | 'year' | 'isCurrent'
+      >
+    >,
+  ): Promise<AcademicYearModel | null> {
+    return {
+      ...academicYearMockFactory,
+      name: 'Academic Year Update',
+    }
+  }
 }
 
 export const academicYearRepositoryStub =

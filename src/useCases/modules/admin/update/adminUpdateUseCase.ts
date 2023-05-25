@@ -5,16 +5,17 @@ import { IAdminRepository } from '@/core/repositories'
 import { IEncrypter, IValidator } from '@/useCases/contracts/adapters'
 
 import {
+  INVALID_EMAIL_ADDRESS_ERROR_MESSAGE,
+  INVALID_NAME_ERROR_MESSAGE,
+  INVALID_PASSWORD_ERROR_MESSAGE,
+} from '@/core/validations'
+
+import {
   IUseCase,
   IUseCaseResponse,
 } from '@/useCases/contracts/shared'
 
-import {
-  invalidEmailError,
-  invalidNameError,
-  invalidPasswordError,
-  success,
-} from '@/useCases/helpers'
+import { error, success } from '@/useCases/helpers'
 
 import { existsEmailError } from './helpers'
 
@@ -39,7 +40,7 @@ export class AdminUpdateUseCase
       const isEmailValid = this.validator.isEmail(email)
 
       if (!isEmailValid) {
-        return invalidEmailError()
+        return error(INVALID_EMAIL_ADDRESS_ERROR_MESSAGE)
       }
     }
 
@@ -47,7 +48,7 @@ export class AdminUpdateUseCase
       const isPasswordValid = this.validator.isLength(password, 6, 30)
 
       if (!isPasswordValid) {
-        return invalidPasswordError()
+        return error(INVALID_PASSWORD_ERROR_MESSAGE)
       }
     }
 
@@ -55,7 +56,7 @@ export class AdminUpdateUseCase
       const isNameValid = this.validator.isLength(name, 3, 30)
 
       if (!isNameValid) {
-        return invalidNameError()
+        return error(INVALID_NAME_ERROR_MESSAGE)
       }
     }
 

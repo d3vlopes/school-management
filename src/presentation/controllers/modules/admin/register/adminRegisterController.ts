@@ -18,8 +18,8 @@ export class AdminRegisterController implements IController {
     >,
   ) {}
 
-  async handle(data: unknown): Promise<IHttpResponse> {
-    const request = data as AdminRegisterRequestDTO
+  async handle(body: unknown): Promise<IHttpResponse> {
+    const request = body as AdminRegisterRequestDTO
 
     try {
       const validationError = validationRequiredFields(request)
