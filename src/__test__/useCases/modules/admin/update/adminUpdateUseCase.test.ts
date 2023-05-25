@@ -1,17 +1,16 @@
 import { vitest, expect, it, describe } from 'vitest'
 
-import { errorMock } from '@/__test__/mocks'
-
-import { makeSut } from './helpers'
+import { mockFactory } from '@/__test__/helpers'
 
 import {
-  invalidEmailMock,
-  invalidLengthMock,
   requestMockFactory,
   responseMockFactory,
   updateAdminMock,
   validEmailMock,
+  invalidEmailMock,
 } from './mocks'
+
+import { makeSut } from './helpers'
 
 describe('AdminUpdateUseCase', () => {
   it('should return error if email is invalid', async () => {
@@ -35,7 +34,8 @@ describe('AdminUpdateUseCase', () => {
   it('should return error if password less length 6 characters', async () => {
     const { sut, validatorStub } = makeSut()
 
-    const spyOnValidatorStub = invalidLengthMock(validatorStub)
+    const spyOnValidatorStub =
+      mockFactory().invalidLengthMock(validatorStub)
 
     const response = await sut.execute(
       requestMockFactory['invalid-password'],
@@ -54,7 +54,8 @@ describe('AdminUpdateUseCase', () => {
   it('should return error if name less length 3 characters', async () => {
     const { sut, validatorStub } = makeSut()
 
-    const spyOnValidatorStub = invalidLengthMock(validatorStub)
+    const spyOnValidatorStub =
+      mockFactory().invalidLengthMock(validatorStub)
 
     const response = await sut.execute(
       requestMockFactory['invalid-name'],
@@ -181,7 +182,7 @@ describe('AdminUpdateUseCase', () => {
 
     validEmailMock(adminRepositoryStub)
 
-    errorMock(encrypterStub, 'encrypt' as never)
+    mockFactory().errorMock(encrypterStub, 'encrypt' as never)
 
     const promise = sut.execute(requestMockFactory['update-password'])
 
