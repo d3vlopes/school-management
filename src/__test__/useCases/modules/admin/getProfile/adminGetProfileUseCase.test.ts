@@ -6,6 +6,7 @@ import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
 import { AdminGetProfileUseCase } from '@/useCases/modules/admin'
 
 import { ADMIN_GET_PROFILE_NOT_FOUND_MESSAGE_ERROR } from '@/useCases/modules/admin/getProfile/constants'
+import { mockFactory } from '@/__test__/helpers'
 
 export const makeSut = () => {
   const sut = new AdminGetProfileUseCase(adminRepositoryStub)
@@ -39,9 +40,7 @@ describe('AdminGetProfileUseCase', () => {
   it('should throw if AdminRepository throws', async () => {
     const { sut, adminRepositoryStub } = makeSut()
 
-    vitest
-      .spyOn(adminRepositoryStub, 'findOne')
-      .mockRejectedValueOnce(new Error())
+    mockFactory().errorMock(adminRepositoryStub, 'findOne' as never)
 
     const promise = sut.execute('user_id')
 

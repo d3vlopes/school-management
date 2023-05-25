@@ -2,7 +2,7 @@ import { vitest } from 'vitest'
 
 import { IUseCase } from '@/useCases/contracts/shared'
 
-export function useCaseMockError<T, U>(
+export function useCaseErrorMock<T, U>(
   stub: IUseCase<T, U>,
   error: string,
 ) {

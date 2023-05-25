@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest'
 
-import { mockError } from '@/__test__/mocks'
+import { errorMock } from '@/__test__/mocks'
 
 import { makeSut } from './helpers'
 
@@ -8,7 +8,7 @@ describe('AdminGetAllController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, adminGetAllUseCaseStub } = makeSut()
 
-    const spyOnAdminGetAllUseCase = mockError(
+    const spyOnAdminGetAllUseCase = errorMock(
       adminGetAllUseCaseStub,
       'execute' as never,
     )

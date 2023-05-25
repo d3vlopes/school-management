@@ -1,9 +1,6 @@
 import { vitest, it, expect, describe } from 'vitest'
 
-import {
-  invalidLengthMock,
-  invalidNumberMock,
-} from '@/__test__/mocks'
+import { mockFactory } from '@/__test__/helpers'
 
 import { requestMockFactory, responseMockFactory } from './mocks'
 
@@ -13,7 +10,8 @@ describe('AcademicYearCreateUseCase', () => {
   it('should return error if name is less than 4 characters', async () => {
     const { sut, validatorStub } = makeSut()
 
-    const spyOnValidatorStub = invalidLengthMock(validatorStub)
+    const spyOnValidatorStub =
+      mockFactory().invalidLengthMock(validatorStub)
 
     const response = await sut.execute(
       requestMockFactory['invalid-name'],
@@ -33,7 +31,8 @@ describe('AcademicYearCreateUseCase', () => {
   it('should return error if year is invalid', async () => {
     const { sut, validatorStub } = makeSut()
 
-    const spyOnValidatorStub = invalidNumberMock(validatorStub)
+    const spyOnValidatorStub =
+      mockFactory().invalidNumberMock(validatorStub)
 
     const response = await sut.execute(
       requestMockFactory['invalid-year'],

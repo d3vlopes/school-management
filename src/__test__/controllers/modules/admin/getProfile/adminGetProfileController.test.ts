@@ -1,6 +1,6 @@
 import { vitest, expect, it, describe } from 'vitest'
 
-import { mockError } from '@/__test__/mocks'
+import { errorMock } from '@/__test__/mocks'
 
 import { requestMockFactory, responseMockFactory } from './mocks'
 import { makeSut } from './helpers'
@@ -29,7 +29,7 @@ describe('AdminGetProfileController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, adminGetProfileUseCaseStub } = makeSut()
 
-    mockError(adminGetProfileUseCaseStub, 'execute' as never)
+    errorMock(adminGetProfileUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(
       requestMockFactory['invalid-id'],

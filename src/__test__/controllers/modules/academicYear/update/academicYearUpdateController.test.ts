@@ -2,9 +2,9 @@ import { it, describe, expect } from 'vitest'
 
 import {
   academicYearMockFactory,
-  mockError,
-  successMock,
-  useCaseMockError,
+  errorMock,
+  useCaseSuccessMock,
+  useCaseErrorMock,
 } from '@/__test__/mocks'
 
 import { ServerError } from '@/presentation/errors'
@@ -23,7 +23,7 @@ describe('AcademicYearUpdateController', () => {
   it('should return status code 400 if name is invalid', async () => {
     const { sut, academicYearUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearUpdateUseCaseStub,
       ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE,
     )
@@ -47,7 +47,7 @@ describe('AcademicYearUpdateController', () => {
   it('should return status code 400 if name already exists', async () => {
     const { sut, academicYearUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearUpdateUseCaseStub,
       ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
     )
@@ -71,7 +71,7 @@ describe('AcademicYearUpdateController', () => {
   it('should return status code 400 if year is invalid', async () => {
     const { sut, academicYearUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearUpdateUseCaseStub,
       ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE,
     )
@@ -95,7 +95,7 @@ describe('AcademicYearUpdateController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, academicYearUpdateUseCaseStub } = makeSut()
 
-    mockError(academicYearUpdateUseCaseStub, 'execute' as never)
+    errorMock(academicYearUpdateUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(
       requestMockFactory['invalid-year'],
@@ -113,9 +113,8 @@ describe('AcademicYearUpdateController', () => {
       name: 'Academic Year Update',
     }
 
-    const spyOnUseCase = successMock(
+    const spyOnUseCase = useCaseSuccessMock(
       academicYearUpdateUseCaseStub,
-      'execute' as never,
       updateAcademicYear,
     )
 

@@ -2,9 +2,9 @@ import { expect, it, describe } from 'vitest'
 
 import {
   academicYearMockFactory,
-  mockError,
-  successMock,
-  useCaseMockError,
+  errorMock,
+  useCaseSuccessMock,
+  useCaseErrorMock,
 } from '@/__test__/mocks'
 
 import { MissingParamError, ServerError } from '@/presentation/errors'
@@ -56,7 +56,7 @@ describe('AcademicYearCreateController', () => {
   it('should return status code 400 if name is invalid', async () => {
     const { sut, academicYearCreateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearCreateUseCaseStub,
       ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE,
     )
@@ -76,7 +76,7 @@ describe('AcademicYearCreateController', () => {
   it('should return status code 400 if year is invalid', async () => {
     const { sut, academicYearCreateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearCreateUseCaseStub,
       ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE,
     )
@@ -96,7 +96,7 @@ describe('AcademicYearCreateController', () => {
   it('should return status code 400 if academic year already exists', async () => {
     const { sut, academicYearCreateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearCreateUseCaseStub,
       ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
     )
@@ -116,7 +116,7 @@ describe('AcademicYearCreateController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, academicYearCreateUseCaseStub } = makeSut()
 
-    mockError(academicYearCreateUseCaseStub, 'execute' as never)
+    errorMock(academicYearCreateUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(
       requestMockFactory['already-exists'],
@@ -129,9 +129,8 @@ describe('AcademicYearCreateController', () => {
   it('should return status code 201 if valid data is provided', async () => {
     const { sut, academicYearCreateUseCaseStub } = makeSut()
 
-    successMock(
+    useCaseSuccessMock(
       academicYearCreateUseCaseStub,
-      'execute' as never,
       academicYearMockFactory,
     )
 

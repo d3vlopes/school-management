@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest'
 
-import { mockError, useCaseMockError } from '@/__test__/mocks'
+import { errorMock, useCaseErrorMock } from '@/__test__/mocks'
 
 import { ServerError } from '@/presentation/errors'
 
@@ -12,14 +12,15 @@ import {
 
 import { ADMIN_UPDATE_EXISTS_EMAIL_ERROR_MESSAGE } from '@/useCases/modules/admin/update/constants'
 
-import { makeSut } from './helpers'
 import { requestMockFactory, responseMockFactory } from './mocks'
+
+import { makeSut } from './helpers'
 
 describe('AdminUpdateController', () => {
   it('should return status code 400 if email is invalid ', async () => {
     const { sut, adminUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       adminUpdateUseCaseStub,
       INVALID_EMAIL_ADDRESS_ERROR_MESSAGE,
     )
@@ -39,7 +40,7 @@ describe('AdminUpdateController', () => {
   it('should return status code 400 if email already registered', async () => {
     const { sut, adminUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       adminUpdateUseCaseStub,
       ADMIN_UPDATE_EXISTS_EMAIL_ERROR_MESSAGE,
     )
@@ -59,7 +60,7 @@ describe('AdminUpdateController', () => {
   it('should return status code 400 if password is invalid', async () => {
     const { sut, adminUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       adminUpdateUseCaseStub,
       INVALID_PASSWORD_ERROR_MESSAGE,
     )
@@ -79,7 +80,7 @@ describe('AdminUpdateController', () => {
   it('should return status code 400 if name is invalid', async () => {
     const { sut, adminUpdateUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       adminUpdateUseCaseStub,
       INVALID_NAME_ERROR_MESSAGE,
     )
@@ -99,7 +100,7 @@ describe('AdminUpdateController', () => {
   it('should return status code 500 if UseCase throw', async () => {
     const { sut, adminUpdateUseCaseStub } = makeSut()
 
-    mockError(adminUpdateUseCaseStub, 'execute' as never)
+    errorMock(adminUpdateUseCaseStub, 'execute' as never)
 
     const response = await sut.handle(
       requestMockFactory['invalid-name'],

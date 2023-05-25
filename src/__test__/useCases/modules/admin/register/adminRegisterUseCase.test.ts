@@ -1,10 +1,10 @@
 import { describe, expect, it, vitest } from 'vitest'
 
-import { mockError } from '@/__test__/mocks'
-
-import { makeSut } from './helpers'
+import { mockFactory } from '@/__test__/helpers'
 
 import { requestMockFactory, returnMockFactory } from './mocks'
+
+import { makeSut } from './helpers'
 
 const request = requestMockFactory['valid']
 
@@ -115,7 +115,7 @@ describe('AdminRegisterUseCase', () => {
   it('should throw if encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut()
 
-    mockError(encrypterStub, 'encrypt' as never)
+    mockFactory().errorMock(encrypterStub, 'encrypt' as never)
 
     const promise = sut.execute(request)
 

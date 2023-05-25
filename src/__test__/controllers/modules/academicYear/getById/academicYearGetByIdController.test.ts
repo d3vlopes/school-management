@@ -2,9 +2,9 @@ import { it, describe, expect } from 'vitest'
 
 import {
   academicYearMockFactory,
-  mockError,
-  successMock,
-  useCaseMockError,
+  errorMock,
+  useCaseSuccessMock,
+  useCaseErrorMock,
 } from '@/__test__/mocks'
 
 import { ServerError } from '@/presentation/errors'
@@ -19,7 +19,7 @@ describe('AcademicYearGetByIdController', () => {
   it('should return status 400 if academic year not found', async () => {
     const { sut, academicYearGetByIdUseCaseStub } = makeSut()
 
-    const spyOnUseCase = useCaseMockError(
+    const spyOnUseCase = useCaseErrorMock(
       academicYearGetByIdUseCaseStub,
       ACADEMIC_YEAR_NOT_FOUND_ERROR_MESSAGE,
     )
@@ -39,7 +39,7 @@ describe('AcademicYearGetByIdController', () => {
   it('should return status code 500 if UseCase throws', async () => {
     const { sut, academicYearGetByIdUseCaseStub } = makeSut()
 
-    const spyOnUseCase = mockError(
+    const spyOnUseCase = errorMock(
       academicYearGetByIdUseCaseStub,
       'execute' as never,
     )
@@ -59,9 +59,8 @@ describe('AcademicYearGetByIdController', () => {
   it('should return status code 200 if not error', async () => {
     const { sut, academicYearGetByIdUseCaseStub } = makeSut()
 
-    const useCaseStub = successMock(
+    const useCaseStub = useCaseSuccessMock(
       academicYearGetByIdUseCaseStub,
-      'execute' as never,
       academicYearMockFactory,
     )
 

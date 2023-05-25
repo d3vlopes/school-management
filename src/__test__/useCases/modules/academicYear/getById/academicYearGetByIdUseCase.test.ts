@@ -1,7 +1,9 @@
 import { it, describe, vitest, expect } from 'vitest'
 
 import { academicYearRepositoryStub } from '@/__test__/stubs'
-import { academicYearMockFactory, mockError } from '@/__test__/mocks'
+import { academicYearMockFactory } from '@/__test__/mocks'
+
+import { mockFactory } from '@/__test__/helpers'
 
 import { AcademicYearGetByIdUseCase } from '@/useCases/modules/academicYear'
 
@@ -41,7 +43,10 @@ describe('AcademicYearGetByIdUseCase', () => {
   it('should throw if AcademicYearRepository throws', async () => {
     const { sut, academicYearRepositoryStub } = makeSut()
 
-    mockError(academicYearRepositoryStub, 'findOne' as never)
+    mockFactory().errorMock(
+      academicYearRepositoryStub,
+      'findOne' as never,
+    )
 
     const response = sut.execute('academic_year_id')
 
