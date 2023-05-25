@@ -13,8 +13,8 @@ export class AdminGetProfileController implements IController {
     private readonly useCase: IUseCase<string, AdminModel>,
   ) {}
 
-  async handle(body: unknown): Promise<IHttpResponse> {
-    const { user } = body as AdminGetProfileRequestDTO
+  async handle(request: unknown): Promise<IHttpResponse> {
+    const { user } = request as AdminGetProfileRequestDTO
 
     try {
       const { data, error } = await this.useCase.execute(user.id)

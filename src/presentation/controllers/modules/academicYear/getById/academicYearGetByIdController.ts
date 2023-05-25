@@ -21,10 +21,10 @@ export class AcademicYearGetByIdController implements IController {
     private readonly useCase: IUseCase<string, AcademicYearModel>,
   ) {}
 
-  async handle(body: unknown): Promise<IHttpResponse> {
+  async handle(request: unknown): Promise<IHttpResponse> {
     const {
       params: { id },
-    } = body as IRequest
+    } = request as IRequest
 
     try {
       const { data, error } = await this.useCase.execute(id)
