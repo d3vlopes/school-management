@@ -38,6 +38,8 @@ class AcademicYearRepositoryStub implements IAcademicYearRepository {
       name: 'Academic Year Update',
     }
   }
+
+  async delete(id: string): Promise<void> {}
 }
 
 export const academicYearRepositoryStub =

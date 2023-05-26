@@ -56,4 +56,8 @@ export class AcademicYearRepository
 
     return academicYear
   }
+
+  async delete(id: string): Promise<void> {
+    await AcademicYear.findByIdAndDelete(id)
+  }
 }
