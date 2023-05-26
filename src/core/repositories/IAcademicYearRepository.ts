@@ -16,4 +16,5 @@ export interface IAcademicYearRepository {
     id: string,
     data: AcademicYearUpdateRequestDTO,
   ): Promise<AcademicYearModel | null>
+  delete(id: string): Promise<void>
 }
