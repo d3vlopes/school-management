@@ -42,6 +42,7 @@ export class AcademicYearUpdateUseCase
     let isYearValid: Boolean
 
     const currentYear = new Date().getFullYear()
+    const minYear = 1994
 
     if (name) {
       isNameValid = this.validator.isLength(name, 4, 20)
@@ -52,7 +53,11 @@ export class AcademicYearUpdateUseCase
     }
 
     if (year) {
-      isYearValid = this.validator.isNumber(year, 1994, currentYear)
+      isYearValid = this.validator.isNumber(
+        year,
+        minYear,
+        currentYear,
+      )
 
       if (!isYearValid) {
         return error(ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE)

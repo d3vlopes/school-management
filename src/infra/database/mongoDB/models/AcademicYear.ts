@@ -38,4 +38,4 @@ const schema = new Schema<AcademicYearModel>(
   },
 )
 
-export const AcademicYear = model('AcademicYear', schema)
+export const AcademicYear = model('Academic-Year', schema)

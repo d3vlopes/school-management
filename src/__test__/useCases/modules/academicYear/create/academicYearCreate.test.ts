@@ -79,8 +79,8 @@ describe('AcademicYearCreateUseCase', () => {
 
     expect(spyOnAcademicYearRepository).toHaveBeenCalledWith({
       name: requestMockFactory['valid'].name,
-      createdBy: requestMockFactory['valid'].createdBy,
       year: requestMockFactory['valid'].year,
+      createdBy: requestMockFactory['valid'].userId,
     })
 
     expect(response).toStrictEqual(responseMockFactory['valid'])

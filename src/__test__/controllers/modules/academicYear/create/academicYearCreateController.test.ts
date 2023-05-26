@@ -31,17 +31,6 @@ describe('AcademicYearCreateController', () => {
     expect(response.body).toEqual(new MissingParamError('name'))
   })
 
-  it('should return status code 400 if createdBy is not provided', async () => {
-    const { sut } = makeSut()
-
-    const response = await sut.handle(
-      requestMockFactory['missing-createdBy'],
-    )
-
-    expect(response.statusCode).toBe(400)
-    expect(response.body).toEqual(new MissingParamError('createdBy'))
-  })
-
   it('should return status code 400 if year is not provided', async () => {
     const { sut } = makeSut()
 
@@ -141,7 +130,6 @@ describe('AcademicYearCreateController', () => {
       id: '12345',
       name: 'Academic Year',
       year: 1994,
-      createdBy: 'user_id',
     })
   })
 })

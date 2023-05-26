@@ -1,4 +1,4 @@
-import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
+import { AcademicYearCreateUseCaseData } from '@/useCases/modules/academicYear'
 
 type RequestMockType =
   | 'invalid-name'
@@ -8,26 +8,26 @@ type RequestMockType =
 
 export const requestMockFactory: Record<
   RequestMockType,
-  AcademicYearCreateRequestDTO
+  AcademicYearCreateUseCaseData
 > = {
   'invalid-name': {
     name: '123',
-    createdBy: 'user_id',
+    userId: 'user_id',
     year: 2023,
   },
   'invalid-year': {
     name: 'Any Name',
-    createdBy: 'user_id',
+    userId: 'user_id',
     year: 1,
   },
   exists: {
     name: 'Exists_academic_year',
-    createdBy: 'user_id',
+    userId: 'user_id',
     year: 2023,
   },
   valid: {
     name: 'Academic Year',
-    createdBy: 'user_id',
+    userId: 'user_id',
     year: 2023,
   },
 }
