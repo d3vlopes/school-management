@@ -18,7 +18,6 @@ const schema = new Schema<AcademicYearModel>(
     },
     createdBy: {
       type: String,
-      required: true,
     },
     students: [
       {
