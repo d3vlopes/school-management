@@ -15,6 +15,11 @@ import { IValidator } from '@/useCases/contracts/adapters'
 
 import { existsAcademicYearError, invalidYearError } from './helpers'
 
+export type AcademicYearCreateUseCaseData =
+  AcademicYearCreateRequestDTO & {
+    userId: string
+  }
+
 export class AcademicYearCreateUseCase
   implements
     IUseCase<AcademicYearCreateRequestDTO, AcademicYearModel>
@@ -27,16 +32,17 @@ export class AcademicYearCreateUseCase
   async execute({
     name,
     year,
-    createdBy,
-  }: AcademicYearCreateRequestDTO): Promise<
+    userId,
+  }: AcademicYearCreateUseCaseData): Promise<
     IUseCaseResponse<AcademicYearModel | null>
   > {
     const currentYear = new Date().getFullYear()
+    const minYear = 1994
 
     const isNameValid = this.validator.isLength(name, 4, 20)
     const isYearValid = this.validator.isNumber(
       year,
-      1994,
+      minYear,
       currentYear,
     )
 
@@ -58,7 +64,7 @@ export class AcademicYearCreateUseCase
     const academicYear = await this.academicYearRepository.create({
       name,
       year,
-      createdBy,
+      createdBy: userId,
     })
 
     return success(academicYear)

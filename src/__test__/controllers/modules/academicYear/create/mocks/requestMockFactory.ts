@@ -1,4 +1,6 @@
-import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
+import { IAcademicYearCreateController } from '@/presentation/controllers/modules/academicYear'
+
+type RequestMockPropsType = Partial<IAcademicYearCreateController>
 
 type RequestMockType =
   | 'missing-name'
@@ -9,40 +11,47 @@ type RequestMockType =
   | 'already-exists'
   | 'valid'
 
+const commonProps: Pick<RequestMockPropsType, 'user'> = {
+  user: {
+    id: 'user_id',
+  },
+}
+
 export const requestMockFactory: Record<
   RequestMockType,
-  Partial<AcademicYearCreateRequestDTO>
+  RequestMockPropsType
 > = {
   'missing-name': {
-    createdBy: 'user_id',
+    ...commonProps,
     year: 2023,
   },
   'missing-createdBy': {
+    ...commonProps,
     name: 'Any Name',
     year: 2023,
   },
   'missing-year': {
+    ...commonProps,
     name: 'Any Name',
-    createdBy: 'user_id',
   },
   'invalid-name': {
+    ...commonProps,
     name: 'invalid_name',
-    createdBy: 'user_id',
     year: 2023,
   },
   'invalid-year': {
+    ...commonProps,
     name: 'valid_name',
-    createdBy: 'user_id',
     year: 1010,
   },
   'already-exists': {
+    ...commonProps,
     name: 'exists_academic_year',
-    createdBy: 'user_id',
     year: 2023,
   },
   valid: {
+    ...commonProps,
     name: 'valid_name',
-    createdBy: 'user_id',
     year: 2023,
   },
 }

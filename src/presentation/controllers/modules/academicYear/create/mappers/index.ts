@@ -11,7 +11,6 @@ class AcademicYearCreateMapper
       id: model.id,
       name: model.name,
       year: model.year,
-      createdBy: model.createdBy,
     }
   }
 }

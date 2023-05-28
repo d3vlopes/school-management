@@ -20,36 +20,36 @@ export const usersRoutes = Router()
 export default (router: Router): void => {
   router.post(
     '/academic-year/create',
-    authMiddleware,
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(makeAcademicYearCreateController()),
   )
 
   router.get(
     '/academic-year',
-    authMiddleware,
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(makeAcademicYearGetAllController()),
   )
 
   router.get(
     '/academic-year/:id',
-    authMiddleware,
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(makeAcademicYearGetByIdController()),
   )
 
   router.put(
     '/academic-year/:id',
-    authMiddleware,
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(makeAcademicYearUpdateController()),
   )
 
   router.delete(
     '/academic-year/:id',
-    authMiddleware,
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(makeAcademicYearDeleteController()),
   )
 }

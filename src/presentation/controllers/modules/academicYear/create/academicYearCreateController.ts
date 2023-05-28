@@ -14,30 +14,36 @@ import { MissingParamError } from '@/presentation/errors'
 
 import { IUseCase } from '@/useCases/contracts/shared'
 
+import { AcademicYearCreateUseCaseData } from '@/useCases/modules/academicYear'
+
 import { academicYearCreateMapper } from './mappers'
 
 type IRequiredFields = keyof AcademicYearCreateRequestDTO
 
-const requiredFields: IRequiredFields[] = [
-  'name',
-  'createdBy',
-  'year',
-]
+const requiredFields: IRequiredFields[] = ['name', 'year']
+
+export interface IAcademicYearCreateController
+  extends AcademicYearCreateRequestDTO {
+  user: {
+    id: string
+  }
+}
 
 export class AcademicYearCreateController implements IController {
   constructor(
     private readonly useCase: IUseCase<
-      AcademicYearCreateRequestDTO,
+      AcademicYearCreateUseCaseData,
       AcademicYearModel
     >,
   ) {}
 
-  async handle(body: unknown): Promise<IHttpResponse> {
-    const request = body as AcademicYearCreateRequestDTO
+  async handle(request: unknown): Promise<IHttpResponse> {
+    const { name, year, user } =
+      request as IAcademicYearCreateController
 
     const validationError: MissingParamError | undefined =
       validationRequiredFields<IRequiredFields>(
-        request as any,
+        { name, year } as any,
         requiredFields,
       )
 
@@ -46,7 +52,11 @@ export class AcademicYearCreateController implements IController {
     }
 
     try {
-      const { data, error } = await this.useCase.execute(request)
+      const { data, error } = await this.useCase.execute({
+        name,
+        year,
+        userId: user.id,
+      })
 
       if (error) {
         return badRequest(new Error(error))
