@@ -3,11 +3,8 @@ import { Router } from 'express'
 import { adaptRoute } from '@/infra/adapters/http/express/adaptRoute'
 
 import {
-  makeAdminRegisterController,
-  makeAdminLoginController,
-  makeAdminGetProfileController,
-  makeAdminGetAllController,
-  makeAdminUpdateController,
+  AdminControllerFactory,
+  AdminControllerAction,
 } from '@/main/factories/controllers/modules/admin'
 
 import {
@@ -15,31 +12,50 @@ import {
   adminRoleMiddleware,
 } from '@/main/middlewares'
 
+const controllerFactory = new AdminControllerFactory()
+
 export default (router: Router): void => {
   router.post(
     '/admin/register',
-    adaptRoute(makeAdminRegisterController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AdminControllerAction.REGISTER,
+      ),
+    ),
   )
 
-  router.post('/admin/login', adaptRoute(makeAdminLoginController()))
+  router.post(
+    '/admin/login',
+    adaptRoute(
+      controllerFactory.makeController(AdminControllerAction.LOGIN),
+    ),
+  )
 
   router.get(
     '/admin/profile',
     adminRoleMiddleware,
     authMiddleware,
-    adaptRoute(makeAdminGetProfileController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AdminControllerAction.GET_PROFILE,
+      ),
+    ),
   )
 
   router.get(
     '/admin',
     authMiddleware,
-    adaptRoute(makeAdminGetAllController()),
+    adaptRoute(
+      controllerFactory.makeController(AdminControllerAction.GET_ALL),
+    ),
   )
 
   router.put(
     '/admin',
     adminRoleMiddleware,
     authMiddleware,
-    adaptRoute(makeAdminUpdateController()),
+    adaptRoute(
+      controllerFactory.makeController(AdminControllerAction.UPDATE),
+    ),
   )
 }
