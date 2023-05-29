@@ -10,7 +10,7 @@ import {
 import {
   AcademicYearControllerAction,
   AcademicYearControllerFactory,
-} from '@/main/factories/controllers/modules/academicYear'
+} from '@/main/factories/modules'
 
 const controllerFactory = new AcademicYearControllerFactory()
 

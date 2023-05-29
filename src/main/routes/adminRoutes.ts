@@ -5,7 +5,7 @@ import { adaptRoute } from '@/infra/adapters/http/express/adaptRoute'
 import {
   AdminControllerFactory,
   AdminControllerAction,
-} from '@/main/factories/controllers/modules/admin'
+} from '@/main/factories/modules'
 
 import {
   authMiddleware,
