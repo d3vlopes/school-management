@@ -3,53 +3,69 @@ import { Router } from 'express'
 import { adaptRoute } from '@/infra/adapters/http/express/adaptRoute'
 
 import {
-  makeAcademicYearCreateController,
-  makeAcademicYearGetAllController,
-  makeAcademicYearGetByIdController,
-  makeAcademicYearUpdateController,
-  makeAcademicYearDeleteController,
-} from '@/main/factories/controllers/modules/academicYear'
-
-import {
   authMiddleware,
   adminRoleMiddleware,
 } from '@/main/middlewares'
 
-export const usersRoutes = Router()
+import {
+  AcademicYearControllerAction,
+  AcademicYearControllerFactory,
+} from '@/main/factories/controllers/modules/academicYear/academicYearFactory'
+
+const controllerFactory = new AcademicYearControllerFactory()
 
 export default (router: Router): void => {
   router.post(
     '/academic-year/create',
     adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(makeAcademicYearCreateController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AcademicYearControllerAction.CREATE,
+      ),
+    ),
   )
 
   router.get(
     '/academic-year',
     adminRoleMiddleware,
     authMiddleware,
-    adaptRoute(makeAcademicYearGetAllController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AcademicYearControllerAction.GET_ALL,
+      ),
+    ),
   )
 
   router.get(
     '/academic-year/:id',
     adminRoleMiddleware,
     authMiddleware,
-    adaptRoute(makeAcademicYearGetByIdController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AcademicYearControllerAction.GET_BY_ID,
+      ),
+    ),
   )
 
   router.put(
     '/academic-year/:id',
     adminRoleMiddleware,
     authMiddleware,
-    adaptRoute(makeAcademicYearUpdateController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AcademicYearControllerAction.UPDATE,
+      ),
+    ),
   )
 
   router.delete(
     '/academic-year/:id',
     adminRoleMiddleware,
     authMiddleware,
-    adaptRoute(makeAcademicYearDeleteController()),
+    adaptRoute(
+      controllerFactory.makeController(
+        AcademicYearControllerAction.DELETE,
+      ),
+    ),
   )
 }
