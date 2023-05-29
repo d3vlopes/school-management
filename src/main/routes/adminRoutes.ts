@@ -15,8 +15,6 @@ import {
   adminRoleMiddleware,
 } from '@/main/middlewares'
 
-export const usersRoutes = Router()
-
 export default (router: Router): void => {
   router.post(
     '/admin/register',
