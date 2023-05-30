@@ -3,7 +3,7 @@ import { AcademicYearModel } from '@/core/models'
 import { IAcademicYearRepository } from '@/core/repositories'
 
 import {
-  ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
+  ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
   ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE,
   ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE,
 } from '@/useCases/constants/errors/academicYear'
@@ -68,7 +68,7 @@ export class AcademicYearUpdateUseCase
       await this.academicYearRepository.findOne({ name })
 
     if (existsAcademicYearName) {
-      return error(ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE)
+      return error(ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE)
     }
 
     const updateAcademicYear =
