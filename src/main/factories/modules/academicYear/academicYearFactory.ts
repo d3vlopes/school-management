@@ -49,7 +49,10 @@ export class AcademicYearControllerFactory {
 
       case AcademicYearControllerAction.DELETE:
         const academicYearDeleteUseCase =
-          new AcademicYearDeleteUseCase(academicYearRepository)
+          new AcademicYearDeleteUseCase(
+            academicYearRepository,
+            adminRepository,
+          )
 
         return new AcademicYearDeleteController(
           academicYearDeleteUseCase,

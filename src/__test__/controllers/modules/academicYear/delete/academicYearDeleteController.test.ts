@@ -2,8 +2,9 @@ import { it, expect, describe } from 'vitest'
 
 import { UseCaseStub } from '@/__test__/stubs'
 
-import { AcademicYearDeleteController } from '@/presentation/controllers/modules/academicYear'
 import { mockFactory } from '@/__test__/helpers'
+
+import { AcademicYearDeleteController } from '@/presentation/controllers/modules/academicYear'
 import { ServerError } from '@/presentation/errors'
 
 const makeSut = () => {
@@ -27,10 +28,16 @@ const requestMockFactory = {
     params: {
       id: 'invalid_id',
     },
+    user: {
+      id: 'user_id',
+    },
   },
   valid: {
     params: {
       id: 'valid_id',
+    },
+    user: {
+      id: 'user_id',
     },
   },
 }
@@ -46,9 +53,10 @@ describe('AcademicYearDeleteController', () => {
 
     const response = await sut.handle(requestMockFactory['invalid'])
 
-    expect(spyOnUseCase).toBeCalledWith(
-      requestMockFactory['invalid'].params.id,
-    )
+    expect(spyOnUseCase).toBeCalledWith({
+      id: requestMockFactory['invalid'].params.id,
+      userId: requestMockFactory['invalid'].user.id,
+    })
 
     expect(response.statusCode).toBe(400)
     expect(response.body).toEqual(
@@ -80,9 +88,10 @@ describe('AcademicYearDeleteController', () => {
 
     const response = await sut.handle(requestMockFactory['valid'])
 
-    expect(spyOnUseCase).toBeCalledWith(
-      requestMockFactory['valid'].params.id,
-    )
+    expect(spyOnUseCase).toBeCalledWith({
+      id: requestMockFactory['valid'].params.id,
+      userId: requestMockFactory['invalid'].user.id,
+    })
 
     expect(response.statusCode).toBe(204)
     expect(response.body).toEqual(null)
