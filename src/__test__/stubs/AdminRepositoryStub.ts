@@ -31,7 +31,9 @@ class AdminRepositoryStub implements IAdminRepository {
       name?: string
       email?: string
       password?: string
+      academicYearId?: string
     },
+    operator: 'pull' | 'push' = 'push',
   ): Promise<AdminModel> {
     return {
       ...adminMock,

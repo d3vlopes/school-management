@@ -1,6 +1,9 @@
 import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
-import { IAcademicYearRepository } from '@/core/repositories'
+import {
+  IAcademicYearRepository,
+  IAdminRepository,
+} from '@/core/repositories'
 
 import {
   IUseCase,
@@ -27,6 +30,7 @@ export class AcademicYearCreateUseCase
   constructor(
     private readonly academicYearRepository: IAcademicYearRepository,
     private readonly validator: IValidator,
+    private readonly adminRepository: IAdminRepository,
   ) {}
 
   async execute({
@@ -66,6 +70,14 @@ export class AcademicYearCreateUseCase
       year,
       createdBy: userId,
     })
+
+    await this.adminRepository.findByIdAndUpdate(
+      userId,
+      {
+        academicYearId: academicYear.id,
+      },
+      'push',
+    )
 
     return success(academicYear)
   }

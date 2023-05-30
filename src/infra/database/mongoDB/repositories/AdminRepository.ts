@@ -27,9 +27,11 @@ export class AdminRepository implements IAdminRepository {
     let user = null
 
     if (data.id) {
-      user = await Admin.findOne({ _id: data.id })
+      user = await Admin.findOne({ _id: data.id }).populate(
+        'academicYears',
+      )
     } else {
-      user = await Admin.findOne(data)
+      user = await Admin.findOne(data).populate('academicYears')
     }
 
     return user
@@ -47,11 +49,39 @@ export class AdminRepository implements IAdminRepository {
       name?: string
       email?: string
       password?: string
+      academicYearId?: string
     },
+    operator: 'pull' | 'push' = 'push',
   ): Promise<AdminModel | null> {
-    const admin = await Admin.findByIdAndUpdate(id, data, {
-      new: true,
-    })
+    let admin
+
+    if (operator === 'push') {
+      admin = await Admin.findByIdAndUpdate(
+        id,
+        {
+          data,
+          $push: {
+            academicYears: data.academicYearId,
+          },
+        },
+        {
+          new: true,
+        },
+      )
+    } else {
+      admin = await Admin.findByIdAndUpdate(
+        id,
+        {
+          data,
+          $pull: {
+            academicYears: data?.academicYearId,
+          },
+        },
+        {
+          new: true,
+        },
+      )
+    }
 
     return admin
   }
