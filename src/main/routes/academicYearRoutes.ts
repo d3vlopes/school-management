@@ -18,6 +18,7 @@ export default (router: Router): void => {
   router.post(
     '/academic-year/create',
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(
       controllerFactory.makeController(
         AcademicYearControllerAction.CREATE,
