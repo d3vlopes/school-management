@@ -42,7 +42,7 @@ const schema = new Schema<AdminModel>(
     academicYears: [
       {
         type: ObjectId,
-        ref: 'AcademicYear',
+        ref: 'Academic-Year',
       },
     ],
     classLevels: [
