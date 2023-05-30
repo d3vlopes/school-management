@@ -1,4 +1,9 @@
-import { IAcademicYearRepository } from '@/core/repositories'
+import { AcademicYearDeleteRequestDTO } from '@/core/dtos/academicYear'
+
+import {
+  IAcademicYearRepository,
+  IAdminRepository,
+} from '@/core/repositories'
 
 import { ACADEMIC_YEAR_NOT_FOUND_ERROR_MESSAGE } from '@/useCases/constants/errors/academicYear'
 
@@ -10,15 +15,19 @@ import {
 import { error, success } from '@/useCases/helpers'
 
 export class AcademicYearDeleteUseCase
-  implements IUseCase<string, string>
+  implements IUseCase<AcademicYearDeleteRequestDTO, string>
 {
   constructor(
     private readonly academicYearRepository: IAcademicYearRepository,
+    private readonly adminRepository: IAdminRepository,
   ) {}
 
-  async execute(
-    id: string,
-  ): Promise<IUseCaseResponse<string | null>> {
+  async execute({
+    id,
+    userId,
+  }: AcademicYearDeleteRequestDTO): Promise<
+    IUseCaseResponse<string | null>
+  > {
     const academicYearFound =
       await this.academicYearRepository.findOne({ id })
 
@@ -27,6 +36,12 @@ export class AcademicYearDeleteUseCase
     }
 
     await this.academicYearRepository.delete(id)
+
+    await this.adminRepository.findByIdAndUpdate(
+      userId,
+      { academicYearId: id },
+      'pull',
+    )
 
     return success('Academic year delete successfully')
   }

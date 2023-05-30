@@ -1,6 +1,9 @@
 import { vitest, it, describe, expect } from 'vitest'
 
-import { academicYearRepositoryStub } from '@/__test__/stubs'
+import {
+  academicYearRepositoryStub,
+  adminRepositoryStub,
+} from '@/__test__/stubs'
 import { mockFactory } from '@/__test__/helpers'
 
 import { AcademicYearDeleteUseCase } from '@/useCases/modules/academicYear'
@@ -8,11 +11,13 @@ import { AcademicYearDeleteUseCase } from '@/useCases/modules/academicYear'
 const makeSut = () => {
   const sut = new AcademicYearDeleteUseCase(
     academicYearRepositoryStub,
+    adminRepositoryStub,
   )
 
   return {
     sut,
     academicYearRepositoryStub,
+    adminRepositoryStub,
   }
 }
 
@@ -29,7 +34,10 @@ describe('AcademicYearDeleteUseCase', () => {
       'delete',
     )
 
-    const response = await sut.execute('invalid_id')
+    const response = await sut.execute({
+      id: 'invalid_id',
+      userId: 'user_id',
+    })
 
     expect(spyOnFindOne).toHaveBeenCalledWith({ id: 'invalid_id' })
 
@@ -49,13 +57,17 @@ describe('AcademicYearDeleteUseCase', () => {
       'findOne' as never,
     )
 
-    const response = sut.execute('invalid_id')
+    const response = sut.execute({
+      id: 'invalid_id',
+      userId: 'user_id',
+    })
 
     await expect(response).rejects.toThrow()
   })
 
   it('should delete academic year', async () => {
-    const { sut, academicYearRepositoryStub } = makeSut()
+    const { sut, academicYearRepositoryStub, adminRepositoryStub } =
+      makeSut()
 
     const spyOnFindOne = vitest.spyOn(
       academicYearRepositoryStub,
@@ -67,11 +79,25 @@ describe('AcademicYearDeleteUseCase', () => {
       'delete',
     )
 
-    const response = await sut.execute('valid_id')
+    const adminRepository = vitest.spyOn(
+      adminRepositoryStub,
+      'findByIdAndUpdate',
+    )
+
+    const response = await sut.execute({
+      id: 'valid_id',
+      userId: 'user_id',
+    })
 
     expect(spyOnFindOne).toHaveBeenCalledWith({ id: 'valid_id' })
 
     expect(spyOnDelete).toHaveBeenCalledWith('valid_id')
+
+    expect(adminRepository).toBeCalledWith(
+      'user_id',
+      { academicYearId: 'valid_id' },
+      'pull',
+    )
 
     expect(response).toStrictEqual({
       data: 'Academic year delete successfully',

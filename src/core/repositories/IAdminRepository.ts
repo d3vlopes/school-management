@@ -13,6 +13,8 @@ export interface IAdminRepository {
       name?: string
       email?: string
       password?: string
+      academicYearId?: string
     },
+    operator?: 'pull' | 'push',
   ): Promise<AdminModel | null>
 }

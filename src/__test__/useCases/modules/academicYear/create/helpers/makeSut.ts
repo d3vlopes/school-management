@@ -1,5 +1,6 @@
 import {
   academicYearRepositoryStub,
+  adminRepositoryStub,
   validatorStub,
 } from '@/__test__/stubs'
 
@@ -9,11 +10,13 @@ export const makeSut = () => {
   const sut = new AcademicYearCreateUseCase(
     academicYearRepositoryStub,
     validatorStub,
+    adminRepositoryStub,
   )
 
   return {
     sut,
     validatorStub,
     academicYearRepositoryStub,
+    adminRepositoryStub,
   }
 }

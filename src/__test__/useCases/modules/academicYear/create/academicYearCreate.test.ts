@@ -1,6 +1,7 @@
 import { vitest, it, expect, describe } from 'vitest'
 
 import { mockFactory } from '@/__test__/helpers'
+import { academicYearMockFactory } from '@/__test__/mocks'
 
 import { requestMockFactory, responseMockFactory } from './mocks'
 
@@ -64,7 +65,8 @@ describe('AcademicYearCreateUseCase', () => {
   })
 
   it('should create a new academic year', async () => {
-    const { sut, academicYearRepositoryStub } = makeSut()
+    const { sut, academicYearRepositoryStub, adminRepositoryStub } =
+      makeSut()
 
     const spyOnAcademicYearRepository = vitest.spyOn(
       academicYearRepositoryStub,
@@ -75,13 +77,28 @@ describe('AcademicYearCreateUseCase', () => {
       .spyOn(academicYearRepositoryStub, 'findOne')
       .mockResolvedValueOnce(null)
 
+    const spyOnAdminRepository = vitest.spyOn(
+      adminRepositoryStub,
+      'findByIdAndUpdate',
+    )
+
     const response = await sut.execute(requestMockFactory['valid'])
 
+    const { name, year, userId } = requestMockFactory['valid']
+
     expect(spyOnAcademicYearRepository).toHaveBeenCalledWith({
-      name: requestMockFactory['valid'].name,
-      year: requestMockFactory['valid'].year,
-      createdBy: requestMockFactory['valid'].userId,
+      name,
+      year,
+      createdBy: userId,
     })
+
+    expect(spyOnAdminRepository).toBeCalledWith(
+      userId,
+      {
+        academicYearId: academicYearMockFactory.id,
+      },
+      'push',
+    )
 
     expect(response).toStrictEqual(responseMockFactory['valid'])
   })

@@ -10,7 +10,7 @@ import {
 import {
   AcademicYearControllerAction,
   AcademicYearControllerFactory,
-} from '@/main/factories/controllers/modules/academicYear'
+} from '@/main/factories/modules'
 
 const controllerFactory = new AcademicYearControllerFactory()
 
@@ -18,6 +18,7 @@ export default (router: Router): void => {
   router.post(
     '/academic-year/create',
     adminRoleMiddleware,
+    authMiddleware,
     adaptRoute(
       controllerFactory.makeController(
         AcademicYearControllerAction.CREATE,

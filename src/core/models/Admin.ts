@@ -1,3 +1,5 @@
+import { AcademicYearModel } from './AcademicYear'
+
 export interface AdminModel {
   id: string
   name: string
@@ -7,7 +9,7 @@ export interface AdminModel {
   academicTerms?: string[]
   programs?: string[]
   yearGroups?: string[]
-  academicYears?: string[]
+  academicYears?: AcademicYearModel[]
   classLevels?: string[]
   teachers?: string[]
   students?: string[]

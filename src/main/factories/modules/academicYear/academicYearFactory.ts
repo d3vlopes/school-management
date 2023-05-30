@@ -27,6 +27,8 @@ export enum AcademicYearControllerAction {
 const academicYearRepository =
   InstanceFactory.createAcademicYearRepository()
 
+const adminRepository = InstanceFactory.createAdminRepository()
+
 const zodValidatorAdapter =
   InstanceFactory.createZodValidatorAdapter()
 
@@ -38,6 +40,7 @@ export class AcademicYearControllerFactory {
           new AcademicYearCreateUseCase(
             academicYearRepository,
             zodValidatorAdapter,
+            adminRepository,
           )
 
         return new AcademicYearCreateController(
@@ -46,7 +49,10 @@ export class AcademicYearControllerFactory {
 
       case AcademicYearControllerAction.DELETE:
         const academicYearDeleteUseCase =
-          new AcademicYearDeleteUseCase(academicYearRepository)
+          new AcademicYearDeleteUseCase(
+            academicYearRepository,
+            adminRepository,
+          )
 
         return new AcademicYearDeleteController(
           academicYearDeleteUseCase,
