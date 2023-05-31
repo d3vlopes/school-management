@@ -1,4 +1,7 @@
-import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
+import {
+  AcademicYearCreateRequestDTO,
+  AcademicYearCreateResponseDTO,
+} from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
 
 import { IMapper } from '@/presentation/contracts'
@@ -6,7 +9,7 @@ import { IMapper } from '@/presentation/contracts'
 class AcademicYearCreateMapper
   implements IMapper<AcademicYearModel, AcademicYearCreateRequestDTO>
 {
-  toDTO(model: AcademicYearModel): AcademicYearCreateRequestDTO {
+  toDTO(model: AcademicYearModel): AcademicYearCreateResponseDTO {
     return {
       id: model.id,
       name: model.name,
