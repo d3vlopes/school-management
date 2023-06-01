@@ -1,2 +1,2 @@
-export * from './instanceFactory'
 export * from './repositoriesFactory'
+export * from './adaptersFactory'

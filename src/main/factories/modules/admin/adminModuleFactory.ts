@@ -1,9 +1,14 @@
 import { IAdminRepository } from '@/core/repositories'
 
+import { ContainerFactory } from '@/main/factories/container'
+
+import { Adapters, Repositories } from '@/main/factories/shared'
+
 import {
-  InstanceFactory,
-  Repositories,
-} from '@/main/factories/shared'
+  IEncrypter,
+  IToken,
+  IValidator,
+} from '@/useCases/contracts/adapters'
 
 import {
   AdminGetAllUseCase,
@@ -29,17 +34,21 @@ export enum AdminModuleAction {
   GET_ALL,
 }
 
-const adminRepository = InstanceFactory.createRepository(
+const adminRepository = ContainerFactory.createRepository(
   Repositories.ADMIN,
 ) as IAdminRepository
 
-const zodValidatorAdapter =
-  InstanceFactory.createZodValidatorAdapter()
+const validatorAdapter = ContainerFactory.createAdapter(
+  Adapters.VALIDATOR,
+) as IValidator
 
-const bcryptAdapter = InstanceFactory.createBcryptAdapter()
+const encrypterAdapter = ContainerFactory.createAdapter(
+  Adapters.ENCRYPTER,
+) as IEncrypter
 
-const jsonWebTokenAdapter =
-  InstanceFactory.createJsonWebTokenAdapter()
+const tokenAdapter = ContainerFactory.createAdapter(
+  Adapters.TOKEN,
+) as IToken
 
 export class AdminModuleFactory {
   makeController(action: AdminModuleAction) {
@@ -47,8 +56,8 @@ export class AdminModuleFactory {
       case AdminModuleAction.REGISTER:
         const adminRegisterUseCase = new AdminRegisterUseCase(
           adminRepository,
-          bcryptAdapter,
-          zodValidatorAdapter,
+          encrypterAdapter,
+          validatorAdapter,
         )
 
         return new AdminRegisterController(adminRegisterUseCase)
@@ -56,8 +65,8 @@ export class AdminModuleFactory {
       case AdminModuleAction.LOGIN:
         const adminLoginUseCase = new AdminLoginUseCase(
           adminRepository,
-          bcryptAdapter,
-          jsonWebTokenAdapter,
+          encrypterAdapter,
+          tokenAdapter,
         )
 
         return new AdminLoginController(adminLoginUseCase)
@@ -65,8 +74,8 @@ export class AdminModuleFactory {
       case AdminModuleAction.UPDATE:
         const adminUpdateUseCase = new AdminUpdateUseCase(
           adminRepository,
-          bcryptAdapter,
-          zodValidatorAdapter,
+          encrypterAdapter,
+          validatorAdapter,
         )
 
         return new AdminUpdateController(adminUpdateUseCase)

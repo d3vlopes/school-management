@@ -3,10 +3,9 @@ import {
   IAdminRepository,
 } from '@/core/repositories'
 
-import {
-  InstanceFactory,
-  Repositories,
-} from '@/main/factories/shared'
+import { ContainerFactory } from '@/main/factories/container'
+
+import { Repositories } from '@/main/factories/shared'
 
 import { AcademicTermCreateController } from '@/presentation/controllers/modules/academicTerm'
 
@@ -16,11 +15,11 @@ export enum AcademicTermModuleAction {
   CREATE,
 }
 
-const academicTermRepository = InstanceFactory.createRepository(
+const academicTermRepository = ContainerFactory.createRepository(
   Repositories.ACADEMIC_TERM,
 ) as IAcademicTermRepository
 
-const adminRepository = InstanceFactory.createRepository(
+const adminRepository = ContainerFactory.createRepository(
   Repositories.ADMIN,
 ) as IAdminRepository
 

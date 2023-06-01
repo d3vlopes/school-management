@@ -3,10 +3,9 @@ import {
   IAdminRepository,
 } from '@/core/repositories'
 
-import {
-  InstanceFactory,
-  Repositories,
-} from '@/main/factories/shared'
+import { ContainerFactory } from '@/main/factories/container'
+
+import { Adapters, Repositories } from '@/main/factories/shared'
 
 import {
   AcademicYearCreateUseCase,
@@ -23,6 +22,7 @@ import {
   AcademicYearGetByIdController,
   AcademicYearUpdateController,
 } from '@/presentation/controllers/modules/academicYear'
+import { IValidator } from '@/useCases/contracts/adapters'
 
 export enum AcademicYearModuleAction {
   CREATE,
@@ -32,16 +32,17 @@ export enum AcademicYearModuleAction {
   GET_BY_ID,
 }
 
-const academicYearRepository = InstanceFactory.createRepository(
+const academicYearRepository = ContainerFactory.createRepository(
   Repositories.ACADEMIC_YEAR,
 ) as IAcademicYearRepository
 
-const adminRepository = InstanceFactory.createRepository(
+const adminRepository = ContainerFactory.createRepository(
   Repositories.ADMIN,
 ) as IAdminRepository
 
-const zodValidatorAdapter =
-  InstanceFactory.createZodValidatorAdapter()
+const validatorAdapter = ContainerFactory.createAdapter(
+  Adapters.VALIDATOR,
+) as IValidator
 
 export class AcademicYearModuleFactory {
   makeController(action: AcademicYearModuleAction) {
@@ -50,7 +51,7 @@ export class AcademicYearModuleFactory {
         const academicYearCreateUseCase =
           new AcademicYearCreateUseCase(
             academicYearRepository,
-            zodValidatorAdapter,
+            validatorAdapter,
             adminRepository,
           )
 
@@ -72,7 +73,7 @@ export class AcademicYearModuleFactory {
       case AcademicYearModuleAction.UPDATE:
         const academicYearUpdateUseCase =
           new AcademicYearUpdateUseCase(
-            zodValidatorAdapter,
+            validatorAdapter,
             academicYearRepository,
           )
 
