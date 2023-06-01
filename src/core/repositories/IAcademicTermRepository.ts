@@ -1,5 +1,5 @@
 import { AcademicTermModel } from '@/core/models'
-import { AcademicTermCreateRequestDTO } from '../dtos/academicTerm'
+import { AcademicTermCreateRequestDTO } from '@/core/dtos/academicTerm'
 
 export interface IAcademicTermRepository {
   findOne(
@@ -8,4 +8,5 @@ export interface IAcademicTermRepository {
   create(
     data: AcademicTermCreateRequestDTO,
   ): Promise<AcademicTermModel>
+  findAll: () => Promise<AcademicTermModel[]>
 }

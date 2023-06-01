@@ -2,7 +2,10 @@ import { AcademicTermCreateRequestDTO } from '@/core/dtos/academicTerm'
 import { AcademicTermModel } from '@/core/models'
 import { IAcademicTermRepository } from '@/core/repositories'
 
-import { academicTermMockFactory } from '../mocks'
+import {
+  academicTermMockFactory,
+  academicTermsMockFactory,
+} from '../mocks'
 
 class AcademicTermRepositoryStub implements IAcademicTermRepository {
   async findOne(
@@ -15,6 +18,10 @@ class AcademicTermRepositoryStub implements IAcademicTermRepository {
     data: AcademicTermCreateRequestDTO,
   ): Promise<AcademicTermModel> {
     return academicTermMockFactory
+  }
+
+  async findAll(): Promise<AcademicTermModel[]> {
+    return academicTermsMockFactory
   }
 }
 
