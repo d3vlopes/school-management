@@ -1,4 +1,11 @@
-import { InstanceFactory } from '@/main/factories/shared'
+import {
+  IAcademicYearRepository,
+  IAdminRepository,
+} from '@/core/repositories'
+
+import { ContainerFactory } from '@/main/factories/container'
+
+import { Adapters, Repositories } from '@/main/factories/shared'
 
 import {
   AcademicYearCreateUseCase,
@@ -15,8 +22,9 @@ import {
   AcademicYearGetByIdController,
   AcademicYearUpdateController,
 } from '@/presentation/controllers/modules/academicYear'
+import { IValidator } from '@/useCases/contracts/adapters'
 
-export enum AcademicYearControllerAction {
+export enum AcademicYearModuleAction {
   CREATE,
   DELETE,
   UPDATE,
@@ -24,22 +32,26 @@ export enum AcademicYearControllerAction {
   GET_BY_ID,
 }
 
-const academicYearRepository =
-  InstanceFactory.createAcademicYearRepository()
+const academicYearRepository = ContainerFactory.createRepository(
+  Repositories.ACADEMIC_YEAR,
+) as IAcademicYearRepository
 
-const adminRepository = InstanceFactory.createAdminRepository()
+const adminRepository = ContainerFactory.createRepository(
+  Repositories.ADMIN,
+) as IAdminRepository
 
-const zodValidatorAdapter =
-  InstanceFactory.createZodValidatorAdapter()
+const validatorAdapter = ContainerFactory.createAdapter(
+  Adapters.VALIDATOR,
+) as IValidator
 
-export class AcademicYearControllerFactory {
-  makeController(action: AcademicYearControllerAction) {
+export class AcademicYearModuleFactory {
+  makeController(action: AcademicYearModuleAction) {
     switch (action) {
-      case AcademicYearControllerAction.CREATE:
+      case AcademicYearModuleAction.CREATE:
         const academicYearCreateUseCase =
           new AcademicYearCreateUseCase(
             academicYearRepository,
-            zodValidatorAdapter,
+            validatorAdapter,
             adminRepository,
           )
 
@@ -47,7 +59,7 @@ export class AcademicYearControllerFactory {
           academicYearCreateUseCase,
         )
 
-      case AcademicYearControllerAction.DELETE:
+      case AcademicYearModuleAction.DELETE:
         const academicYearDeleteUseCase =
           new AcademicYearDeleteUseCase(
             academicYearRepository,
@@ -58,10 +70,10 @@ export class AcademicYearControllerFactory {
           academicYearDeleteUseCase,
         )
 
-      case AcademicYearControllerAction.UPDATE:
+      case AcademicYearModuleAction.UPDATE:
         const academicYearUpdateUseCase =
           new AcademicYearUpdateUseCase(
-            zodValidatorAdapter,
+            validatorAdapter,
             academicYearRepository,
           )
 
@@ -69,7 +81,7 @@ export class AcademicYearControllerFactory {
           academicYearUpdateUseCase,
         )
 
-      case AcademicYearControllerAction.GET_ALL:
+      case AcademicYearModuleAction.GET_ALL:
         const academicYearGetAllUseCase =
           new AcademicYearGetAllUseCase(academicYearRepository)
 
@@ -77,7 +89,7 @@ export class AcademicYearControllerFactory {
           academicYearGetAllUseCase,
         )
 
-      case AcademicYearControllerAction.GET_BY_ID:
+      case AcademicYearModuleAction.GET_BY_ID:
         const academicYearGetByIdUseCase =
           new AcademicYearGetByIdUseCase(academicYearRepository)
 

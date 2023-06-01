@@ -14,6 +14,7 @@ export interface IAdminRepository {
       email?: string
       password?: string
       academicYearId?: string
+      academicTermId?: string
     },
     operator?: 'pull' | 'push',
   ): Promise<AdminModel | null>

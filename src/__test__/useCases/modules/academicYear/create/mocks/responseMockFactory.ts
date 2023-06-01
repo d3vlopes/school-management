@@ -7,7 +7,7 @@ import { IUseCaseResponse } from '@/useCases/contracts/shared'
 import {
   ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE,
   ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE,
-  ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
+  ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
 } from '@/useCases/constants/errors/academicYear'
 
 type ResponseMockType =
@@ -30,7 +30,7 @@ export const responseMockFactory: Record<
   },
   exists: {
     data: null,
-    error: ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
+    error: ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
   },
   valid: {
     data: academicYearMockFactory,

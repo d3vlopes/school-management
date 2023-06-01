@@ -1,5 +1,5 @@
 import {
-  ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
+  ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
   ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE,
 } from '@/useCases/constants/errors/academicYear'
 
@@ -13,5 +13,8 @@ export const invalidYearError = () => {
 }
 
 export const existsAcademicYearError = () => {
-  return handleUseCaseReturn(null, ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE)
+  return handleUseCaseReturn(
+    null,
+    ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
+  )
 }

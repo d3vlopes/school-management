@@ -1,4 +1,5 @@
 export * from './academicYearCreateRequest.dto'
+export * from './academicYearCreateResponse.dto'
 export * from './academicYearGetAllResponse.dto'
 export * from './academicYearGetByIdResponse.dto'
 export * from './academicYearUpdateRequest.dto'

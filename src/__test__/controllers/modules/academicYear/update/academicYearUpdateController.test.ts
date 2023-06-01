@@ -12,7 +12,7 @@ import { ServerError } from '@/presentation/errors'
 import {
   ACADEMIC_YEAR_INVALID_NAME_ERROR_MESSAGE,
   ACADEMIC_YEAR_INVALID_YEAR_ERROR_MESSAGE,
-  ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
+  ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
 } from '@/useCases/constants/errors/academicYear'
 
 import { makeSut } from './helpers'
@@ -49,7 +49,7 @@ describe('AcademicYearUpdateController', () => {
 
     const spyOnUseCase = useCaseErrorMock(
       academicYearUpdateUseCaseStub,
-      ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE,
+      ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
     )
 
     const request = requestMockFactory['exists-name']
@@ -64,7 +64,7 @@ describe('AcademicYearUpdateController', () => {
 
     expect(response.statusCode).toBe(400)
     expect(response.body).toEqual(
-      new Error(ACADEMIC_YEAR_EXISTS_ERROR_MESSAGE),
+      new Error(ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE),
     )
   })
 

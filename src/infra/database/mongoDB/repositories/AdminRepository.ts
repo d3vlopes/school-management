@@ -50,6 +50,7 @@ export class AdminRepository implements IAdminRepository {
       email?: string
       password?: string
       academicYearId?: string
+      academicTermId?: string
     },
     operator: 'pull' | 'push' = 'push',
   ): Promise<AdminModel | null> {

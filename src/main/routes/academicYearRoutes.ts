@@ -8,11 +8,11 @@ import {
 } from '@/main/middlewares'
 
 import {
-  AcademicYearControllerAction,
-  AcademicYearControllerFactory,
+  AcademicYearModuleAction,
+  AcademicYearModuleFactory,
 } from '@/main/factories/modules'
 
-const controllerFactory = new AcademicYearControllerFactory()
+const academicYearModuleFactory = new AcademicYearModuleFactory()
 
 export default (router: Router): void => {
   router.post(
@@ -20,8 +20,8 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(
-        AcademicYearControllerAction.CREATE,
+      academicYearModuleFactory.makeController(
+        AcademicYearModuleAction.CREATE,
       ),
     ),
   )
@@ -31,8 +31,8 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(
-        AcademicYearControllerAction.GET_ALL,
+      academicYearModuleFactory.makeController(
+        AcademicYearModuleAction.GET_ALL,
       ),
     ),
   )
@@ -42,8 +42,8 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(
-        AcademicYearControllerAction.GET_BY_ID,
+      academicYearModuleFactory.makeController(
+        AcademicYearModuleAction.GET_BY_ID,
       ),
     ),
   )
@@ -53,8 +53,8 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(
-        AcademicYearControllerAction.UPDATE,
+      academicYearModuleFactory.makeController(
+        AcademicYearModuleAction.UPDATE,
       ),
     ),
   )
@@ -64,8 +64,8 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(
-        AcademicYearControllerAction.DELETE,
+      academicYearModuleFactory.makeController(
+        AcademicYearModuleAction.DELETE,
       ),
     ),
   )

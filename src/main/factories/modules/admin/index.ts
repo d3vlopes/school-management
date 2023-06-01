@@ -1,1 +1,1 @@
-export * from './adminControllerFactory'
+export * from './adminModuleFactory'

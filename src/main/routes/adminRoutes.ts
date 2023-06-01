@@ -3,8 +3,8 @@ import { Router } from 'express'
 import { adaptRoute } from '@/infra/adapters/http/express/adaptRoute'
 
 import {
-  AdminControllerFactory,
-  AdminControllerAction,
+  AdminModuleFactory,
+  AdminModuleAction,
 } from '@/main/factories/modules'
 
 import {
@@ -12,22 +12,20 @@ import {
   adminRoleMiddleware,
 } from '@/main/middlewares'
 
-const controllerFactory = new AdminControllerFactory()
+const adminModuleFactory = new AdminModuleFactory()
 
 export default (router: Router): void => {
   router.post(
     '/admin/register',
     adaptRoute(
-      controllerFactory.makeController(
-        AdminControllerAction.REGISTER,
-      ),
+      adminModuleFactory.makeController(AdminModuleAction.REGISTER),
     ),
   )
 
   router.post(
     '/admin/login',
     adaptRoute(
-      controllerFactory.makeController(AdminControllerAction.LOGIN),
+      adminModuleFactory.makeController(AdminModuleAction.LOGIN),
     ),
   )
 
@@ -36,8 +34,8 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(
-        AdminControllerAction.GET_PROFILE,
+      adminModuleFactory.makeController(
+        AdminModuleAction.GET_PROFILE,
       ),
     ),
   )
@@ -46,7 +44,7 @@ export default (router: Router): void => {
     '/admin',
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(AdminControllerAction.GET_ALL),
+      adminModuleFactory.makeController(AdminModuleAction.GET_ALL),
     ),
   )
 
@@ -55,7 +53,7 @@ export default (router: Router): void => {
     adminRoleMiddleware,
     authMiddleware,
     adaptRoute(
-      controllerFactory.makeController(AdminControllerAction.UPDATE),
+      adminModuleFactory.makeController(AdminModuleAction.UPDATE),
     ),
   )
 }
