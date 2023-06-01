@@ -5,6 +5,7 @@ import { ZodValidatorAdapter } from '@/infra/adapters/validator/zod'
 import {
   AcademicYearRepository,
   AdminRepository,
+  AcademicTermRepository,
 } from '@/infra/database/mongoDB/repositories'
 
 export class InstanceFactory {
@@ -14,6 +15,10 @@ export class InstanceFactory {
 
   static createAcademicYearRepository() {
     return new AcademicYearRepository()
+  }
+
+  static createAcademicTermRepository() {
+    return new AcademicTermRepository()
   }
 
   static createZodValidatorAdapter() {
