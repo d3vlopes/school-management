@@ -1,4 +1,12 @@
-import { InstanceFactory } from '@/main/factories/shared'
+import {
+  IAcademicYearRepository,
+  IAdminRepository,
+} from '@/core/repositories'
+
+import {
+  InstanceFactory,
+  Repositories,
+} from '@/main/factories/shared'
 
 import {
   AcademicYearCreateUseCase,
@@ -24,10 +32,13 @@ export enum AcademicYearModuleAction {
   GET_BY_ID,
 }
 
-const academicYearRepository =
-  InstanceFactory.createAcademicYearRepository()
+const academicYearRepository = InstanceFactory.createRepository(
+  Repositories.ACADEMIC_YEAR,
+) as IAcademicYearRepository
 
-const adminRepository = InstanceFactory.createAdminRepository()
+const adminRepository = InstanceFactory.createRepository(
+  Repositories.ADMIN,
+) as IAdminRepository
 
 const zodValidatorAdapter =
   InstanceFactory.createZodValidatorAdapter()

@@ -1,4 +1,9 @@
-import { InstanceFactory } from '@/main/factories/shared'
+import { IAdminRepository } from '@/core/repositories'
+
+import {
+  InstanceFactory,
+  Repositories,
+} from '@/main/factories/shared'
 
 import {
   AdminGetAllUseCase,
@@ -24,7 +29,9 @@ export enum AdminModuleAction {
   GET_ALL,
 }
 
-const adminRepository = InstanceFactory.createAdminRepository()
+const adminRepository = InstanceFactory.createRepository(
+  Repositories.ADMIN,
+) as IAdminRepository
 
 const zodValidatorAdapter =
   InstanceFactory.createZodValidatorAdapter()

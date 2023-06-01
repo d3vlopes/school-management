@@ -3,22 +3,13 @@ import { JsonWebTokenAdapter } from '@/infra/adapters/encrypter/jsonwebtoken'
 import { ZodValidatorAdapter } from '@/infra/adapters/validator/zod'
 
 import {
-  AcademicYearRepository,
-  AdminRepository,
-  AcademicTermRepository,
-} from '@/infra/database/mongoDB/repositories'
+  Repositories,
+  RepositoriesFactory,
+} from './repositoriesFactory'
 
 export class InstanceFactory {
-  static createAdminRepository() {
-    return new AdminRepository()
-  }
-
-  static createAcademicYearRepository() {
-    return new AcademicYearRepository()
-  }
-
-  static createAcademicTermRepository() {
-    return new AcademicTermRepository()
+  static createRepository(repository: Repositories) {
+    return RepositoriesFactory.make(repository)
   }
 
   static createZodValidatorAdapter() {
