@@ -16,7 +16,7 @@ import {
   AcademicYearUpdateController,
 } from '@/presentation/controllers/modules/academicYear'
 
-export enum AcademicYearControllerAction {
+export enum AcademicYearModuleAction {
   CREATE,
   DELETE,
   UPDATE,
@@ -32,10 +32,10 @@ const adminRepository = InstanceFactory.createAdminRepository()
 const zodValidatorAdapter =
   InstanceFactory.createZodValidatorAdapter()
 
-export class AcademicYearControllerFactory {
-  makeController(action: AcademicYearControllerAction) {
+export class AcademicYearModuleFactory {
+  makeController(action: AcademicYearModuleAction) {
     switch (action) {
-      case AcademicYearControllerAction.CREATE:
+      case AcademicYearModuleAction.CREATE:
         const academicYearCreateUseCase =
           new AcademicYearCreateUseCase(
             academicYearRepository,
@@ -47,7 +47,7 @@ export class AcademicYearControllerFactory {
           academicYearCreateUseCase,
         )
 
-      case AcademicYearControllerAction.DELETE:
+      case AcademicYearModuleAction.DELETE:
         const academicYearDeleteUseCase =
           new AcademicYearDeleteUseCase(
             academicYearRepository,
@@ -58,7 +58,7 @@ export class AcademicYearControllerFactory {
           academicYearDeleteUseCase,
         )
 
-      case AcademicYearControllerAction.UPDATE:
+      case AcademicYearModuleAction.UPDATE:
         const academicYearUpdateUseCase =
           new AcademicYearUpdateUseCase(
             zodValidatorAdapter,
@@ -69,7 +69,7 @@ export class AcademicYearControllerFactory {
           academicYearUpdateUseCase,
         )
 
-      case AcademicYearControllerAction.GET_ALL:
+      case AcademicYearModuleAction.GET_ALL:
         const academicYearGetAllUseCase =
           new AcademicYearGetAllUseCase(academicYearRepository)
 
@@ -77,7 +77,7 @@ export class AcademicYearControllerFactory {
           academicYearGetAllUseCase,
         )
 
-      case AcademicYearControllerAction.GET_BY_ID:
+      case AcademicYearModuleAction.GET_BY_ID:
         const academicYearGetByIdUseCase =
           new AcademicYearGetByIdUseCase(academicYearRepository)
 

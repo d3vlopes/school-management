@@ -16,7 +16,7 @@ import {
   AdminUpdateController,
 } from '@/presentation/controllers/modules/admin'
 
-export enum AdminControllerAction {
+export enum AdminModuleAction {
   REGISTER,
   LOGIN,
   UPDATE,
@@ -34,10 +34,10 @@ const bcryptAdapter = InstanceFactory.createBcryptAdapter()
 const jsonWebTokenAdapter =
   InstanceFactory.createJsonWebTokenAdapter()
 
-export class AdminControllerFactory {
-  makeController(action: AdminControllerAction) {
+export class AdminModuleFactory {
+  makeController(action: AdminModuleAction) {
     switch (action) {
-      case AdminControllerAction.REGISTER:
+      case AdminModuleAction.REGISTER:
         const adminRegisterUseCase = new AdminRegisterUseCase(
           adminRepository,
           bcryptAdapter,
@@ -46,7 +46,7 @@ export class AdminControllerFactory {
 
         return new AdminRegisterController(adminRegisterUseCase)
 
-      case AdminControllerAction.LOGIN:
+      case AdminModuleAction.LOGIN:
         const adminLoginUseCase = new AdminLoginUseCase(
           adminRepository,
           bcryptAdapter,
@@ -55,7 +55,7 @@ export class AdminControllerFactory {
 
         return new AdminLoginController(adminLoginUseCase)
 
-      case AdminControllerAction.UPDATE:
+      case AdminModuleAction.UPDATE:
         const adminUpdateUseCase = new AdminUpdateUseCase(
           adminRepository,
           bcryptAdapter,
@@ -64,14 +64,14 @@ export class AdminControllerFactory {
 
         return new AdminUpdateController(adminUpdateUseCase)
 
-      case AdminControllerAction.GET_PROFILE:
+      case AdminModuleAction.GET_PROFILE:
         const adminGetProfileUseCase = new AdminGetProfileUseCase(
           adminRepository,
         )
 
         return new AdminGetProfileController(adminGetProfileUseCase)
 
-      case AdminControllerAction.GET_ALL:
+      case AdminModuleAction.GET_ALL:
         const adminGetAllUseCase = new AdminGetAllUseCase(
           adminRepository,
         )

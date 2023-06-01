@@ -1,1 +1,1 @@
-export * from './academicYearFactory'
+export * from './academicYearModuleFactory'
