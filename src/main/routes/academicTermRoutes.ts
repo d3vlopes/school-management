@@ -25,4 +25,15 @@ export default (router: Router): void => {
       ),
     ),
   )
+
+  router.get(
+    '/academic-term',
+    adminRoleMiddleware,
+    authMiddleware,
+    adaptRoute(
+      academicTermModuleFactory.makeController(
+        AcademicTermModuleAction.GET_ALL,
+      ),
+    ),
+  )
 }
