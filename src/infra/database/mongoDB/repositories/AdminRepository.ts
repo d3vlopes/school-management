@@ -28,10 +28,12 @@ export class AdminRepository implements IAdminRepository {
 
     if (data.id) {
       user = await Admin.findOne({ _id: data.id }).populate(
-        'academicYears',
+        'academicYears academicTerms',
       )
     } else {
-      user = await Admin.findOne(data).populate('academicYears')
+      user = await Admin.findOne(data).populate(
+        'academicYears academicTerms',
+      )
     }
 
     return user
