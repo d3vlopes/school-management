@@ -11,6 +11,6 @@ export class ContainerFactory {
   }
 
   static createAdapter(adapter: Adapters) {
-    return AdaptersFactory.makeAdapter(adapter)
+    return AdaptersFactory.make(adapter)
   }
 }

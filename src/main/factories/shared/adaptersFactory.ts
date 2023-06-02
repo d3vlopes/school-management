@@ -9,7 +9,7 @@ export enum Adapters {
 }
 
 export class AdaptersFactory {
-  static makeAdapter(adapter: Adapters) {
+  static make(adapter: Adapters) {
     switch (adapter) {
       case Adapters.VALIDATOR:
         return new ZodValidatorAdapter()
