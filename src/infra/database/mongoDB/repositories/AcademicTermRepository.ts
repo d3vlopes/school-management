@@ -32,4 +32,10 @@ export class AcademicTermRepository
 
     return academicTerm
   }
+
+  async findAll(): Promise<AcademicTermModel[]> {
+    const academicTerms = await AcademicTerm.find()
+
+    return academicTerms
+  }
 }

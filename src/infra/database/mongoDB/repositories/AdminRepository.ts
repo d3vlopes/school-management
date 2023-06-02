@@ -28,10 +28,12 @@ export class AdminRepository implements IAdminRepository {
 
     if (data.id) {
       user = await Admin.findOne({ _id: data.id }).populate(
-        'academicYears',
+        'academicYears academicTerms',
       )
     } else {
-      user = await Admin.findOne(data).populate('academicYears')
+      user = await Admin.findOne(data).populate(
+        'academicYears academicTerms',
+      )
     }
 
     return user
@@ -63,6 +65,7 @@ export class AdminRepository implements IAdminRepository {
           data,
           $push: {
             academicYears: data.academicYearId,
+            academicTerms: data.academicTermId,
           },
         },
         {
@@ -76,6 +79,7 @@ export class AdminRepository implements IAdminRepository {
           data,
           $pull: {
             academicYears: data?.academicYearId,
+            academicTerms: data?.academicTermId,
           },
         },
         {

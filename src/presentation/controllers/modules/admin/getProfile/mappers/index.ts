@@ -15,7 +15,15 @@ class AdminGetProfileMapper
       name: model.name,
       email: model.email,
       role: model.role,
-      academicTerms: model.academicTerms,
+      academicTerms: model.academicTerms?.map((academicTerm) => ({
+        id: academicTerm.id,
+        name: academicTerm.name,
+        description: academicTerm.description,
+        duration: academicTerm.duration,
+        createdBy: academicTerm.createdBy,
+        createdAt: academicTerm.createdAt,
+        updatedAt: academicTerm.updatedAt,
+      })),
       academicYears: model.academicYears?.map((academicYear) => ({
         id: academicYear.id,
         name: academicYear.name,

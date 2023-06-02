@@ -24,7 +24,7 @@ const schema = new Schema<AdminModel>(
     academicTerms: [
       {
         type: ObjectId,
-        ref: 'AcademicTerm',
+        ref: 'Academic-Term',
       },
     ],
     programs: [
