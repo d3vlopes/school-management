@@ -63,6 +63,7 @@ export class AdminRepository implements IAdminRepository {
           data,
           $push: {
             academicYears: data.academicYearId,
+            academicTerms: data.academicTermId,
           },
         },
         {
@@ -76,6 +77,7 @@ export class AdminRepository implements IAdminRepository {
           data,
           $pull: {
             academicYears: data?.academicYearId,
+            academicTerms: data?.academicTermId,
           },
         },
         {
