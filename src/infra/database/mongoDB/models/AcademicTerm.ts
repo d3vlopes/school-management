@@ -1,6 +1,6 @@
-import { AcademicTermModel } from '@/core/models'
+import { Schema, SchemaTypes, model, models } from 'mongoose'
 
-import { Schema, SchemaTypes, model } from 'mongoose'
+import { AcademicTermModel } from '@/core/models'
 
 const academicTermSchema = new Schema<AcademicTermModel>(
   {
@@ -25,4 +25,6 @@ const academicTermSchema = new Schema<AcademicTermModel>(
   { timestamps: true },
 )
 
-export const AcademicTerm = model('Academic-Term', academicTermSchema)
+export const AcademicTerm =
+  models['Academic-Term'] ||
+  model('Academic-Term', academicTermSchema)

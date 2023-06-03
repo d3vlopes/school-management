@@ -14,46 +14,44 @@ import {
 
 const adminModuleFactory = new AdminModuleFactory()
 
-export default (router: Router): void => {
-  router.post(
-    '/admin/register',
-    adaptRoute(
-      adminModuleFactory.makeController(AdminModuleAction.REGISTER),
-    ),
-  )
+export const adminRoutes = Router()
 
-  router.post(
-    '/admin/login',
-    adaptRoute(
-      adminModuleFactory.makeController(AdminModuleAction.LOGIN),
-    ),
-  )
+adminRoutes.post(
+  '/admin/register',
+  adaptRoute(
+    adminModuleFactory.makeController(AdminModuleAction.REGISTER),
+  ),
+)
 
-  router.get(
-    '/admin/profile',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      adminModuleFactory.makeController(
-        AdminModuleAction.GET_PROFILE,
-      ),
-    ),
-  )
+adminRoutes.post(
+  '/admin/login',
+  adaptRoute(
+    adminModuleFactory.makeController(AdminModuleAction.LOGIN),
+  ),
+)
 
-  router.get(
-    '/admin',
-    authMiddleware,
-    adaptRoute(
-      adminModuleFactory.makeController(AdminModuleAction.GET_ALL),
-    ),
-  )
+adminRoutes.get(
+  '/admin/profile',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    adminModuleFactory.makeController(AdminModuleAction.GET_PROFILE),
+  ),
+)
 
-  router.put(
-    '/admin',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      adminModuleFactory.makeController(AdminModuleAction.UPDATE),
-    ),
-  )
-}
+adminRoutes.get(
+  '/admin',
+  authMiddleware,
+  adaptRoute(
+    adminModuleFactory.makeController(AdminModuleAction.GET_ALL),
+  ),
+)
+
+adminRoutes.put(
+  '/admin',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    adminModuleFactory.makeController(AdminModuleAction.UPDATE),
+  ),
+)

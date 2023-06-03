@@ -1,4 +1,4 @@
-import { Schema, SchemaTypes, model } from 'mongoose'
+import { Schema, SchemaTypes, model, models } from 'mongoose'
 
 import { AcademicYearModel } from '@/core/models'
 
@@ -37,4 +37,5 @@ const schema = new Schema<AcademicYearModel>(
   },
 )
 
-export const AcademicYear = model('Academic-Year', schema)
+export const AcademicYear =
+  models['Academic-Year'] || model('Academic-Year', schema)

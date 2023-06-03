@@ -14,59 +14,59 @@ import {
 
 const academicYearModuleFactory = new AcademicYearModuleFactory()
 
-export default (router: Router): void => {
-  router.post(
-    '/academic-year/create',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicYearModuleFactory.makeController(
-        AcademicYearModuleAction.CREATE,
-      ),
-    ),
-  )
+export const academicYearRoutes = Router()
 
-  router.get(
-    '/academic-year',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicYearModuleFactory.makeController(
-        AcademicYearModuleAction.GET_ALL,
-      ),
+academicYearRoutes.post(
+  '/academic-year/create',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicYearModuleFactory.makeController(
+      AcademicYearModuleAction.CREATE,
     ),
-  )
+  ),
+)
 
-  router.get(
-    '/academic-year/:id',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicYearModuleFactory.makeController(
-        AcademicYearModuleAction.GET_BY_ID,
-      ),
+academicYearRoutes.get(
+  '/academic-year',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicYearModuleFactory.makeController(
+      AcademicYearModuleAction.GET_ALL,
     ),
-  )
+  ),
+)
 
-  router.put(
-    '/academic-year/:id',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicYearModuleFactory.makeController(
-        AcademicYearModuleAction.UPDATE,
-      ),
+academicYearRoutes.get(
+  '/academic-year/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicYearModuleFactory.makeController(
+      AcademicYearModuleAction.GET_BY_ID,
     ),
-  )
+  ),
+)
 
-  router.delete(
-    '/academic-year/:id',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicYearModuleFactory.makeController(
-        AcademicYearModuleAction.DELETE,
-      ),
+academicYearRoutes.put(
+  '/academic-year/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicYearModuleFactory.makeController(
+      AcademicYearModuleAction.UPDATE,
     ),
-  )
-}
+  ),
+)
+
+academicYearRoutes.delete(
+  '/academic-year/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicYearModuleFactory.makeController(
+      AcademicYearModuleAction.DELETE,
+    ),
+  ),
+)
