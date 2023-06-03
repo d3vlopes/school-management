@@ -1,4 +1,4 @@
-import { academicYearMockFactory } from '@/__test__/mocks'
+import { academicYearMock } from '@/__test__/mocks/modules'
 
 import { AcademicYearModel } from '@/core/models'
 
@@ -33,7 +33,7 @@ export const responseMockFactory: Record<
     error: ACADEMIC_YEAR_EXISTS_NAME_ERROR_MESSAGE,
   },
   valid: {
-    data: academicYearMockFactory,
+    data: academicYearMock,
     error: null,
   },
 }

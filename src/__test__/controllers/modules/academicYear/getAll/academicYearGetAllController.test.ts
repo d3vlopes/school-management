@@ -1,11 +1,10 @@
 import { expect, it, describe } from 'vitest'
 
 import { UseCaseStub } from '@/__test__/stubs'
-import {
-  academicYearsMockFactory,
-  errorMock,
-  useCaseSuccessMock,
-} from '@/__test__/mocks'
+
+import { errorMock, useCaseSuccessMock } from '@/__test__/mocks'
+
+import { academicYearsMock } from '@/__test__/mocks/modules'
 
 import { AcademicYearModel } from '@/core/models'
 
@@ -51,7 +50,7 @@ describe('AcademicYearGetAllController', () => {
 
     const useCaseStub = useCaseSuccessMock(
       academicYearGetAllUseCaseStub,
-      academicYearsMockFactory,
+      academicYearsMock,
     )
 
     const response = await sut.handle()

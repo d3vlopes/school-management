@@ -1,4 +1,3 @@
-export * from './factories'
 export * from './errorMock'
 export * from './useCaseErrorMock'
 export * from './invalidLengthMock'

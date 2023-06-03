@@ -5,7 +5,7 @@ import {
   IUseCaseResponse,
 } from '@/useCases/contracts/shared'
 
-import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
+import { createAdminMock as adminMock } from '@/__test__/mocks/modules'
 
 import { AdminGetProfileController } from '@/presentation/controllers/modules/admin'
 

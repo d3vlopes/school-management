@@ -1,7 +1,8 @@
 import { expect, it, describe } from 'vitest'
 
+import { academicYearMock } from '@/__test__/mocks/modules'
+
 import {
-  academicYearMockFactory,
   errorMock,
   useCaseSuccessMock,
   useCaseErrorMock,
@@ -120,7 +121,7 @@ describe('AcademicYearCreateController', () => {
 
     useCaseSuccessMock(
       academicYearCreateUseCaseStub,
-      academicYearMockFactory,
+      academicYearMock,
     )
 
     const response = await sut.handle(requestMockFactory['valid'])

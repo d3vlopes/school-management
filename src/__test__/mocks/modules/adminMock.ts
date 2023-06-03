@@ -1,6 +1,6 @@
 import { AdminModel } from '@/core/models'
 
-export const createAdminMockFactory: AdminModel = {
+export const createAdminMock: AdminModel = {
   id: '1234',
   name: 'User Name',
   email: 'user@email.com',
@@ -17,7 +17,7 @@ export const createAdminMockFactory: AdminModel = {
   updatedAt: new Date(23, 5),
 }
 
-export const adminsMockFactory: AdminModel[] = [
+export const adminsMock: AdminModel[] = [
   {
     id: '1234',
     name: 'User Name',

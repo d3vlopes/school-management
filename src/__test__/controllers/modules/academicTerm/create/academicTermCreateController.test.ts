@@ -3,7 +3,7 @@ import { it, expect, describe } from 'vitest'
 import { mockFactory } from '@/__test__/helpers'
 
 import { MissingParamError, ServerError } from '@/presentation/errors'
-import { academicTermMockFactory } from '@/__test__/mocks'
+import { academicTermMock } from '@/__test__/mocks/modules'
 
 import { requestMockFactory, responseMockFactory } from './mocks'
 
@@ -91,7 +91,7 @@ describe('AcademicTermCreateController', () => {
 
     const spyOnUseCase = mockFactory().useCaseSuccessMock(
       academicTermCreateUseCaseStub,
-      academicTermMockFactory,
+      academicTermMock,
     )
 
     const request = requestMockFactory['valid']

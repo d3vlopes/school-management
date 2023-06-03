@@ -1,6 +1,6 @@
 import { AcademicTermModel } from '@/core/models'
 
-export const academicTermMockFactory: AcademicTermModel = {
+export const academicTermMock: AcademicTermModel = {
   id: '123456',
   name: 'Academic Term',
   description: 'Loren ipsum dolor',
@@ -10,7 +10,7 @@ export const academicTermMockFactory: AcademicTermModel = {
   updatedAt: new Date(23, 5),
 }
 
-export const academicTermsMockFactory: AcademicTermModel[] = [
+export const academicTermsMock: AcademicTermModel[] = [
   {
     id: '123456',
     name: 'Academic Term',

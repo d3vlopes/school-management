@@ -1,6 +1,6 @@
 import { AcademicYearModel } from '@/core/models'
 
-export const academicYearMockFactory: AcademicYearModel = {
+export const academicYearMock: AcademicYearModel = {
   id: '12345',
   name: 'Academic Year',
   year: 1994,
@@ -12,7 +12,7 @@ export const academicYearMockFactory: AcademicYearModel = {
   updatedAt: new Date(23, 5),
 }
 
-export const academicYearsMockFactory: AcademicYearModel[] = [
+export const academicYearsMock: AcademicYearModel[] = [
   {
     id: '12345',
     name: 'Academic Year',

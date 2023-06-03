@@ -1,11 +1,12 @@
 import { it, describe, expect } from 'vitest'
 
 import {
-  academicYearMockFactory,
   errorMock,
   useCaseSuccessMock,
   useCaseErrorMock,
 } from '@/__test__/mocks'
+
+import { academicYearMock } from '@/__test__/mocks/modules'
 
 import { ServerError } from '@/presentation/errors'
 
@@ -61,7 +62,7 @@ describe('AcademicYearGetByIdController', () => {
 
     const useCaseStub = useCaseSuccessMock(
       academicYearGetByIdUseCaseStub,
-      academicYearMockFactory,
+      academicYearMock,
     )
 
     const request = requestMockFactory['valid']

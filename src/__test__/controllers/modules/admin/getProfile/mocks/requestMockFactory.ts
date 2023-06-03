@@ -1,6 +1,6 @@
 import { AdminGetProfileRequestDTO } from '@/core/dtos/admin'
 
-import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
+import { createAdminMock as adminMock } from '@/__test__/mocks/modules'
 
 type RequestMockType = 'valid' | 'invalid-id'
 

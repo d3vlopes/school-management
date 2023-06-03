@@ -1,7 +1,7 @@
 import { vitest, it, expect, describe } from 'vitest'
 
 import { mockFactory } from '@/__test__/helpers'
-import { academicYearMockFactory } from '@/__test__/mocks'
+import { academicYearMock } from '@/__test__/mocks/modules'
 
 import { requestMockFactory, responseMockFactory } from './mocks'
 
@@ -95,7 +95,7 @@ describe('AcademicYearCreateUseCase', () => {
     expect(spyOnAdminRepository).toBeCalledWith(
       userId,
       {
-        academicYearId: academicYearMockFactory.id,
+        academicYearId: academicYearMock.id,
       },
       'push',
     )

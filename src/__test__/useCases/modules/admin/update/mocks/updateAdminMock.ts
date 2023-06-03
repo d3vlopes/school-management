@@ -1,9 +1,8 @@
 import { vitest } from 'vitest'
 
-import { AdminUpdateRequestDTO } from '@/core/dtos/admin'
 import { IAdminRepository } from '@/core/repositories'
 
-import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
+import { createAdminMock as adminMock } from '@/__test__/mocks/modules'
 
 interface IData {
   email?: string

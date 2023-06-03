@@ -2,26 +2,23 @@ import { AcademicYearCreateRequestDTO } from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
 import { IAcademicYearRepository } from '@/core/repositories'
 
-import {
-  academicYearMockFactory,
-  academicYearsMockFactory,
-} from '../mocks'
+import { academicYearMock, academicYearsMock } from '../mocks/modules'
 
 class AcademicYearRepositoryStub implements IAcademicYearRepository {
   async findOne(
     data: Partial<AcademicYearModel>,
   ): Promise<AcademicYearModel | null> {
-    return academicYearMockFactory
+    return academicYearMock
   }
 
   async create(
     data: AcademicYearCreateRequestDTO,
   ): Promise<AcademicYearModel> {
-    return academicYearMockFactory
+    return academicYearMock
   }
 
   async findAll(): Promise<AcademicYearModel[]> {
-    return academicYearsMockFactory
+    return academicYearsMock
   }
 
   async update(
@@ -34,7 +31,7 @@ class AcademicYearRepositoryStub implements IAcademicYearRepository {
     >,
   ): Promise<AcademicYearModel | null> {
     return {
-      ...academicYearMockFactory,
+      ...academicYearMock,
       name: 'Academic Year Update',
     }
   }

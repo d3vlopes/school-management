@@ -1,6 +1,6 @@
 import { it, describe, expect, vitest } from 'vitest'
 
-import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
+import { createAdminMock as adminMock } from '@/__test__/mocks/modules'
 
 import {
   requestMockFactory,

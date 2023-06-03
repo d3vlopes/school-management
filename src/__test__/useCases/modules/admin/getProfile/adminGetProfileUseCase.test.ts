@@ -1,7 +1,7 @@
 import { expect, it, describe, vitest } from 'vitest'
 
 import { adminRepositoryStub } from '@/__test__/stubs'
-import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
+import { createAdminMock as adminMock } from '@/__test__/mocks/modules'
 
 import { AdminGetProfileUseCase } from '@/useCases/modules/admin'
 
