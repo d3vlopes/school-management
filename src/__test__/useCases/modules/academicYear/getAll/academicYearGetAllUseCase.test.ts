@@ -1,7 +1,7 @@
 import { vitest, expect, it, describe } from 'vitest'
 
 import { academicYearRepositoryStub } from '@/__test__/stubs'
-import { academicYearsMockFactory } from '@/__test__/mocks'
+import { academicYearsMock } from '@/__test__/mocks/modules'
 
 import { mockFactory } from '@/__test__/helpers'
 
@@ -32,7 +32,7 @@ describe('AcademicYearGetAllUseCase', () => {
     expect(spyOnRepository).toBeCalled()
 
     expect(response).toStrictEqual({
-      data: academicYearsMockFactory,
+      data: academicYearsMock,
       error: null,
     })
   })

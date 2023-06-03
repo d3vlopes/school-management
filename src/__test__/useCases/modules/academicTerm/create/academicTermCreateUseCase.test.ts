@@ -1,6 +1,6 @@
 import { vitest, it, expect, describe } from 'vitest'
 
-import { academicTermMockFactory } from '@/__test__/mocks'
+import { academicTermMock } from '@/__test__/mocks/modules'
 
 import { mockFactory } from '@/__test__/helpers'
 
@@ -98,7 +98,7 @@ describe('AcademicTermCreateUseCase', () => {
 
     expect(spyOnAdminRepository).toBeCalledWith(
       requestMockFactory['valid'].userId,
-      { academicTermId: academicTermMockFactory.id },
+      { academicTermId: academicTermMock.id },
       'push',
     )
   })

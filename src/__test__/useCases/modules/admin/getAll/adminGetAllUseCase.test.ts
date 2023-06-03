@@ -1,7 +1,7 @@
 import { vitest, it, expect, describe } from 'vitest'
 
 import { adminRepositoryStub } from '@/__test__/stubs'
-import { adminsMockFactory } from '@/__test__/mocks'
+import { adminsMock } from '@/__test__/mocks/modules'
 
 import { mockFactory } from '@/__test__/helpers'
 
@@ -30,7 +30,7 @@ describe('AdminGetAllUseCase', () => {
     expect(spyOnAdminRepositoryStub).toHaveBeenCalled()
 
     expect(response).toStrictEqual({
-      data: adminsMockFactory,
+      data: adminsMock,
       error: null,
     })
   })

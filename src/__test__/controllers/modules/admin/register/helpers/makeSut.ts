@@ -1,6 +1,6 @@
 import { AdminRegisterRequestDTO } from '@/core/dtos/admin'
 import { AdminModel } from '@/core/models'
-import { createAdminMockFactory } from '@/__test__/mocks'
+import { createAdminMock } from '@/__test__/mocks/modules'
 import {
   IUseCase,
   IUseCaseResponse,
@@ -16,7 +16,7 @@ export const makeSut = () => {
       data: AdminRegisterRequestDTO,
     ): Promise<IUseCaseResponse<AdminModel | null>> {
       return {
-        data: createAdminMockFactory,
+        data: createAdminMock,
         error: null,
       }
     }

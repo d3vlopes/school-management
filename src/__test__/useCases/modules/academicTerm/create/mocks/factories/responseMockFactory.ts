@@ -1,4 +1,4 @@
-import { academicTermMockFactory } from '@/__test__/mocks'
+import { academicTermMock } from '@/__test__/mocks/modules'
 
 import { AcademicTermModel } from '@/core/models'
 
@@ -15,7 +15,7 @@ export const responseMockFactory: Record<
     error: 'Academic Term already exists with that name',
   },
   success: {
-    data: academicTermMockFactory,
+    data: academicTermMock,
     error: null,
   },
 }

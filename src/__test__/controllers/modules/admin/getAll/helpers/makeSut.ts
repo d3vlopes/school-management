@@ -1,4 +1,4 @@
-import { adminsMockFactory } from '@/__test__/mocks'
+import { adminsMock } from '@/__test__/mocks/modules'
 
 import { AdminModel } from '@/core/models'
 import { AdminGetAllController } from '@/presentation/controllers/modules/admin'
@@ -13,7 +13,7 @@ export const makeSut = () => {
   {
     async execute(): Promise<IUseCaseResponse<AdminModel[] | null>> {
       return {
-        data: adminsMockFactory,
+        data: adminsMock,
         error: null,
       }
     }

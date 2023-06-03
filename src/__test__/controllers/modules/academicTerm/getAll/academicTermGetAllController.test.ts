@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest'
 
 import { UseCaseStub } from '@/__test__/stubs'
-import { academicTermsMockFactory } from '@/__test__/mocks'
+import { academicTermsMock } from '@/__test__/mocks/modules'
 import { mockFactory } from '@/__test__/helpers'
 
 import { AcademicTermModel } from '@/core/models'
@@ -48,7 +48,7 @@ describe('AcademicTermGetAllController', () => {
 
     const spyOnUseCase = mockFactory().useCaseSuccessMock(
       academicTermGetAllUseCaseStub,
-      academicTermsMockFactory,
+      academicTermsMock,
     )
 
     const response = await sut.handle()

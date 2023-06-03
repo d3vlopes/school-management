@@ -1,6 +1,6 @@
 import { AcademicYearModel } from '@/core/models'
 
-import { academicYearMockFactory } from '@/__test__/mocks'
+import { academicYearMock } from '@/__test__/mocks/modules'
 
 import { IUseCaseResponse } from '@/useCases/contracts/shared'
 
@@ -34,7 +34,7 @@ export const responseMockFactory: Record<
   },
   valid: {
     data: {
-      ...academicYearMockFactory,
+      ...academicYearMock,
       name: 'Academic Year Update',
     },
     error: null,

@@ -2,26 +2,23 @@ import { AcademicTermCreateRequestDTO } from '@/core/dtos/academicTerm'
 import { AcademicTermModel } from '@/core/models'
 import { IAcademicTermRepository } from '@/core/repositories'
 
-import {
-  academicTermMockFactory,
-  academicTermsMockFactory,
-} from '../mocks'
+import { academicTermMock, academicTermsMock } from '../mocks/modules'
 
 class AcademicTermRepositoryStub implements IAcademicTermRepository {
   async findOne(
     data: Partial<AcademicTermModel>,
   ): Promise<AcademicTermModel | null> {
-    return academicTermMockFactory
+    return academicTermMock
   }
 
   async create(
     data: AcademicTermCreateRequestDTO,
   ): Promise<AcademicTermModel> {
-    return academicTermMockFactory
+    return academicTermMock
   }
 
   async findAll(): Promise<AcademicTermModel[]> {
-    return academicTermsMockFactory
+    return academicTermsMock
   }
 }
 

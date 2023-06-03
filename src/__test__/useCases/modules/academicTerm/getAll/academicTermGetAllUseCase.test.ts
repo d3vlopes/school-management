@@ -6,7 +6,7 @@ import { academicTermRepositoryStub } from '@/__test__/stubs'
 
 import { mockFactory } from '@/__test__/helpers'
 
-import { academicTermsMockFactory } from '@/__test__/mocks'
+import { academicTermsMock } from '@/__test__/mocks/modules'
 
 describe('AcademicTermGetAllUseCase', () => {
   it('should throw if AcademicTermRepository throws', async () => {
@@ -33,14 +33,14 @@ describe('AcademicTermGetAllUseCase', () => {
 
     const spyOnAcademicTermRepository = vitest
       .spyOn(academicTermRepositoryStub, 'findAll')
-      .mockResolvedValueOnce(academicTermsMockFactory)
+      .mockResolvedValueOnce(academicTermsMock)
 
     const response = await sut.execute()
 
     expect(spyOnAcademicTermRepository).toBeCalled()
 
     expect(response).toStrictEqual({
-      data: academicTermsMockFactory,
+      data: academicTermsMock,
       error: null,
     })
   })

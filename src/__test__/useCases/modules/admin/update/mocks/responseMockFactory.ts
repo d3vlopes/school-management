@@ -10,7 +10,7 @@ import { IUseCaseResponse } from '@/useCases/contracts/shared'
 
 import { ADMIN_UPDATE_EXISTS_EMAIL_ERROR_MESSAGE } from '@/useCases/modules/admin/update/constants'
 
-import { createAdminMockFactory as adminMock } from '@/__test__/mocks'
+import { createAdminMock as adminMock } from '@/__test__/mocks/modules'
 
 type ResponseMockType =
   | 'invalid-email'
