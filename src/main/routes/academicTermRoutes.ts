@@ -14,26 +14,26 @@ import {
 
 const academicTermModuleFactory = new AcademicTermModuleFactory()
 
-export default (router: Router): void => {
-  router.post(
-    '/academic-term/create',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicTermModuleFactory.makeController(
-        AcademicTermModuleAction.CREATE,
-      ),
-    ),
-  )
+export const academicTermRoutes = Router()
 
-  router.get(
-    '/academic-term',
-    adminRoleMiddleware,
-    authMiddleware,
-    adaptRoute(
-      academicTermModuleFactory.makeController(
-        AcademicTermModuleAction.GET_ALL,
-      ),
+academicTermRoutes.post(
+  '/academic-term/create',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicTermModuleFactory.makeController(
+      AcademicTermModuleAction.CREATE,
     ),
-  )
-}
+  ),
+)
+
+academicTermRoutes.get(
+  '/academic-term',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicTermModuleFactory.makeController(
+      AcademicTermModuleAction.GET_ALL,
+    ),
+  ),
+)
