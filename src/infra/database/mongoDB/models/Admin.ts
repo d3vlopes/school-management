@@ -1,5 +1,4 @@
-import { model, Schema } from 'mongoose'
-import { ObjectId } from 'mongodb'
+import { model, Schema, SchemaTypes, models } from 'mongoose'
 
 import { AdminModel } from '@/core/models'
 
@@ -23,43 +22,43 @@ const schema = new Schema<AdminModel>(
     },
     academicTerms: [
       {
-        type: ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'Academic-Term',
       },
     ],
     programs: [
       {
-        type: ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'Program',
       },
     ],
     yearGroups: [
       {
-        type: ObjectId,
-        ref: 'YearGroup',
+        type: SchemaTypes.ObjectId,
+        ref: 'Year-Group',
       },
     ],
     academicYears: [
       {
-        type: ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'Academic-Year',
       },
     ],
     classLevels: [
       {
-        type: ObjectId,
-        ref: 'ClassLevel',
+        type: SchemaTypes.ObjectId,
+        ref: 'Class-Level',
       },
     ],
     teachers: [
       {
-        type: ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'Teacher',
       },
     ],
     students: [
       {
-        type: ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'Student',
       },
     ],
@@ -69,4 +68,4 @@ const schema = new Schema<AdminModel>(
   },
 )
 
-export const Admin = model('Admin', schema)
+export const Admin = models.Admin || model('Admin', schema)
