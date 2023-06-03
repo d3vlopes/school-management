@@ -28,10 +28,10 @@ describe('AcademicYearGetByIdUseCase', () => {
       .spyOn(academicYearRepositoryStub, 'findOne')
       .mockResolvedValueOnce(null)
 
-    const response = await sut.execute('academic_year_id')
+    const response = await sut.execute('invalid_id')
 
     expect(spyOnRepository).toHaveBeenCalledWith({
-      id: 'academic_year_id',
+      id: 'invalid_id',
     })
 
     expect(response).toStrictEqual({
@@ -48,7 +48,7 @@ describe('AcademicYearGetByIdUseCase', () => {
       'findOne' as never,
     )
 
-    const response = sut.execute('academic_year_id')
+    const response = sut.execute('invalid_id')
 
     await expect(response).rejects.toThrow()
   })
@@ -61,10 +61,10 @@ describe('AcademicYearGetByIdUseCase', () => {
       'findOne',
     )
 
-    const response = await sut.execute('academic_year_id')
+    const response = await sut.execute('valid_id')
 
     expect(spyOnRepository).toHaveBeenCalledWith({
-      id: 'academic_year_id',
+      id: 'valid_id',
     })
 
     expect(response).toStrictEqual({

@@ -9,6 +9,13 @@ export const badRequest = (error: Error): IHttpResponse => {
   }
 }
 
+export const notFound = (error: Error): IHttpResponse => {
+  return {
+    statusCode: 404,
+    body: error,
+  }
+}
+
 export const ok = (
   data: Record<string, unknown> | any,
 ): IHttpResponse => ({
