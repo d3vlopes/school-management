@@ -37,3 +37,14 @@ academicTermRoutes.get(
     ),
   ),
 )
+
+academicTermRoutes.get(
+  '/academic-term/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicTermModuleFactory.makeController(
+      AcademicTermModuleAction.GET_BY_ID,
+    ),
+  ),
+)
