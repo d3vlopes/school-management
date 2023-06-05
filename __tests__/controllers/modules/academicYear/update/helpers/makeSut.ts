@@ -1,13 +1,13 @@
 import { UseCaseStub } from '@/__tests__/stubs'
 
-import { AcademicYearUpdateRequestDTO } from '@/core/dtos/academicYear'
 import { AcademicYearModel } from '@/core/models'
 
 import { AcademicYearUpdateController } from '@/presentation/controllers/modules/academicYear'
+import { AcademicYearUpdateUseCaseData } from '@/useCases/modules/academicYear'
 
 export const makeSut = () => {
   const academicYearUpdateUseCaseStub = new UseCaseStub<
-    AcademicYearUpdateRequestDTO,
+    AcademicYearUpdateUseCaseData,
     AcademicYearModel
   >()
 
