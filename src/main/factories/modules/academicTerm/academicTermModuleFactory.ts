@@ -9,18 +9,21 @@ import { Repositories } from '@/main/factories/shared'
 
 import {
   AcademicTermCreateController,
+  AcademicTermUpdateController,
   AcademicTermGetAllController,
   AcademicTermGetByIdController,
 } from '@/presentation/controllers/modules/academicTerm'
 
 import {
   AcademicTermCreateUseCase,
+  AcademicTermUpdateUseCase,
   AcademicTermGetAllUseCase,
   AcademicTermGetByIdUseCase,
 } from '@/useCases/modules/academicTerm'
 
 export enum AcademicTermModuleAction {
   CREATE,
+  UPDATE,
   GET_ALL,
   GET_BY_ID,
 }
@@ -45,6 +48,14 @@ export class AcademicTermModuleFactory {
 
         return new AcademicTermCreateController(
           academicTermCreateUseCase,
+        )
+
+      case AcademicTermModuleAction.UPDATE:
+        const academicTermUpdateUseCase =
+          new AcademicTermUpdateUseCase(academicTermRepository)
+
+        return new AcademicTermUpdateController(
+          academicTermUpdateUseCase,
         )
 
       case AcademicTermModuleAction.GET_ALL:

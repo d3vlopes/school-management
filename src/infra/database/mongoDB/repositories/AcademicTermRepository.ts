@@ -1,6 +1,9 @@
 import { AcademicTermModel } from '@/core/models'
 import { IAcademicTermRepository } from '@/core/repositories'
-import { AcademicTermCreateRequestDTO } from '@/core/dtos/academicTerm'
+import {
+  AcademicTermCreateRequestDTO,
+  AcademicTermUpdateRequestDTO,
+} from '@/core/dtos/academicTerm'
 
 import { AcademicTerm } from '../models'
 
@@ -37,5 +40,20 @@ export class AcademicTermRepository
     const academicTerms = await AcademicTerm.find()
 
     return academicTerms
+  }
+
+  async update(
+    id: string,
+    data: AcademicTermUpdateRequestDTO,
+  ): Promise<AcademicTermModel | null> {
+    const academicTerm = await AcademicTerm.findByIdAndUpdate(
+      id,
+      data,
+      {
+        new: true,
+      },
+    )
+
+    return academicTerm
   }
 }

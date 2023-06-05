@@ -20,6 +20,15 @@ class AcademicTermRepositoryStub implements IAcademicTermRepository {
   async findAll(): Promise<AcademicTermModel[]> {
     return academicTermsMock
   }
+
+  async update(
+    id: string,
+    data: Partial<
+      Pick<AcademicTermModel, 'name' | 'description' | 'duration'>
+    >,
+  ): Promise<AcademicTermModel | null> {
+    return academicTermMock
+  }
 }
 
 export const academicTermRepositoryStub =

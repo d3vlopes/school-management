@@ -1,4 +1,5 @@
 import { AcademicYearModel } from '@/core/models'
+import { AcademicYearUpdateRequestDTO } from '@/core/dtos/academicYear'
 
 import { IController, IHttpResponse } from '@/presentation/contracts'
 import { badRequest, ok, serverError } from '@/presentation/helpers'
@@ -7,7 +8,6 @@ import { IUseCase } from '@/useCases/contracts/shared'
 import { AcademicYearUpdateUseCaseData } from '@/useCases/modules/academicYear'
 
 import { academicYearUpdatedMapper } from './mappers'
-import { AcademicYearUpdateRequestDTO } from '@/core/dtos/academicYear'
 
 type CommonRequestType = AcademicYearUpdateRequestDTO
 
