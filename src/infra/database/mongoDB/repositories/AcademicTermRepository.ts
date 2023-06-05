@@ -56,4 +56,8 @@ export class AcademicTermRepository
 
     return academicTerm
   }
+
+  async delete(id: string): Promise<void> {
+    await AcademicTerm.findByIdAndDelete(id)
+  }
 }
