@@ -10,8 +10,8 @@ export default defineConfig({
     coverage: {
       provider: 'istanbul',
       include: [
-        'src/__test__/useCases/**/**/**/*.ts',
-        'src/__test__/controllers/**/**/**/*.ts',
+        './__test__/useCases/**/**/**/*.ts',
+        './__test__/controllers/**/**/**/*.ts',
       ],
     },
   },

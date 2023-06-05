@@ -3,6 +3,7 @@
     "baseUrl": "./",
     "target": "ES2020",
     "module": "commonjs",
+    "rootDirs": ["src", "__tests__"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
@@ -11,9 +12,10 @@
     "resolveJsonModule": true,
     "noImplicitAny": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@/__tests__/*": ["./__tests__/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "__tests__"],
   "exclude": ["node_modules"]
 }
