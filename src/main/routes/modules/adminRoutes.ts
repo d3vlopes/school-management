@@ -17,21 +17,21 @@ const adminModuleFactory = new AdminModuleFactory()
 export const adminRoutes = Router()
 
 adminRoutes.post(
-  '/admin/register',
+  '/admins/register',
   adaptRoute(
     adminModuleFactory.makeController(AdminModuleAction.REGISTER),
   ),
 )
 
 adminRoutes.post(
-  '/admin/login',
+  '/admins/login',
   adaptRoute(
     adminModuleFactory.makeController(AdminModuleAction.LOGIN),
   ),
 )
 
 adminRoutes.get(
-  '/admin/profile',
+  '/admins/profile',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -40,7 +40,7 @@ adminRoutes.get(
 )
 
 adminRoutes.get(
-  '/admin',
+  '/admins',
   authMiddleware,
   adaptRoute(
     adminModuleFactory.makeController(AdminModuleAction.GET_ALL),
@@ -48,7 +48,7 @@ adminRoutes.get(
 )
 
 adminRoutes.put(
-  '/admin',
+  '/admins',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(

@@ -17,7 +17,7 @@ const academicTermModuleFactory = new AcademicTermModuleFactory()
 export const academicTermRoutes = Router()
 
 academicTermRoutes.post(
-  '/academic-term/create',
+  '/academic-terms/create',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -28,7 +28,7 @@ academicTermRoutes.post(
 )
 
 academicTermRoutes.get(
-  '/academic-term',
+  '/academic-terms',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -39,7 +39,7 @@ academicTermRoutes.get(
 )
 
 academicTermRoutes.get(
-  '/academic-term/:id',
+  '/academic-terms/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -50,7 +50,7 @@ academicTermRoutes.get(
 )
 
 academicTermRoutes.put(
-  '/academic-term/:id',
+  '/academic-terms/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -61,7 +61,7 @@ academicTermRoutes.put(
 )
 
 academicTermRoutes.delete(
-  '/academic-term/:id',
+  '/academic-terms/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
