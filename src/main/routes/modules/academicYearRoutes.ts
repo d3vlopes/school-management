@@ -17,7 +17,7 @@ const academicYearModuleFactory = new AcademicYearModuleFactory()
 export const academicYearRoutes = Router()
 
 academicYearRoutes.post(
-  '/academic-year/create',
+  '/academic-years/create',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -28,7 +28,7 @@ academicYearRoutes.post(
 )
 
 academicYearRoutes.get(
-  '/academic-year',
+  '/academic-years',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -39,7 +39,7 @@ academicYearRoutes.get(
 )
 
 academicYearRoutes.get(
-  '/academic-year/:id',
+  '/academic-years/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -50,7 +50,7 @@ academicYearRoutes.get(
 )
 
 academicYearRoutes.put(
-  '/academic-year/:id',
+  '/academic-years/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
@@ -61,7 +61,7 @@ academicYearRoutes.put(
 )
 
 academicYearRoutes.delete(
-  '/academic-year/:id',
+  '/academic-years/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
