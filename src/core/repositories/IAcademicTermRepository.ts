@@ -17,4 +17,5 @@ export interface IAcademicTermRepository {
     id: string,
     data: AcademicTermUpdateRequestDTO,
   ): Promise<AcademicTermModel | null>
+  delete(id: string): Promise<void>
 }

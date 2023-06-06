@@ -29,6 +29,8 @@ class AcademicTermRepositoryStub implements IAcademicTermRepository {
   ): Promise<AcademicTermModel | null> {
     return academicTermMock
   }
+
+  async delete(id: string): Promise<void> {}
 }
 
 export const academicTermRepositoryStub =
