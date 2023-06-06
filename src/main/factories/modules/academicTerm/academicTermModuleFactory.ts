@@ -10,6 +10,7 @@ import { Repositories } from '@/main/factories/shared'
 import {
   AcademicTermCreateController,
   AcademicTermUpdateController,
+  AcademicTermDeleteController,
   AcademicTermGetAllController,
   AcademicTermGetByIdController,
 } from '@/presentation/controllers/modules/academicTerm'
@@ -17,6 +18,7 @@ import {
 import {
   AcademicTermCreateUseCase,
   AcademicTermUpdateUseCase,
+  AcademicTermDeleteUseCase,
   AcademicTermGetAllUseCase,
   AcademicTermGetByIdUseCase,
 } from '@/useCases/modules/academicTerm'
@@ -24,6 +26,7 @@ import {
 export enum AcademicTermModuleAction {
   CREATE,
   UPDATE,
+  DELETE,
   GET_ALL,
   GET_BY_ID,
 }
@@ -56,6 +59,17 @@ export class AcademicTermModuleFactory {
 
         return new AcademicTermUpdateController(
           academicTermUpdateUseCase,
+        )
+
+      case AcademicTermModuleAction.DELETE:
+        const academicTermDeleteUseCase =
+          new AcademicTermDeleteUseCase(
+            academicTermRepository,
+            adminRepository,
+          )
+
+        return new AcademicTermDeleteController(
+          academicTermDeleteUseCase,
         )
 
       case AcademicTermModuleAction.GET_ALL:

@@ -59,3 +59,14 @@ academicTermRoutes.put(
     ),
   ),
 )
+
+academicTermRoutes.delete(
+  '/academic-term/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    academicTermModuleFactory.makeController(
+      AcademicTermModuleAction.DELETE,
+    ),
+  ),
+)
