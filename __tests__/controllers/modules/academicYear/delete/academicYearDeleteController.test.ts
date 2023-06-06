@@ -77,7 +77,7 @@ describe('AcademicYearDeleteController', () => {
     expect(response.body).toEqual(new ServerError())
   })
 
-  it('should return status code 200 if not error', async () => {
+  it('should return status code 204 if not error', async () => {
     const { sut, academicYearDeleteUseCaseStub } = makeSut()
 
     const spyOnUseCase = mockFactory().useCaseSuccessMock(
