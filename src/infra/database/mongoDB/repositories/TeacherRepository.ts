@@ -6,7 +6,7 @@ import { Teacher } from '../models'
 
 export class TeacherRepository implements ITeacherRepository {
   async create(
-    data: TeacherRegisterRequestDTO,
+    data: TeacherRegisterRequestDTO & { teacherId: string },
   ): Promise<TeacherModel> {
     const teacher = new Teacher(data)
 
