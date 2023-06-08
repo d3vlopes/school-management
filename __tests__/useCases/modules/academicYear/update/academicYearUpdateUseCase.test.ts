@@ -103,6 +103,7 @@ describe('AcademicYearUpdateUseCase', () => {
       data.id,
       {
         name: data.name,
+        year: data.year,
         createdBy: data.userId,
       },
     )

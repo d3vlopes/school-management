@@ -29,5 +29,6 @@ export const requestMockFactory: Record<
     id: 'academic_year_id',
     userId: 'user_id',
     name: 'valid_name',
+    year: 2023,
   },
 }
