@@ -51,4 +51,4 @@ const schema = new Schema<TeacherModel>(
   },
 )
 
-export const Teacher = models.Admin || model('Teacher', schema)
+export const Teacher = models.Teacher || model('Teacher', schema)

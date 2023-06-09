@@ -4,7 +4,7 @@ export interface TeacherModel {
   email: string
   password: string
   dateEmployed?: Date
-  teacherId?: string
+  teacherId: string
   isWithdrawn?: boolean
   isSuspended?: boolean
   role?: string
