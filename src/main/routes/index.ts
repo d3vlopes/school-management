@@ -4,12 +4,12 @@ import {
   academicTermRoutes,
   academicYearRoutes,
   adminRoutes,
+  teacherRoutes,
 } from './modules'
 
-const router = Router()
+export const routes = Router()
 
-router.use(adminRoutes)
-router.use(academicYearRoutes)
-router.use(academicTermRoutes)
-
-export const routes = router
+routes.use(adminRoutes)
+routes.use(academicYearRoutes)
+routes.use(academicTermRoutes)
+routes.use(teacherRoutes)
