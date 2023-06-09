@@ -2,12 +2,14 @@ import {
   AdminRepository,
   AcademicYearRepository,
   AcademicTermRepository,
+  TeacherRepository,
 } from '@/infra/database/mongoDB/repositories'
 
 export enum Repositories {
   ADMIN,
   ACADEMIC_YEAR,
   ACADEMIC_TERM,
+  TEACHER,
 }
 
 export class RepositoriesFactory {
@@ -21,6 +23,9 @@ export class RepositoriesFactory {
 
       case Repositories.ACADEMIC_TERM:
         return new AcademicTermRepository()
+
+      case Repositories.TEACHER:
+        return new TeacherRepository()
     }
   }
 }
