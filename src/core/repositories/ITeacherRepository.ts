@@ -6,4 +6,5 @@ export interface ITeacherRepository {
     data: TeacherRegisterRequestDTO & { teacherId: string },
   ): Promise<TeacherModel>
   findOne(data: Partial<TeacherModel>): Promise<TeacherModel | null>
+  findAll(): Promise<TeacherModel[]>
 }

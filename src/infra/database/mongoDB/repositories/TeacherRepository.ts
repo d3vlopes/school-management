@@ -30,4 +30,10 @@ export class TeacherRepository implements ITeacherRepository {
 
     return teacher
   }
+
+  async findAll(): Promise<TeacherModel[]> {
+    const teachers = await Teacher.find()
+
+    return teachers
+  }
 }
