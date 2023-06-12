@@ -2,7 +2,7 @@ import { TeacherModel } from '@/core/models'
 import { TeacherRegisterRequestDTO } from '@/core/dtos/teacher'
 import { ITeacherRepository } from '@/core/repositories'
 
-import { teacherMock } from '../mocks/modules'
+import { teacherMock, teachersMock } from '../mocks/modules'
 
 class TeacherRepositoryStub implements ITeacherRepository {
   async create(
@@ -25,6 +25,10 @@ class TeacherRepositoryStub implements ITeacherRepository {
     data: Partial<TeacherModel>,
   ): Promise<TeacherModel | null> {
     return teacherMock
+  }
+
+  async findAll(): Promise<TeacherModel[]> {
+    return teachersMock
   }
 }
 
