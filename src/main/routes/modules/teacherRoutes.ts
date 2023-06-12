@@ -40,3 +40,14 @@ teacherRoutes.get(
     teacherModuleFactory.makeController(TeacherModuleAction.GET_ALL),
   ),
 )
+
+teacherRoutes.get(
+  '/teachers/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    teacherModuleFactory.makeController(
+      TeacherModuleAction.GET_BY_ID,
+    ),
+  ),
+)
