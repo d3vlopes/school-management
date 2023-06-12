@@ -35,6 +35,8 @@ export class AdminRoleMiddleware implements IMiddleware {
       } catch {
         return badRequest(new Error('token expired'))
       }
+    } else {
+      return badRequest(new Error('Missing token'))
     }
 
     try {
