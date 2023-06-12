@@ -24,3 +24,10 @@ teacherRoutes.post(
     teacherModuleFactory.makeController(TeacherModuleAction.REGISTER),
   ),
 )
+
+teacherRoutes.post(
+  '/teachers/login',
+  adaptRoute(
+    teacherModuleFactory.makeController(TeacherModuleAction.LOGIN),
+  ),
+)
