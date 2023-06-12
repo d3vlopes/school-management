@@ -14,18 +14,21 @@ import {
   TeacherRegisterUseCase,
   TeacherLoginUseCase,
   TeacherGetAllUseCase,
+  TeacherGetByIdUseCase,
 } from '@/useCases/modules/teacher'
 
 import {
   TeacherRegisterController,
   TeacherLoginController,
   TeacherGetAllController,
+  TeacherGetByIdController,
 } from '@/presentation/controllers/modules/teacher'
 
 export enum TeacherModuleAction {
   REGISTER,
   LOGIN,
   GET_ALL,
+  GET_BY_ID,
 }
 
 const teacherRepository = ContainerFactory.createRepository(
@@ -71,6 +74,13 @@ export class TeacherModuleFactory {
         )
 
         return new TeacherGetAllController(teacherGetAllUseCase)
+
+      case TeacherModuleAction.GET_BY_ID:
+        const teacherGetByIdUseCase = new TeacherGetByIdUseCase(
+          teacherRepository,
+        )
+
+        return new TeacherGetByIdController(teacherGetByIdUseCase)
     }
   }
 }
