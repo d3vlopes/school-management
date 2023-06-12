@@ -9,7 +9,7 @@ import {
   serverError,
 } from '@/presentation/helpers'
 
-import { IAdminRepository } from '@/core/repositories'
+import { ITeacherRepository } from '@/core/repositories'
 import { IToken } from '@/useCases/contracts/adapters'
 
 import { TOKEN_SECRET } from '@/config'
@@ -18,9 +18,9 @@ interface IRequest {
   accessToken: string
 }
 
-export class AdminRoleMiddleware implements IMiddleware {
+export class TeacherRoleMiddleware implements IMiddleware {
   constructor(
-    private readonly adminRepository: IAdminRepository,
+    private readonly teacherRepository: ITeacherRepository,
     private readonly token: IToken,
   ) {}
 
@@ -40,15 +40,15 @@ export class AdminRoleMiddleware implements IMiddleware {
     }
 
     try {
-      const adminFound = await this.adminRepository.findOne({
+      const teacherFound = await this.teacherRepository.findOne({
         id: userId,
       })
 
-      if (adminFound?.role === 'admin') {
+      if (teacherFound?.role === 'teacher') {
         return ok({})
       } else {
         return forbidden(
-          new AccessDeniedError('Access denied, admin only'),
+          new AccessDeniedError('Access denied, teacher only'),
         )
       }
     } catch {
