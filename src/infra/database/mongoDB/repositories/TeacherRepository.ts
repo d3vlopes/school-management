@@ -1,4 +1,7 @@
-import { TeacherRegisterRequestDTO } from '@/core/dtos/teacher'
+import {
+  TeacherRegisterRequestDTO,
+  TeacherUpdateRequestDTO,
+} from '@/core/dtos/teacher'
 import { TeacherModel } from '@/core/models'
 import { ITeacherRepository } from '@/core/repositories'
 
@@ -35,5 +38,16 @@ export class TeacherRepository implements ITeacherRepository {
     const teachers = await Teacher.find()
 
     return teachers
+  }
+
+  async update(
+    id: string,
+    data: Omit<TeacherUpdateRequestDTO, 'id'>,
+  ): Promise<TeacherModel | null> {
+    const teacher = await Teacher.findByIdAndUpdate(id, data, {
+      new: true,
+    })
+
+    return teacher
   }
 }
