@@ -52,3 +52,14 @@ teacherRoutes.get(
     ),
   ),
 )
+
+teacherRoutes.get(
+  '/teachers/profile',
+  teacherRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    teacherModuleFactory.makeController(
+      TeacherModuleAction.GET_PROFILE,
+    ),
+  ),
+)
