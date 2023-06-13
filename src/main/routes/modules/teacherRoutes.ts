@@ -10,6 +10,7 @@ import {
 import {
   authMiddleware,
   adminRoleMiddleware,
+  teacherRoleMiddleware,
 } from '@/main/middlewares'
 
 const teacherModuleFactory = new TeacherModuleFactory()
@@ -42,12 +43,23 @@ teacherRoutes.get(
 )
 
 teacherRoutes.get(
-  '/teachers/:id',
+  '/teachers/admin/:id',
   adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
     teacherModuleFactory.makeController(
       TeacherModuleAction.GET_BY_ID,
+    ),
+  ),
+)
+
+teacherRoutes.get(
+  '/teachers/profile',
+  teacherRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    teacherModuleFactory.makeController(
+      TeacherModuleAction.GET_PROFILE,
     ),
   ),
 )
