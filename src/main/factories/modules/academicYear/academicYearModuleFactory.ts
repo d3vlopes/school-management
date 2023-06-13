@@ -1,13 +1,4 @@
 import {
-  IAcademicYearRepository,
-  IAdminRepository,
-} from '@/core/repositories'
-
-import { ContainerFactory } from '@/main/factories/container'
-
-import { Adapters, Repositories } from '@/main/factories/shared'
-
-import {
   AcademicYearCreateUseCase,
   AcademicYearDeleteUseCase,
   AcademicYearGetAllUseCase,
@@ -22,27 +13,14 @@ import {
   AcademicYearGetByIdController,
   AcademicYearUpdateController,
 } from '@/presentation/controllers/modules/academicYear'
-import { IValidator } from '@/useCases/contracts/adapters'
 
-export enum AcademicYearModuleAction {
-  CREATE,
-  DELETE,
-  UPDATE,
-  GET_ALL,
-  GET_BY_ID,
-}
+import { AcademicYearModuleAction } from './actions'
 
-const academicYearRepository = ContainerFactory.createRepository(
-  Repositories.ACADEMIC_YEAR,
-) as IAcademicYearRepository
-
-const adminRepository = ContainerFactory.createRepository(
-  Repositories.ADMIN,
-) as IAdminRepository
-
-const validatorAdapter = ContainerFactory.createAdapter(
-  Adapters.VALIDATOR,
-) as IValidator
+import {
+  academicYearRepository,
+  adminRepository,
+  validatorAdapter,
+} from './container'
 
 export class AcademicYearModuleFactory {
   makeController(action: AcademicYearModuleAction) {

@@ -1,15 +1,3 @@
-import { IAdminRepository } from '@/core/repositories'
-
-import { ContainerFactory } from '@/main/factories/container'
-
-import { Adapters, Repositories } from '@/main/factories/shared'
-
-import {
-  IEncrypter,
-  IToken,
-  IValidator,
-} from '@/useCases/contracts/adapters'
-
 import {
   AdminGetAllUseCase,
   AdminGetProfileUseCase,
@@ -26,29 +14,14 @@ import {
   AdminUpdateController,
 } from '@/presentation/controllers/modules/admin'
 
-export enum AdminModuleAction {
-  REGISTER,
-  LOGIN,
-  UPDATE,
-  GET_PROFILE,
-  GET_ALL,
-}
+import { AdminModuleAction } from './actions'
 
-const adminRepository = ContainerFactory.createRepository(
-  Repositories.ADMIN,
-) as IAdminRepository
-
-const validatorAdapter = ContainerFactory.createAdapter(
-  Adapters.VALIDATOR,
-) as IValidator
-
-const encrypterAdapter = ContainerFactory.createAdapter(
-  Adapters.ENCRYPTER,
-) as IEncrypter
-
-const tokenAdapter = ContainerFactory.createAdapter(
-  Adapters.TOKEN,
-) as IToken
+import {
+  adminRepository,
+  encrypterAdapter,
+  tokenAdapter,
+  validatorAdapter,
+} from './container'
 
 export class AdminModuleFactory {
   makeController(action: AdminModuleAction) {

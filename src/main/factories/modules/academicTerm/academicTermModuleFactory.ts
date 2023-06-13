@@ -1,13 +1,4 @@
 import {
-  IAcademicTermRepository,
-  IAdminRepository,
-} from '@/core/repositories'
-
-import { ContainerFactory } from '@/main/factories/container'
-
-import { Repositories } from '@/main/factories/shared'
-
-import {
   AcademicTermCreateController,
   AcademicTermUpdateController,
   AcademicTermDeleteController,
@@ -23,21 +14,9 @@ import {
   AcademicTermGetByIdUseCase,
 } from '@/useCases/modules/academicTerm'
 
-export enum AcademicTermModuleAction {
-  CREATE,
-  UPDATE,
-  DELETE,
-  GET_ALL,
-  GET_BY_ID,
-}
+import { AcademicTermModuleAction } from './actions'
 
-const academicTermRepository = ContainerFactory.createRepository(
-  Repositories.ACADEMIC_TERM,
-) as IAcademicTermRepository
-
-const adminRepository = ContainerFactory.createRepository(
-  Repositories.ADMIN,
-) as IAdminRepository
+import { academicTermRepository, adminRepository } from './container'
 
 export class AcademicTermModuleFactory {
   makeController(action: AcademicTermModuleAction) {

@@ -1,15 +1,3 @@
-import { ITeacherRepository } from '@/core/repositories'
-
-import { ContainerFactory } from '@/main/factories/container'
-
-import { Adapters, Repositories } from '@/main/factories/shared'
-
-import {
-  IEncrypter,
-  IToken,
-  IValidator,
-} from '@/useCases/contracts/adapters'
-
 import {
   TeacherRegisterUseCase,
   TeacherLoginUseCase,
@@ -26,29 +14,14 @@ import {
   TeacherGetProfileController,
 } from '@/presentation/controllers/modules/teacher'
 
-export enum TeacherModuleAction {
-  REGISTER,
-  LOGIN,
-  GET_ALL,
-  GET_BY_ID,
-  GET_PROFILE,
-}
+import { TeacherModuleAction } from './actions'
 
-const teacherRepository = ContainerFactory.createRepository(
-  Repositories.TEACHER,
-) as ITeacherRepository
-
-const validatorAdapter = ContainerFactory.createAdapter(
-  Adapters.VALIDATOR,
-) as IValidator
-
-const encrypterAdapter = ContainerFactory.createAdapter(
-  Adapters.ENCRYPTER,
-) as IEncrypter
-
-const tokenAdapter = ContainerFactory.createAdapter(
-  Adapters.TOKEN,
-) as IToken
+import {
+  teacherRepository,
+  encrypterAdapter,
+  tokenAdapter,
+  validatorAdapter,
+} from './container'
 
 export class TeacherModuleFactory {
   makeController(action: TeacherModuleAction) {
