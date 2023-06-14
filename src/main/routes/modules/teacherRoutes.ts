@@ -63,3 +63,12 @@ teacherRoutes.get(
     ),
   ),
 )
+
+teacherRoutes.put(
+  '/teachers',
+  teacherRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    teacherModuleFactory.makeController(TeacherModuleAction.UPDATE),
+  ),
+)

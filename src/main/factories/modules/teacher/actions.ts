@@ -4,4 +4,5 @@ export enum TeacherModuleAction {
   GET_ALL,
   GET_BY_ID,
   GET_PROFILE,
+  UPDATE,
 }
