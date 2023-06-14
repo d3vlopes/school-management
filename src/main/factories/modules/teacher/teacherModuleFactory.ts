@@ -4,6 +4,7 @@ import {
   TeacherGetAllUseCase,
   TeacherGetByIdUseCase,
   TeacherGetProfileUseCase,
+  TeacherUpdateUseCase,
 } from '@/useCases/modules/teacher'
 
 import {
@@ -12,6 +13,7 @@ import {
   TeacherGetAllController,
   TeacherGetByIdController,
   TeacherGetProfileController,
+  TeacherUpdateController,
 } from '@/presentation/controllers/modules/teacher'
 
 import { TeacherModuleAction } from './actions'
@@ -66,6 +68,15 @@ export class TeacherModuleFactory {
         return new TeacherGetProfileController(
           teacherGetProfileUseCase,
         )
+
+      case TeacherModuleAction.UPDATE:
+        const teacherUpdateUseCase = new TeacherUpdateUseCase(
+          teacherRepository,
+          validatorAdapter,
+          encrypterAdapter,
+        )
+
+        return new TeacherUpdateController(teacherUpdateUseCase)
     }
   }
 }
