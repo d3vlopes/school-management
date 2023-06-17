@@ -82,6 +82,7 @@ describe('AdminLoginUseCase', () => {
 
     expect(spyOnTokenStub).toBeCalledWith({
       id: adminMock.id,
+      role: adminMock.role,
     })
   })
 

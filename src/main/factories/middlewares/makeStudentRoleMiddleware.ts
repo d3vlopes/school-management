@@ -2,13 +2,13 @@ import { JsonWebTokenAdapter } from '@/infra/adapters/encrypter/jsonwebtoken'
 
 import { RoleMiddleware } from '@/presentation/middlewares'
 
-export const makeAdminRoleMiddleware = () => {
+export const makeStudentRoleMiddleware = () => {
   const jsonWebTokenAdapter = new JsonWebTokenAdapter()
 
-  const adminRoleMiddleware = new RoleMiddleware(
+  const studentRoleMiddleware = new RoleMiddleware(
     jsonWebTokenAdapter,
-    'admin',
+    'student',
   )
 
-  return adminRoleMiddleware
+  return studentRoleMiddleware
 }

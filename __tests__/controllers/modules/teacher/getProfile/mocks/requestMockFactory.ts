@@ -3,6 +3,7 @@ type RequestMockType = 'invalid-teacher' | 'valid-teacher'
 interface IRequest {
   user: {
     id: string
+    role?: string
   }
 }
 
