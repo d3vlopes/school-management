@@ -6,4 +6,5 @@ export interface IStudentRepository {
     data: StudentRegisterRequestDTO & { studentId: string },
   ): Promise<StudentModel>
   findOne(data: Partial<StudentModel>): Promise<StudentModel | null>
+  findAll(): Promise<StudentModel[]>
 }

@@ -30,4 +30,10 @@ export class StudentRepository implements IStudentRepository {
 
     return student
   }
+
+  async findAll(): Promise<StudentModel[]> {
+    const students = await Student.find()
+
+    return students
+  }
 }
