@@ -41,6 +41,7 @@ adminRoutes.get(
 
 adminRoutes.get(
   '/admins',
+  adminRoleMiddleware,
   authMiddleware,
   adaptRoute(
     adminModuleFactory.makeController(AdminModuleAction.GET_ALL),
