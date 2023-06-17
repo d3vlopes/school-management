@@ -41,7 +41,10 @@ export class StudentLoginUseCase
       return invalidCredentialsError()
     }
 
-    const token = this.token.generateToken({ id: student.id })
+    const token = this.token.generateToken({
+      id: student.id,
+      role: student.role,
+    })
 
     return success(token)
   }
