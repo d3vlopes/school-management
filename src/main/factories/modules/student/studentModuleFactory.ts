@@ -1,6 +1,12 @@
-import { StudentRegisterUseCase } from '@/useCases/modules/student'
+import {
+  StudentRegisterUseCase,
+  StudentLoginUseCase,
+} from '@/useCases/modules/student'
 
-import { StudentRegisterController } from '@/presentation/controllers/modules/student'
+import {
+  StudentRegisterController,
+  StudentLoginController,
+} from '@/presentation/controllers/modules/student'
 
 import { StudentModuleAction } from './actions'
 
@@ -8,6 +14,7 @@ import {
   studentRepository,
   encrypterAdapter,
   validatorAdapter,
+  tokenAdapter,
 } from './container'
 
 export class StudentModuleFactory {
@@ -21,6 +28,15 @@ export class StudentModuleFactory {
         )
 
         return new StudentRegisterController(studentRegisterUseCase)
+
+      case StudentModuleAction.LOGIN:
+        const studentLoginUseCase = new StudentLoginUseCase(
+          studentRepository,
+          encrypterAdapter,
+          tokenAdapter,
+        )
+
+        return new StudentLoginController(studentLoginUseCase)
     }
   }
 }

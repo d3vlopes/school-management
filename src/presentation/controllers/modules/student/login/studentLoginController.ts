@@ -1,7 +1,7 @@
-import { IController, IHttpResponse } from '@/presentation/contracts'
-import { TeacherLoginRequestDTO } from '@/core/dtos/teacher'
+import { StudentLoginRequestDTO } from '@/core/dtos/student'
 
 import { MissingParamError } from '@/presentation/errors'
+import { IController, IHttpResponse } from '@/presentation/contracts'
 
 import {
   badRequest,
@@ -12,32 +12,32 @@ import {
 
 import { IUseCase } from '@/useCases/contracts/shared'
 
-type IRequiredFields = keyof TeacherLoginRequestDTO
+type IRequiredFields = keyof StudentLoginRequestDTO
 
 const requiredFields: IRequiredFields[] = ['email', 'password']
 
-export class TeacherLoginController implements IController {
+export class StudentLoginController implements IController {
   constructor(
     private readonly useCase: IUseCase<
-      TeacherLoginRequestDTO,
+      StudentLoginRequestDTO,
       string
     >,
   ) {}
 
   async handle(request: unknown): Promise<IHttpResponse> {
-    const body = request as TeacherLoginRequestDTO
-
-    const validationError: MissingParamError | undefined =
-      validationRequiredFields<IRequiredFields>(
-        body as any,
-        requiredFields,
-      )
-
-    if (validationError) {
-      return badRequest(validationError)
-    }
-
     try {
+      const body = request as StudentLoginRequestDTO
+
+      const validationError: MissingParamError | undefined =
+        validationRequiredFields<IRequiredFields>(
+          body as any,
+          requiredFields,
+        )
+
+      if (validationError) {
+        return badRequest(validationError)
+      }
+
       const { data, error } = await this.useCase.execute(body)
 
       if (error) {
