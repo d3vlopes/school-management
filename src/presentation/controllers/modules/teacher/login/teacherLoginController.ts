@@ -41,7 +41,7 @@ export class TeacherLoginController implements IController {
       const { data, error } = await this.useCase.execute(body)
 
       if (error) {
-        return badRequest(new Error('Invalid login credentials'))
+        return badRequest(new Error(error))
       }
 
       return ok({ token: data })
