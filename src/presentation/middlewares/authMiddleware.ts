@@ -16,9 +16,9 @@ export class AuthMiddleware implements IMiddleware {
 
     if (accessToken) {
       try {
-        const userId = this.token.verify(accessToken, TOKEN_SECRET!)
+        const payload = this.token.verify(accessToken, TOKEN_SECRET!)
 
-        return ok({ id: userId })
+        return ok(payload)
       } catch {
         return badRequest(new Error('token expired'))
       }

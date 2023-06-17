@@ -10,6 +10,7 @@ import { teacherGetProfileMapper } from './mappers'
 interface IRequest {
   user: {
     id: string
+    role?: string
   }
 }
 

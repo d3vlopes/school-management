@@ -9,8 +9,7 @@ import {
   serverError,
 } from '@/presentation/helpers'
 
-import { ITeacherRepository } from '@/core/repositories'
-import { IToken } from '@/useCases/contracts/adapters'
+import { IToken, ITokenResponse } from '@/useCases/contracts/adapters'
 
 import { TOKEN_SECRET } from '@/config'
 
@@ -18,20 +17,22 @@ interface IRequest {
   accessToken: string
 }
 
-export class TeacherRoleMiddleware implements IMiddleware {
+export class RoleMiddleware implements IMiddleware {
   constructor(
-    private readonly teacherRepository: ITeacherRepository,
     private readonly token: IToken,
+    private readonly resource: string,
   ) {}
 
   async handle(request: unknown): Promise<IHttpResponse> {
     const { accessToken } = request as IRequest
 
-    let userId = ''
+    let userInfo = {} as ITokenResponse
 
     if (accessToken) {
       try {
-        userId = this.token.verify(accessToken, TOKEN_SECRET!)
+        const payload = this.token.verify(accessToken, TOKEN_SECRET!)
+
+        userInfo = payload
       } catch {
         return badRequest(new Error('token expired'))
       }
@@ -40,16 +41,18 @@ export class TeacherRoleMiddleware implements IMiddleware {
     }
 
     try {
-      const teacherFound = await this.teacherRepository.findOne({
-        id: userId,
-      })
+      let isPermission = false
 
-      if (teacherFound?.role === 'teacher') {
+      const { role } = userInfo
+
+      if (role === 'admin' || role === this.resource) {
+        isPermission = true
+      }
+
+      if (isPermission) {
         return ok({})
       } else {
-        return forbidden(
-          new AccessDeniedError('Access denied, teacher only'),
-        )
+        return forbidden(new AccessDeniedError('Access denied'))
       }
     } catch {
       return serverError()

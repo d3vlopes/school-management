@@ -60,6 +60,7 @@ describe('StudentLoginUseCase', () => {
 
     expect(spyOnTokenStub).toBeCalledWith({
       id: studentMock.id,
+      role: studentMock.role,
     })
 
     expect(response).toStrictEqual({
