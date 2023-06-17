@@ -31,3 +31,12 @@ studentRoutes.post(
     studentModuleFactory.makeController(StudentModuleAction.LOGIN),
   ),
 )
+
+studentRoutes.get(
+  '/students',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    studentModuleFactory.makeController(StudentModuleAction.GET_ALL),
+  ),
+)
