@@ -2,12 +2,14 @@ import {
   StudentRegisterUseCase,
   StudentLoginUseCase,
   StudentGetAllUseCase,
+  StudentGetByIdUseCase,
 } from '@/useCases/modules/student'
 
 import {
   StudentRegisterController,
   StudentLoginController,
   StudentGetAllController,
+  StudentGetByIdController,
 } from '@/presentation/controllers/modules/student'
 
 import { StudentModuleAction } from './actions'
@@ -46,6 +48,13 @@ export class StudentModuleFactory {
         )
 
         return new StudentGetAllController(studentGetAllUseCase)
+
+      case StudentModuleAction.GET_BY_ID:
+        const studentGetByIdUseCase = new StudentGetByIdUseCase(
+          studentRepository,
+        )
+
+        return new StudentGetByIdController(studentGetByIdUseCase)
     }
   }
 }
