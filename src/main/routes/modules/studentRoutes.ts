@@ -40,3 +40,14 @@ studentRoutes.get(
     studentModuleFactory.makeController(StudentModuleAction.GET_ALL),
   ),
 )
+
+studentRoutes.get(
+  '/students/admin/:id',
+  adminRoleMiddleware,
+  authMiddleware,
+  adaptRoute(
+    studentModuleFactory.makeController(
+      StudentModuleAction.GET_BY_ID,
+    ),
+  ),
+)
