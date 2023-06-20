@@ -1,18 +1,61 @@
+import {
+  EmailAlreadyRegistered,
+  InvalidCredentials,
+  ServerError,
+} from './definitions/shared'
+
+import {
+  AdminRegisterRequestDTO,
+  AdminRegisterResponseDTO,
+  AdminLoginRequestDTO,
+  AdminLoginResponseDTO,
+  AdminGetProfileNotFound,
+  AdminGetProfileResponseDTO,
+  AdminGetAllResponseDTO,
+  AdminUpdateResponseDTO,
+} from './definitions/modules'
+
 export const doc = {
   info: {
     version: '1.0.0',
-    title: 'School Manager API',
-    description: 'Documentation of School Manager API',
+    title: 'School Management API',
+    description: 'School management API documentation',
+    contact: {
+      name: 'Leandro Lopes',
+      email: 'contato.leandrolopes@outlook.com',
+      url: 'https://www.linkedin.com/in/leandroolopes',
+    },
   },
-  host: 'localhost:8000/api',
-  basePath: '/',
-  schemes: ['http'],
-  consumes: ['application/json'],
-  produces: ['application/json'],
+  securityDefinitions: {
+    bearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    },
+  },
+  servers: [
+    {
+      url: '/api',
+      description: 'Main server',
+    },
+  ],
   tags: [
     {
       name: 'Admin',
       description: 'Endpoint for administration',
     },
   ],
+  definitions: {
+    EmailAlreadyRegistered,
+    InvalidCredentials,
+    ServerError,
+    AdminRegisterResponseDTO,
+    AdminRegisterRequestDTO,
+    AdminLoginRequestDTO,
+    AdminLoginResponseDTO,
+    AdminGetProfileNotFound,
+    AdminGetProfileResponseDTO,
+    AdminGetAllResponseDTO,
+    AdminUpdateResponseDTO,
+  },
 }

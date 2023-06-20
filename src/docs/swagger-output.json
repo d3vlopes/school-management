@@ -1,0 +1,837 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "School Manager API",
+    "description": "Documentation of School Manager API",
+    "contact": {
+      "name": "Leandro Lopes",
+      "email": "contato.leandrolopes@outlook.com",
+      "url": "https://www.linkedin.com/in/leandroolopes"
+    }
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "Main server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Admin",
+      "description": "Endpoint for administration"
+    }
+  ],
+  "paths": {
+    "/academic-terms/create": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/academic-terms": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/academic-terms/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/academic-years/create": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/academic-years": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/academic-years/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/admins/register": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for register a new admin",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRegisterResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailAlreadyRegistered"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegisterRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegisterRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins/login": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for make login with admin",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidCredentials"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLoginRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLoginRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins/profile": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for get admin profile",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetProfileResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Admin not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetProfileNotFound"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admins": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for get all admins",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for update admin information",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/students/register": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/students/login": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/students": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/students/admin/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/teachers/register": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/teachers/login": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/teachers": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/teachers/admin/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/teachers/profile": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmailAlreadyRegistered": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Email already registered"
+          }
+        },
+        "xml": {
+          "name": "EmailAlreadyRegistered"
+        }
+      },
+      "InvalidCredentials": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Invalid login credentials"
+          }
+        },
+        "xml": {
+          "name": "InvalidCredentials"
+        }
+      },
+      "ServerError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Internal server error"
+          }
+        },
+        "xml": {
+          "name": "ServerError"
+        }
+      },
+      "AdminRegisterResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1234"
+          },
+          "name": {
+            "type": "string",
+            "example": "User Name"
+          },
+          "email": {
+            "type": "string",
+            "example": "user@email.com"
+          },
+          "role": {
+            "type": "string",
+            "example": "admin"
+          },
+          "academicTerms": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "academicYears": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "classLevels": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "programs": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "students": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "teachers": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "yearGroups": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "AdminRegisterResponseDTO"
+        }
+      },
+      "AdminRegisterRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Any Name"
+          },
+          "email": {
+            "type": "string",
+            "example": "any_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "any_password"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "AdminRegisterRequestDTO"
+        }
+      },
+      "AdminLoginRequestDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "valid_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "AdminLoginRequestDTO"
+        }
+      },
+      "AdminLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6I..."
+          }
+        },
+        "xml": {
+          "name": "AdminLoginResponseDTO"
+        }
+      },
+      "AdminGetProfileNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Admin not found"
+          }
+        },
+        "xml": {
+          "name": "AdminGetProfileNotFound"
+        }
+      },
+      "AdminGetProfileResponseDTO": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1234"
+              },
+              "name": {
+                "type": "string",
+                "example": "User Name"
+              },
+              "email": {
+                "type": "string",
+                "example": "user@email.com"
+              },
+              "role": {
+                "type": "string",
+                "example": "admin"
+              },
+              "academicTerms": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "academicYears": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "classLevels": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "programs": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "students": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "teachers": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "yearGroups": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "AdminGetProfileResponseDTO"
+        }
+      },
+      "AdminGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "4567"
+            },
+            "name": {
+              "type": "string",
+              "example": "User Name 2"
+            },
+            "email": {
+              "type": "string",
+              "example": "user_2@email.com"
+            },
+            "role": {
+              "type": "string",
+              "example": "admin"
+            },
+            "password": {
+              "type": "string",
+              "example": "password_encrypted"
+            },
+            "academicTerms": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "academicYears": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "classLevels": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "programs": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "students": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "teachers": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "yearGroups": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {}
+            },
+            "updatedAt": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "AdminGetAllResponseDTO"
+        }
+      },
+      "AdminUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1234"
+              },
+              "name": {
+                "type": "string",
+                "example": "User Name"
+              },
+              "email": {
+                "type": "string",
+                "example": "user@email.com"
+              },
+              "role": {
+                "type": "string",
+                "example": "admin"
+              },
+              "academicTerms": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "academicYears": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "classLevels": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "programs": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "students": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "teachers": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "yearGroups": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "AdminUpdateResponseDTO"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

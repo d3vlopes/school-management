@@ -1,0 +1,5 @@
+export * from './admin/register'
+export * from './admin/login'
+export * from './admin/getProfile'
+export * from './admin/getAll'
+export * from './admin/update'
