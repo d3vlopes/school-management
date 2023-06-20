@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsup src",
     "dev": "tsx watch src/infra/server/index.ts",
+    "docs:generate": "tsx src/main/config/swagger.ts",
     "lint": "eslint src/**/**/*.ts --max-warnings=0",
     "start": "node ./dist/infra/server/index.js",
     "test": "vitest run --silent",
