@@ -1,0 +1,27 @@
+export * from './admin/register'
+export * from './admin/login'
+export * from './admin/getProfile'
+export * from './admin/getAll'
+export * from './admin/update'
+
+export * from './academicTerm/create'
+export * from './academicTerm/getAll'
+export * from './academicTerm/getById'
+export * from './academicTerm/update'
+
+export * from './academicYear/create'
+export * from './academicYear/getAll'
+export * from './academicYear/getById'
+export * from './academicYear/update'
+
+export * from './student/register'
+export * from './student/login'
+export * from './student/getAll'
+export * from './student/getById'
+
+export * from './teacher/register'
+export * from './teacher/login'
+export * from './teacher/getProfile'
+export * from './teacher/getAll'
+export * from './teacher/getById'
+export * from './teacher/update'

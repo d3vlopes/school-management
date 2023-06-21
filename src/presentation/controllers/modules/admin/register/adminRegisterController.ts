@@ -2,7 +2,12 @@ import { AdminRegisterRequestDTO } from '@/core/dtos/admin'
 import { AdminModel } from '@/core/models'
 
 import { IController, IHttpResponse } from '@/presentation/contracts'
-import { badRequest, ok, serverError } from '@/presentation/helpers'
+
+import {
+  badRequest,
+  created,
+  serverError,
+} from '@/presentation/helpers'
 
 import { IUseCase } from '@/useCases/contracts/shared'
 
@@ -36,7 +41,7 @@ export class AdminRegisterController implements IController {
 
       const dataMapper = adminRegisterMapper.toDTO(data!)
 
-      return ok(dataMapper)
+      return created(dataMapper)
     } catch (error) {
       return serverError()
     }
