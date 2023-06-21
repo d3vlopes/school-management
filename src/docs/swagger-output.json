@@ -16,17 +16,6 @@
       "description": "Main server"
     }
   ],
-  "tags": [
-    {
-      "name": "Admin"
-    },
-    {
-      "name": "Academic Term"
-    },
-    {
-      "name": "Academic Year"
-    }
-  ],
   "paths": {
     "/academic-terms/create": {
       "post": {
@@ -1001,32 +990,194 @@
     },
     "/teachers/register": {
       "post": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for register a new teacher",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherRegisterResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailAlreadyRegistered"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherRegisterRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherRegisterRequestDTO"
+              }
+            }
+          }
+        }
       }
     },
     "/teachers/login": {
       "post": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for make login with teacher",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidCredentials"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherLoginRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherLoginRequestDTO"
+              }
+            }
+          }
+        }
       }
     },
     "/teachers": {
       "get": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for get all teachers",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for update teacher information",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/teachers/admin/{id}": {
       "get": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for get teacher by id",
         "description": "",
         "parameters": [
           {
@@ -1038,14 +1189,90 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/teachers/profile": {
       "get": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for get teacher profile",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetProfileResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Teacher not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetProfileNotFound"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
@@ -1085,6 +1312,31 @@
         },
         "xml": {
           "name": "ServerError"
+        }
+      },
+      "AdminRegisterRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Any Name"
+          },
+          "email": {
+            "type": "string",
+            "example": "any_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "any_password"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "AdminRegisterRequestDTO"
         }
       },
       "AdminRegisterResponseDTO": {
@@ -1144,31 +1396,6 @@
         },
         "xml": {
           "name": "AdminRegisterResponseDTO"
-        }
-      },
-      "AdminRegisterRequestDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "example": "Any Name"
-          },
-          "email": {
-            "type": "string",
-            "example": "any_email@provider.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "any_password"
-          }
-        },
-        "required": [
-          "name",
-          "email",
-          "password"
-        ],
-        "xml": {
-          "name": "AdminRegisterRequestDTO"
         }
       },
       "AdminLoginRequestDTO": {
@@ -2004,6 +2231,367 @@
         },
         "xml": {
           "name": "StudentNotFoundError"
+        }
+      },
+      "TeacherRegisterRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "TeacherRegisterRequestDTO"
+        }
+      },
+      "TeacherRegisterResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "teacherId": {
+            "type": "string",
+            "example": "generate_teacher_id"
+          },
+          "dateEmployed": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "teacher"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "example": "pending"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "TeacherRegisterResponseDTO"
+        }
+      },
+      "TeacherLoginRequestDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "valid_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "TeacherLoginRequestDTO"
+        }
+      },
+      "TeacherLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6I..."
+          }
+        },
+        "xml": {
+          "name": "TeacherLoginResponseDTO"
+        }
+      },
+      "TeacherGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "6487a9a46367740ef7890b7a"
+            },
+            "name": {
+              "type": "string",
+              "example": "Teacher Mock"
+            },
+            "email": {
+              "type": "string",
+              "example": "email@provider.com"
+            },
+            "teacherId": {
+              "type": "string",
+              "example": "generate_teacher_id"
+            },
+            "dateEmployed": {
+              "type": "object",
+              "properties": {}
+            },
+            "isWithdrawn": {
+              "type": "boolean",
+              "example": false
+            },
+            "isSuspended": {
+              "type": "boolean",
+              "example": false
+            },
+            "role": {
+              "type": "string",
+              "example": "teacher"
+            },
+            "applicationStatus": {
+              "type": "string",
+              "example": "pending"
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "admin_id"
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "TeacherGetAllResponseDTO"
+        }
+      },
+      "TeacherGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "teacherId": {
+            "type": "string",
+            "example": "generate_teacher_id"
+          },
+          "dateEmployed": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "teacher"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "example": "pending"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "TeacherGetByIdResponseDTO"
+        }
+      },
+      "TeacherNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Teacher not found"
+          }
+        },
+        "xml": {
+          "name": "TeacherNotFoundError"
+        }
+      },
+      "TeacherGetProfileNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Teacher not found"
+          }
+        },
+        "xml": {
+          "name": "TeacherGetProfileNotFound"
+        }
+      },
+      "TeacherGetProfileResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "teacherId": {
+            "type": "string",
+            "example": "generate_teacher_id"
+          },
+          "dateEmployed": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "teacher"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "example": "pending"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          },
+          "updatedAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "TeacherGetProfileResponseDTO"
+        }
+      },
+      "TeacherUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 200
+          },
+          "body": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1235478"
+              },
+              "name": {
+                "type": "string",
+                "example": "Teacher Mock"
+              },
+              "email": {
+                "type": "string",
+                "example": "email@provider.com"
+              },
+              "teacherId": {
+                "type": "string",
+                "example": "generate_teacher_id"
+              },
+              "dateEmployed": {
+                "type": "object",
+                "properties": {}
+              },
+              "isWithdrawn": {
+                "type": "boolean",
+                "example": false
+              },
+              "isSuspended": {
+                "type": "boolean",
+                "example": false
+              },
+              "role": {
+                "type": "string",
+                "example": "teacher"
+              },
+              "applicationStatus": {
+                "type": "string",
+                "example": "pending"
+              },
+              "createdBy": {
+                "type": "string",
+                "example": "admin_id"
+              },
+              "createdAt": {
+                "type": "object",
+                "properties": {}
+              },
+              "updatedAt": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "TeacherUpdateResponseDTO"
         }
       }
     },

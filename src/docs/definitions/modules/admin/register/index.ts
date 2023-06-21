@@ -1,9 +1,9 @@
 import {
-  responseMockFactory as returnAdminRegister,
+  responseMockFactory as responseAdminRegister,
   requestMockFactory as requestAdminRegister,
 } from '@/__tests__/controllers/modules/admin/register/mocks'
 
-export const AdminRegisterResponseDTO = { ...returnAdminRegister }
+export const AdminRegisterResponseDTO = responseAdminRegister
 
 export const AdminRegisterRequestDTO = {
   $name: requestAdminRegister.name,
