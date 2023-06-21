@@ -13,6 +13,14 @@ import {
   AdminGetProfileResponseDTO,
   AdminGetAllResponseDTO,
   AdminUpdateResponseDTO,
+  AcademicTermCreateRequestDTO,
+  AcademicTermCreateResponseDTO,
+  AcademicTermNameAlreadyExistsError,
+  AcademicTermGetAllResponseDTO,
+  AcademicTermGetByIdResponseDTO,
+  AcademicTermNotFoundError,
+  AcademicTermUpdateNameAlreadyExists,
+  AcademicTermUpdateResponseDTO,
 } from './definitions/modules'
 
 export const doc = {
@@ -39,12 +47,7 @@ export const doc = {
       description: 'Main server',
     },
   ],
-  tags: [
-    {
-      name: 'Admin',
-      description: 'Endpoint for administration',
-    },
-  ],
+  tags: [{ name: 'Admin' }, { name: 'Academic Term' }],
   definitions: {
     EmailAlreadyRegistered,
     InvalidCredentials,
@@ -57,5 +60,13 @@ export const doc = {
     AdminGetProfileResponseDTO,
     AdminGetAllResponseDTO,
     AdminUpdateResponseDTO,
+    AcademicTermCreateRequestDTO,
+    AcademicTermCreateResponseDTO,
+    AcademicTermNameAlreadyExistsError,
+    AcademicTermGetAllResponseDTO,
+    AcademicTermGetByIdResponseDTO,
+    AcademicTermNotFoundError,
+    AcademicTermUpdateNameAlreadyExists,
+    AcademicTermUpdateResponseDTO,
   },
 }

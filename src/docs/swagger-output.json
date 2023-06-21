@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "School Manager API",
-    "description": "Documentation of School Manager API",
+    "title": "School Management API",
+    "description": "School management API documentation",
     "contact": {
       "name": "Leandro Lopes",
       "email": "contato.leandrolopes@outlook.com",
@@ -18,27 +18,117 @@
   ],
   "tags": [
     {
-      "name": "Admin",
-      "description": "Endpoint for administration"
+      "name": "Admin"
+    },
+    {
+      "name": "Academic Term"
     }
   ],
   "paths": {
     "/academic-terms/create": {
       "post": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for create a new academic term",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermCreateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNameAlreadyExistsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicTermCreateRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicTermCreateRequestDTO"
+              }
+            }
+          }
+        }
       }
     },
     "/academic-terms": {
       "get": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for get all academic terms",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/academic-terms/{id}": {
       "get": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for get academic term by id",
         "description": "",
         "parameters": [
           {
@@ -50,9 +140,49 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for update academic term",
         "description": "",
         "parameters": [
           {
@@ -64,9 +194,59 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermUpdateNameAlreadyExists"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for update academic term",
         "description": "",
         "parameters": [
           {
@@ -78,7 +258,36 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "Removed successfully"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/academic-years/create": {
@@ -708,10 +917,6 @@
               "type": "string",
               "example": "admin"
             },
-            "password": {
-              "type": "string",
-              "example": "password_encrypted"
-            },
             "academicTerms": {
               "type": "array",
               "example": [],
@@ -746,14 +951,6 @@
               "type": "array",
               "example": [],
               "items": {}
-            },
-            "createdAt": {
-              "type": "object",
-              "properties": {}
-            },
-            "updatedAt": {
-              "type": "object",
-              "properties": {}
             }
           }
         },
@@ -823,6 +1020,162 @@
         },
         "xml": {
           "name": "AdminUpdateResponseDTO"
+        }
+      },
+      "AcademicTermCreateRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "valid_name"
+          },
+          "description": {
+            "type": "string",
+            "example": "any_description"
+          },
+          "duration": {
+            "type": "string",
+            "example": "any_duration"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "duration"
+        ],
+        "xml": {
+          "name": "AcademicTermCreateRequestDTO"
+        }
+      },
+      "AcademicTermCreateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Term"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loren ipsum dolor"
+          },
+          "duration": {
+            "type": "string",
+            "example": "3 mês"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermCreateResponseDTO"
+        }
+      },
+      "AcademicTermNameAlreadyExistsError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic term already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermNameAlreadyExistsError"
+        }
+      },
+      "AcademicTermGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "123456"
+            },
+            "name": {
+              "type": "string",
+              "example": "Academic Term 2"
+            },
+            "description": {
+              "type": "string",
+              "example": "Loren ipsum dolor"
+            },
+            "duration": {
+              "type": "string",
+              "example": "6 mês"
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "admin_id"
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "AcademicTermGetAllResponseDTO"
+        }
+      },
+      "AcademicTermGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Term"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loren ipsum dolor"
+          },
+          "duration": {
+            "type": "string",
+            "example": "3 mês"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicTermGetByIdResponseDTO"
+        }
+      },
+      "AcademicTermNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic term not found"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermNotFoundError"
+        }
+      },
+      "AcademicTermUpdateNameAlreadyExists": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic term already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermUpdateNameAlreadyExists"
         }
       }
     },
