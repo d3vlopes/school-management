@@ -13,3 +13,8 @@ export * from './academicYear/create'
 export * from './academicYear/getAll'
 export * from './academicYear/getById'
 export * from './academicYear/update'
+
+export * from './student/register'
+export * from './student/login'
+export * from './student/getAll'
+export * from './student/getById'

@@ -29,6 +29,13 @@ import {
   AcademicYearNotFoundError,
   AcademicYearUpdateNameAlreadyExists,
   AcademicYearUpdateResponseDTO,
+  StudentRegisterRequestDTO,
+  StudentRegisterResponseDTO,
+  StudentLoginRequestDTO,
+  StudentLoginResponseDTO,
+  StudentGetAllResponseDTO,
+  StudentGetByIdResponseDTO,
+  StudentNotFoundError,
 } from './definitions/modules'
 
 export const doc = {
@@ -88,5 +95,12 @@ export const doc = {
     AcademicYearNotFoundError,
     AcademicYearUpdateNameAlreadyExists,
     AcademicYearUpdateResponseDTO,
+    StudentRegisterRequestDTO,
+    StudentRegisterResponseDTO,
+    StudentLoginRequestDTO,
+    StudentLoginResponseDTO,
+    StudentGetAllResponseDTO,
+    StudentGetByIdResponseDTO,
+    StudentNotFoundError,
   },
 }
