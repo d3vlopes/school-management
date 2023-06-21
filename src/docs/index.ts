@@ -21,6 +21,14 @@ import {
   AcademicTermNotFoundError,
   AcademicTermUpdateNameAlreadyExists,
   AcademicTermUpdateResponseDTO,
+  AcademicYearCreateRequestDTO,
+  AcademicYearCreateResponseDTO,
+  AcademicYearNameAlreadyExistsError,
+  AcademicYearGetAllResponseDTO,
+  AcademicYearGetByIdResponseDTO,
+  AcademicYearNotFoundError,
+  AcademicYearUpdateNameAlreadyExists,
+  AcademicYearUpdateResponseDTO,
 } from './definitions/modules'
 
 export const doc = {
@@ -47,7 +55,11 @@ export const doc = {
       description: 'Main server',
     },
   ],
-  tags: [{ name: 'Admin' }, { name: 'Academic Term' }],
+  tags: [
+    { name: 'Admin' },
+    { name: 'Academic Term' },
+    { name: 'Academic Year' },
+  ],
   definitions: {
     EmailAlreadyRegistered,
     InvalidCredentials,
@@ -68,5 +80,13 @@ export const doc = {
     AcademicTermNotFoundError,
     AcademicTermUpdateNameAlreadyExists,
     AcademicTermUpdateResponseDTO,
+    AcademicYearCreateRequestDTO,
+    AcademicYearCreateResponseDTO,
+    AcademicYearNameAlreadyExistsError,
+    AcademicYearGetAllResponseDTO,
+    AcademicYearGetByIdResponseDTO,
+    AcademicYearNotFoundError,
+    AcademicYearUpdateNameAlreadyExists,
+    AcademicYearUpdateResponseDTO,
   },
 }

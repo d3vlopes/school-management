@@ -22,6 +22,9 @@
     },
     {
       "name": "Academic Term"
+    },
+    {
+      "name": "Academic Year"
     }
   ],
   "paths": {
@@ -100,7 +103,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AcademicTermGetAllResponseDTO"
+                  "$ref": "#/components/schemas/AcademicYearGetAllResponseDTO"
                 }
               }
             }
@@ -200,7 +203,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AcademicTermGetByIdResponseDTO"
+                  "$ref": "#/components/schemas/AcademicTermUpdateResponseDTO"
                 }
               }
             }
@@ -246,7 +249,7 @@
         "tags": [
           "Academic Term"
         ],
-        "summary": "Endpoint for update academic term",
+        "summary": "Endpoint for remove academic term",
         "description": "",
         "parameters": [
           {
@@ -260,7 +263,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Removed successfully"
+            "description": "No Content"
           },
           "404": {
             "description": "Not found",
@@ -292,20 +295,108 @@
     },
     "/academic-years/create": {
       "post": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for create a new academic year",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearCreateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNameAlreadyExistsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicYearCreateRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicYearCreateRequestDTO"
+              }
+            }
+          }
+        }
       }
     },
     "/academic-years": {
       "get": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for get all academic years",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/academic-years/{id}": {
       "get": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for get academic year by id",
         "description": "",
         "parameters": [
           {
@@ -317,9 +408,49 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for update academic year",
         "description": "",
         "parameters": [
           {
@@ -331,9 +462,59 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearUpdateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearUpdateNameAlreadyExists"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for remove academic year",
         "description": "",
         "parameters": [
           {
@@ -345,7 +526,36 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/admins/register": {
@@ -1176,6 +1386,231 @@
         },
         "xml": {
           "name": "AcademicTermUpdateNameAlreadyExists"
+        }
+      },
+      "AcademicTermUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Term"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loren ipsum dolor"
+          },
+          "duration": {
+            "type": "string",
+            "example": "3 mês"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicTermUpdateResponseDTO"
+        }
+      },
+      "AcademicYearCreateRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "valid_name"
+          },
+          "year": {
+            "type": "number",
+            "example": 2023
+          }
+        },
+        "required": [
+          "name",
+          "year"
+        ],
+        "xml": {
+          "name": "AcademicYearCreateRequestDTO"
+        }
+      },
+      "AcademicYearCreateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6488afc4fe1eca6fbd444a56"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Year"
+          },
+          "year": {
+            "type": "number",
+            "example": 1994
+          }
+        },
+        "xml": {
+          "name": "AcademicYearCreateResponseDTO"
+        }
+      },
+      "AcademicYearNameAlreadyExistsError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic year already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicYearNameAlreadyExistsError"
+        }
+      },
+      "AcademicYearGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "7152bce4fe1eca6fbd444a56"
+            },
+            "name": {
+              "type": "string",
+              "example": "Academic Year 2"
+            },
+            "year": {
+              "type": "number",
+              "example": 1994
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "user_id"
+            },
+            "isCurrent": {
+              "type": "boolean",
+              "example": false
+            },
+            "students": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "teachers": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "AcademicYearGetAllResponseDTO"
+        }
+      },
+      "AcademicYearGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "7152bce4fe1eca6fbd444a56"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Year"
+          },
+          "year": {
+            "type": "number",
+            "example": 1994
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "user_id"
+          },
+          "isCurrent": {
+            "type": "boolean",
+            "example": false
+          },
+          "students": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "teachers": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicYearGetByIdResponseDTO"
+        }
+      },
+      "AcademicYearNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic year not found"
+          }
+        },
+        "xml": {
+          "name": "AcademicYearNotFoundError"
+        }
+      },
+      "AcademicYearUpdateNameAlreadyExists": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic year already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicYearUpdateNameAlreadyExists"
+        }
+      },
+      "AcademicYearUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "7152bce4fe1eca6fbd444a56"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Year"
+          },
+          "year": {
+            "type": "number",
+            "example": 1994
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "user_id"
+          },
+          "isCurrent": {
+            "type": "boolean",
+            "example": false
+          },
+          "students": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "teachers": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicYearUpdateResponseDTO"
         }
       }
     },

@@ -3,7 +3,13 @@ export * from './admin/login'
 export * from './admin/getProfile'
 export * from './admin/getAll'
 export * from './admin/update'
+
 export * from './academicTerm/create'
 export * from './academicTerm/getAll'
 export * from './academicTerm/getById'
 export * from './academicTerm/update'
+
+export * from './academicYear/create'
+export * from './academicYear/getAll'
+export * from './academicYear/getById'
+export * from './academicYear/update'

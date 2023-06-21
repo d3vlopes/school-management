@@ -72,7 +72,7 @@ academicTermRoutes.get(
         description: "Ok",
         content: {
           "application/json": {
-            schema: { $ref: "#/definitions/AcademicTermGetAllResponseDTO" }
+            schema: { $ref: "#/definitions/AcademicYearGetAllResponseDTO" }
           }           
         }
       }
