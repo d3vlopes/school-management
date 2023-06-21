@@ -14,7 +14,7 @@ import {
 import {
   mockUseCaseError,
   requestMockFactory,
-  returnMockFactory,
+  responseMockFactory,
 } from './mocks'
 
 import { makeSut } from './helpers/makeSut'
@@ -136,6 +136,6 @@ describe('AdminRegisterController', () => {
     const response = await sut.handle(requestMock)
 
     expect(response.statusCode).toBe(201)
-    expect(response.body).toStrictEqual(returnMockFactory)
+    expect(response.body).toStrictEqual(responseMockFactory)
   })
 })

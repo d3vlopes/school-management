@@ -1,5 +1,5 @@
 import {
-  returnMockFactory as returnAdminRegister,
+  responseMockFactory as returnAdminRegister,
   requestMockFactory as requestAdminRegister,
 } from '@/__tests__/controllers/modules/admin/register/mocks'
 
