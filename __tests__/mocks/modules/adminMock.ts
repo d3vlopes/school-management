@@ -1,0 +1,53 @@
+import { AdminModel } from '@/core/models'
+
+export const createAdminMock: AdminModel = {
+  id: '1234',
+  name: 'User Name',
+  email: 'user@email.com',
+  role: 'admin',
+  password: 'password_encrypted',
+  academicTerms: [],
+  academicYears: [],
+  classLevels: [],
+  programs: [],
+  students: [],
+  teachers: [],
+  yearGroups: [],
+  createdAt: new Date(23, 5),
+  updatedAt: new Date(23, 5),
+}
+
+export const adminsMock: AdminModel[] = [
+  {
+    id: '1234',
+    name: 'User Name',
+    email: 'user@email.com',
+    role: 'admin',
+    password: 'password_encrypted',
+    academicTerms: [],
+    academicYears: [],
+    classLevels: [],
+    programs: [],
+    students: [],
+    teachers: [],
+    yearGroups: [],
+    createdAt: new Date(23, 5),
+    updatedAt: new Date(23, 5),
+  },
+  {
+    id: '4567',
+    name: 'User Name 2',
+    email: 'user_2@email.com',
+    role: 'admin',
+    password: 'password_encrypted',
+    academicTerms: [],
+    academicYears: [],
+    classLevels: [],
+    programs: [],
+    students: [],
+    teachers: [],
+    yearGroups: [],
+    createdAt: new Date(24, 5),
+    updatedAt: new Date(24, 5),
+  },
+]

@@ -1,6 +1,6 @@
 export class AccessDeniedError extends Error {
-  constructor() {
-    super('Access denied')
+  constructor(message?: string) {
+    super(message ?? 'Access denied')
     this.name = 'AccessDeniedError'
   }
 }

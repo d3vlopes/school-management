@@ -1,9 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-import {
-  IToken,
-  IVerifyResponse,
-} from '@/useCases/contracts/adapters'
+import { IToken, ITokenResponse } from '@/useCases/contracts/adapters'
 
 import { TOKEN_SECRET } from '@/config'
 
@@ -14,11 +11,14 @@ export class JsonWebTokenAdapter implements IToken {
     })
   }
 
-  verify(token: string, secretKey: string): string {
-    const user = jwt.verify(token, secretKey) as IVerifyResponse
+  verify(token: string, secretKey: string): ITokenResponse {
+    const userInfo = jwt.verify(token, secretKey) as ITokenResponse
 
-    if (!user) throw new Error()
+    if (!userInfo) throw new Error()
 
-    return user.id
+    return {
+      id: userInfo.id,
+      role: userInfo.role,
+    }
   }
 }

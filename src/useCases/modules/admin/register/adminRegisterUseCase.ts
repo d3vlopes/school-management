@@ -16,10 +16,10 @@ import {
 } from './validation'
 
 import {
-  returnExistsEmailError,
-  returnInvalidEmailError,
-  returnLengthValidationError,
-  returnSuccess,
+  existsEmailError,
+  invalidEmailError,
+  lengthValidationError,
+  success,
 } from './helpers'
 
 export class AdminRegisterUseCase
@@ -45,33 +45,33 @@ export class AdminRegisterUseCase
     const isEmailValid = this.validator.isEmail(email)
 
     if (!isEmailValid) {
-      return returnInvalidEmailError()
+      return invalidEmailError()
     }
 
     const isEmailAlreadyRegistered =
       await this.adminRepository.findByEmail(email)
 
     if (isEmailAlreadyRegistered) {
-      return returnExistsEmailError()
+      return existsEmailError()
     }
 
-    const lengthValidationError = validationLengthFields(
+    const lengthError = validationLengthFields(
       lengthValidationFields({ ...lengthFields }),
       this.validator,
     )
 
-    if (lengthValidationError) {
-      return returnLengthValidationError(lengthValidationError)
+    if (lengthError) {
+      return lengthValidationError(lengthError)
     }
 
-    const cryptedPassword = await this.encrypter.encrypt(password)
+    const passwordEncrypted = await this.encrypter.encrypt(password)
 
     const user = await this.adminRepository.create({
       name,
       email,
-      password: cryptedPassword,
+      password: passwordEncrypted,
     })
 
-    return returnSuccess(user)
+    return success(user)
   }
 }

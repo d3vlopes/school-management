@@ -1,0 +1,6 @@
+export * from './register/teacherRegisterController'
+export * from './login/teacherLoginController'
+export * from './getAll/teacherGetAllController'
+export * from './getById/teacherGetByIdController'
+export * from './getProfile/teacherGetProfileController'
+export * from './update/teacherUpdateController'

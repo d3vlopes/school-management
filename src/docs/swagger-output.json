@@ -1,0 +1,2606 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "School Management API",
+    "description": "School management API documentation",
+    "contact": {
+      "name": "Leandro Lopes",
+      "email": "contato.leandrolopes@outlook.com",
+      "url": "https://www.linkedin.com/in/leandroolopes"
+    }
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "Main server"
+    }
+  ],
+  "paths": {
+    "/academic-terms/create": {
+      "post": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for create a new academic term",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermCreateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNameAlreadyExistsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicTermCreateRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicTermCreateRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/academic-terms": {
+      "get": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for get all academic terms",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/academic-terms/{id}": {
+      "get": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for get academic term by id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for update academic term",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermUpdateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermUpdateNameAlreadyExists"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Academic Term"
+        ],
+        "summary": "Endpoint for remove academic term",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicTermNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/academic-years/create": {
+      "post": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for create a new academic year",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearCreateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNameAlreadyExistsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicYearCreateRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AcademicYearCreateRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/academic-years": {
+      "get": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for get all academic years",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/academic-years/{id}": {
+      "get": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for get academic year by id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for update academic year",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearUpdateResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearUpdateNameAlreadyExists"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Academic Year"
+        ],
+        "summary": "Endpoint for remove academic year",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcademicYearNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admins/register": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for register a new admin",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRegisterResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailAlreadyRegistered"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegisterRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegisterRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins/login": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for make login with admin",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidCredentials"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLoginRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLoginRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins/profile": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for get admin profile",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetProfileResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Admin not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetProfileNotFound"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admins": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for get all admins",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Endpoint for update admin information",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/students/register": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Endpoint for create a new student",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentRegisterResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailAlreadyRegistered"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentRegisterRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentRegisterRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/login": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Endpoint for make login with student",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidCredentials"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentLoginRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentLoginRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Endpoint for get all students",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/students/admin/{id}": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Endpoint for get student by id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/teachers/register": {
+      "post": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for register a new teacher",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherRegisterResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailAlreadyRegistered"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherRegisterRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherRegisterRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teachers/login": {
+      "post": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for make login with teacher",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidCredentials"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherLoginRequestDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TeacherLoginRequestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teachers": {
+      "get": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for get all teachers",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for update teacher information",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetAllResponseDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/teachers/admin/{id}": {
+      "get": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for get teacher by id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetByIdResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/teachers/profile": {
+      "get": {
+        "tags": [
+          "Teacher"
+        ],
+        "summary": "Endpoint for get teacher profile",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetProfileResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Teacher not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherGetProfileNotFound"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmailAlreadyRegistered": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Email already registered"
+          }
+        },
+        "xml": {
+          "name": "EmailAlreadyRegistered"
+        }
+      },
+      "InvalidCredentials": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Invalid login credentials"
+          }
+        },
+        "xml": {
+          "name": "InvalidCredentials"
+        }
+      },
+      "ServerError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Internal server error"
+          }
+        },
+        "xml": {
+          "name": "ServerError"
+        }
+      },
+      "AdminRegisterRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Any Name"
+          },
+          "email": {
+            "type": "string",
+            "example": "any_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "any_password"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "AdminRegisterRequestDTO"
+        }
+      },
+      "AdminRegisterResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1234"
+          },
+          "name": {
+            "type": "string",
+            "example": "User Name"
+          },
+          "email": {
+            "type": "string",
+            "example": "user@email.com"
+          },
+          "role": {
+            "type": "string",
+            "example": "admin"
+          },
+          "academicTerms": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "academicYears": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "classLevels": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "programs": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "students": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "teachers": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "yearGroups": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "AdminRegisterResponseDTO"
+        }
+      },
+      "AdminLoginRequestDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "valid_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "AdminLoginRequestDTO"
+        }
+      },
+      "AdminLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6I..."
+          }
+        },
+        "xml": {
+          "name": "AdminLoginResponseDTO"
+        }
+      },
+      "AdminGetProfileNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Admin not found"
+          }
+        },
+        "xml": {
+          "name": "AdminGetProfileNotFound"
+        }
+      },
+      "AdminGetProfileResponseDTO": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1234"
+              },
+              "name": {
+                "type": "string",
+                "example": "User Name"
+              },
+              "email": {
+                "type": "string",
+                "example": "user@email.com"
+              },
+              "role": {
+                "type": "string",
+                "example": "admin"
+              },
+              "academicTerms": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "academicYears": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "classLevels": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "programs": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "students": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "teachers": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "yearGroups": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "AdminGetProfileResponseDTO"
+        }
+      },
+      "AdminGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "4567"
+            },
+            "name": {
+              "type": "string",
+              "example": "User Name 2"
+            },
+            "email": {
+              "type": "string",
+              "example": "user_2@email.com"
+            },
+            "role": {
+              "type": "string",
+              "example": "admin"
+            },
+            "academicTerms": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "academicYears": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "classLevels": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "programs": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "students": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "teachers": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "yearGroups": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "AdminGetAllResponseDTO"
+        }
+      },
+      "AdminUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1234"
+              },
+              "name": {
+                "type": "string",
+                "example": "User Name"
+              },
+              "email": {
+                "type": "string",
+                "example": "user@email.com"
+              },
+              "role": {
+                "type": "string",
+                "example": "admin"
+              },
+              "academicTerms": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "academicYears": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "classLevels": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "programs": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "students": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "teachers": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "yearGroups": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "AdminUpdateResponseDTO"
+        }
+      },
+      "AcademicTermCreateRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "valid_name"
+          },
+          "description": {
+            "type": "string",
+            "example": "any_description"
+          },
+          "duration": {
+            "type": "string",
+            "example": "any_duration"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "duration"
+        ],
+        "xml": {
+          "name": "AcademicTermCreateRequestDTO"
+        }
+      },
+      "AcademicTermCreateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Term"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loren ipsum dolor"
+          },
+          "duration": {
+            "type": "string",
+            "example": "3 mês"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermCreateResponseDTO"
+        }
+      },
+      "AcademicTermNameAlreadyExistsError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic term already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermNameAlreadyExistsError"
+        }
+      },
+      "AcademicTermGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "123456"
+            },
+            "name": {
+              "type": "string",
+              "example": "Academic Term 2"
+            },
+            "description": {
+              "type": "string",
+              "example": "Loren ipsum dolor"
+            },
+            "duration": {
+              "type": "string",
+              "example": "6 mês"
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "admin_id"
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "AcademicTermGetAllResponseDTO"
+        }
+      },
+      "AcademicTermGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Term"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loren ipsum dolor"
+          },
+          "duration": {
+            "type": "string",
+            "example": "3 mês"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicTermGetByIdResponseDTO"
+        }
+      },
+      "AcademicTermNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic term not found"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermNotFoundError"
+        }
+      },
+      "AcademicTermUpdateNameAlreadyExists": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic term already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicTermUpdateNameAlreadyExists"
+        }
+      },
+      "AcademicTermUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Term"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loren ipsum dolor"
+          },
+          "duration": {
+            "type": "string",
+            "example": "3 mês"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicTermUpdateResponseDTO"
+        }
+      },
+      "AcademicYearCreateRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "valid_name"
+          },
+          "year": {
+            "type": "number",
+            "example": 2023
+          }
+        },
+        "required": [
+          "name",
+          "year"
+        ],
+        "xml": {
+          "name": "AcademicYearCreateRequestDTO"
+        }
+      },
+      "AcademicYearCreateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6488afc4fe1eca6fbd444a56"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Year"
+          },
+          "year": {
+            "type": "number",
+            "example": 1994
+          }
+        },
+        "xml": {
+          "name": "AcademicYearCreateResponseDTO"
+        }
+      },
+      "AcademicYearNameAlreadyExistsError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic year already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicYearNameAlreadyExistsError"
+        }
+      },
+      "AcademicYearGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "7152bce4fe1eca6fbd444a56"
+            },
+            "name": {
+              "type": "string",
+              "example": "Academic Year 2"
+            },
+            "year": {
+              "type": "number",
+              "example": 1994
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "user_id"
+            },
+            "isCurrent": {
+              "type": "boolean",
+              "example": false
+            },
+            "students": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "teachers": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "AcademicYearGetAllResponseDTO"
+        }
+      },
+      "AcademicYearGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "7152bce4fe1eca6fbd444a56"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Year"
+          },
+          "year": {
+            "type": "number",
+            "example": 1994
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "user_id"
+          },
+          "isCurrent": {
+            "type": "boolean",
+            "example": false
+          },
+          "students": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "teachers": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicYearGetByIdResponseDTO"
+        }
+      },
+      "AcademicYearNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic year not found"
+          }
+        },
+        "xml": {
+          "name": "AcademicYearNotFoundError"
+        }
+      },
+      "AcademicYearUpdateNameAlreadyExists": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Academic year already exists with that name"
+          }
+        },
+        "xml": {
+          "name": "AcademicYearUpdateNameAlreadyExists"
+        }
+      },
+      "AcademicYearUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "7152bce4fe1eca6fbd444a56"
+          },
+          "name": {
+            "type": "string",
+            "example": "Academic Year"
+          },
+          "year": {
+            "type": "number",
+            "example": 1994
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "user_id"
+          },
+          "isCurrent": {
+            "type": "boolean",
+            "example": false
+          },
+          "students": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          },
+          "teachers": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "AcademicYearUpdateResponseDTO"
+        }
+      },
+      "StudentRegisterRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Student Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "StudentRegisterRequestDTO"
+        }
+      },
+      "StudentRegisterResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Student Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "studentId": {
+            "type": "string",
+            "example": "generate_student_id"
+          },
+          "dateAdmitted": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "isGraduated": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "student"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "StudentRegisterResponseDTO"
+        }
+      },
+      "StudentLoginRequestDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "valid_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "StudentLoginRequestDTO"
+        }
+      },
+      "StudentLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6I..."
+          }
+        },
+        "xml": {
+          "name": "StudentLoginResponseDTO"
+        }
+      },
+      "StudentGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "98564787"
+            },
+            "name": {
+              "type": "string",
+              "example": "Student Mock 2"
+            },
+            "email": {
+              "type": "string",
+              "example": "email@provider.com"
+            },
+            "studentId": {
+              "type": "string",
+              "example": "generate_student_id"
+            },
+            "dateAdmitted": {
+              "type": "object",
+              "properties": {}
+            },
+            "isWithdrawn": {
+              "type": "boolean",
+              "example": false
+            },
+            "isSuspended": {
+              "type": "boolean",
+              "example": false
+            },
+            "isGraduated": {
+              "type": "boolean",
+              "example": false
+            },
+            "role": {
+              "type": "string",
+              "example": "student"
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "StudentGetAllResponseDTO"
+        }
+      },
+      "StudentGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Student Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "studentId": {
+            "type": "string",
+            "example": "generate_student_id"
+          },
+          "dateAdmitted": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "isGraduated": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "student"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          },
+          "updatedAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "StudentGetByIdResponseDTO"
+        }
+      },
+      "StudentNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Student not found"
+          }
+        },
+        "xml": {
+          "name": "StudentNotFoundError"
+        }
+      },
+      "TeacherRegisterRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "TeacherRegisterRequestDTO"
+        }
+      },
+      "TeacherRegisterResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "teacherId": {
+            "type": "string",
+            "example": "generate_teacher_id"
+          },
+          "dateEmployed": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "teacher"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "example": "pending"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "TeacherRegisterResponseDTO"
+        }
+      },
+      "TeacherLoginRequestDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "valid_email@provider.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "valid_password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "TeacherLoginRequestDTO"
+        }
+      },
+      "TeacherLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6I..."
+          }
+        },
+        "xml": {
+          "name": "TeacherLoginResponseDTO"
+        }
+      },
+      "TeacherGetAllResponseDTO": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "6487a9a46367740ef7890b7a"
+            },
+            "name": {
+              "type": "string",
+              "example": "Teacher Mock"
+            },
+            "email": {
+              "type": "string",
+              "example": "email@provider.com"
+            },
+            "teacherId": {
+              "type": "string",
+              "example": "generate_teacher_id"
+            },
+            "dateEmployed": {
+              "type": "object",
+              "properties": {}
+            },
+            "isWithdrawn": {
+              "type": "boolean",
+              "example": false
+            },
+            "isSuspended": {
+              "type": "boolean",
+              "example": false
+            },
+            "role": {
+              "type": "string",
+              "example": "teacher"
+            },
+            "applicationStatus": {
+              "type": "string",
+              "example": "pending"
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "admin_id"
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "xml": {
+          "name": "TeacherGetAllResponseDTO"
+        }
+      },
+      "TeacherGetByIdResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "teacherId": {
+            "type": "string",
+            "example": "generate_teacher_id"
+          },
+          "dateEmployed": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "teacher"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "example": "pending"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "TeacherGetByIdResponseDTO"
+        }
+      },
+      "TeacherNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Teacher not found"
+          }
+        },
+        "xml": {
+          "name": "TeacherNotFoundError"
+        }
+      },
+      "TeacherGetProfileNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Teacher not found"
+          }
+        },
+        "xml": {
+          "name": "TeacherGetProfileNotFound"
+        }
+      },
+      "TeacherGetProfileResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1235478"
+          },
+          "name": {
+            "type": "string",
+            "example": "Teacher Mock"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@provider.com"
+          },
+          "teacherId": {
+            "type": "string",
+            "example": "generate_teacher_id"
+          },
+          "dateEmployed": {
+            "type": "object",
+            "properties": {}
+          },
+          "isWithdrawn": {
+            "type": "boolean",
+            "example": false
+          },
+          "isSuspended": {
+            "type": "boolean",
+            "example": false
+          },
+          "role": {
+            "type": "string",
+            "example": "teacher"
+          },
+          "applicationStatus": {
+            "type": "string",
+            "example": "pending"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "admin_id"
+          },
+          "createdAt": {
+            "type": "object",
+            "properties": {}
+          },
+          "updatedAt": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "xml": {
+          "name": "TeacherGetProfileResponseDTO"
+        }
+      },
+      "TeacherUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 200
+          },
+          "body": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "1235478"
+              },
+              "name": {
+                "type": "string",
+                "example": "Teacher Mock"
+              },
+              "email": {
+                "type": "string",
+                "example": "email@provider.com"
+              },
+              "teacherId": {
+                "type": "string",
+                "example": "generate_teacher_id"
+              },
+              "dateEmployed": {
+                "type": "object",
+                "properties": {}
+              },
+              "isWithdrawn": {
+                "type": "boolean",
+                "example": false
+              },
+              "isSuspended": {
+                "type": "boolean",
+                "example": false
+              },
+              "role": {
+                "type": "string",
+                "example": "teacher"
+              },
+              "applicationStatus": {
+                "type": "string",
+                "example": "pending"
+              },
+              "createdBy": {
+                "type": "string",
+                "example": "admin_id"
+              },
+              "createdAt": {
+                "type": "object",
+                "properties": {}
+              },
+              "updatedAt": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "TeacherUpdateResponseDTO"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

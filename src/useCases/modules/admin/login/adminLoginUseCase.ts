@@ -39,7 +39,10 @@ export class AdminLoginUseCase
       return invalidCredentials()
     }
 
-    const token = this.token.generateToken({ id: user.id })
+    const token = this.token.generateToken({
+      id: user.id,
+      role: user.role,
+    })
 
     return handleUseCaseReturn(token, null)
   }

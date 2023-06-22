@@ -1,12 +1,24 @@
 /* eslint-disable no-console */
 import * as dotenv from 'dotenv'
 
-dotenv.config()
+import { PORT } from '@/config'
 
 import { Database } from '@/infra/database/mongoDB'
 
-import { app } from '../app'
+import { app } from '@/infra/app'
 
-Database.getInstance()
+dotenv.config()
 
-app.listen(8000, () => console.log('Server is running!'))
+async function initialize() {
+  try {
+    Database.getInstance()
+
+    app.listen(PORT || 8000, () => console.log('Server is running!'))
+  } catch (err) {
+    console.error(err)
+
+    process.exit(1)
+  }
+}
+
+initialize()
