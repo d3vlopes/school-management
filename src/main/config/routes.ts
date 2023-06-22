@@ -1,4 +1,4 @@
-import { Express, Router } from 'express'
+import { Express, Response, Router } from 'express'
 import swaggerUi from 'swagger-ui-express'
 
 import { routes } from '../routes'
@@ -13,4 +13,10 @@ export const setupRoutes = (app: Express): void => {
   app.use('/api', router)
 
   router.use(routes)
+
+  app.use((_req, res: Response) => {
+    res.status(404).json({
+      error: 'Route not found',
+    })
+  })
 }
