@@ -9,6 +9,7 @@
     "build": "tsup src",
     "dev": "tsx watch src/infra/server/index.ts",
     "docs:generate": "tsx src/main/config/swagger.ts",
+    "docker": "docker-compose up -d",
     "lint": "eslint src/**/**/*.ts --max-warnings=0",
     "start": "node ./dist/infra/server/index.js",
     "test": "vitest run --silent",

@@ -1,4 +1,4 @@
-![image](https://github.com/d3vlopes/MyPortfolio/assets/59663666/d132957d-32a9-42fa-9fc0-179323b73a14)
+![image](https://github.com/d3vlopes/school-management/assets/59663666/9f99634c-cb82-47fa-9c8d-17341a7e3a63)
 
 ## Sobre
 
@@ -31,6 +31,7 @@ A utilização da Clean Architecture ajudou a manter uma separação clara de re
 
 - [NodeJS](https://nodejs.org/en)
 - [Express](https://expressjs.com/pt-br)
+- [Docker](https://www.docker.com)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vitest](https://vitest.dev)
 - [JWT](jsonwebtoken)
@@ -62,9 +63,8 @@ $ yarn
 
 ### Configurando o banco de dados
 
-1. Crie uma conexão com um banco MongoDB, você pode utilizar o [MongoDB Atlas](https://www.mongodb.com/pt-br/atlas)
-2. Copie o arquivo `.env-example` e renomeie para `.env`
-3. Adicione a string de conexão na variável de ambiente `DATABASE_URL`
+1. Instale o [Docker](https://www.docker.com)
+2. Inicialize o Docker e rode o comando `yarn docker`
 
 ### Rodando o servidor de desenvolvimento
 
@@ -74,6 +74,7 @@ $ yarn
 ## Comandos
 
 - `dev`: Roda o servidor de desenvolvimento
+- `docker`: Executa o arquivo **docker-compose**
 - `build`: Gera a versão de produção
 - `docs:generate`: Gera/atualiza o arquivo de documentação
 - `test`: Roda todos os testes
