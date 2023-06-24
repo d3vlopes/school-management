@@ -5,6 +5,11 @@
   "repository": "git@github.com:d3vlopes/school-management.git",
   "author": "Leandro Lopes <leandro-lopes46@hotmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.16.0",
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
+  },
   "scripts": {
     "build": "tsup src",
     "dev": "tsx watch src/infra/server/index.ts",
