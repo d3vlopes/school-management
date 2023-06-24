@@ -6,7 +6,7 @@ Esse projeto trata-se de uma API para gerenciamento escolar, onde é possível g
 
 ## Objetivo
 
-O objetivo do projeto foi construir uma API utilizando as melhores práticas e desenvolvimento de software, criando um código limpo e de fácil manutenção. Para isso foi utilizado a metodologia TDD (Test Driven Development) em conjunto com a arquitetura Clean Architecture separando as responsabilidades em camadas bem definidas para criar uma base sólida e escalável para o projeto.
+O objetivo do projeto foi construir uma API utilizando as melhores práticas de desenvolvimento de software, criando um código limpo e de fácil manutenção. Para isso foi utilizado a metodologia TDD (Test Driven Development) em conjunto com a arquitetura Clean Architecture separando as responsabilidades em camadas bem definidas para criar uma base sólida e escalável para o projeto.
 
 ## Principais features
 
@@ -18,14 +18,14 @@ O objetivo do projeto foi construir uma API utilizando as melhores práticas e d
 - Utilização de Design Patterns para resolver problemas comuns de desenvolvimento de software.
 - Adoção dos princípios SOLID, YAGNI, KISS e DRY, visando um código limpo, simples e fácil de manter.
 - Práticas de DevOps, como Continuous Integration(CI) e Continuous Delivery(CD), para automatizar o processo de desenvolvimento e implantação.
-- Geração automática de documentação utilizando a biblioteca [Swagger Autogen](https://github.com/davibaltar/swagger-autogen).
+- Geração de documentação utilizando a biblioteca [Swagger Autogen](https://github.com/davibaltar/swagger-autogen).
 - Validação de dados utilizando a biblioteca [Zod](https://zod.dev), garantindo a integridade dos dados processados.
 
 ## Aprendizados
 
 Durante o desenvolvimento desse projeto, adquiri diversos aprendizados significativos. A aplicação do TDD permitiu um desenvolvimento mais controlado, com testes sendo criados antes mesmo da implementação do código. Isso resultou em um código mais confiável e testável.
 
-A utilização da Clean Architecture ajudou a manter uma separação clara de responsabilidades, facilitando a evolução e a manutenção do sistema. Além disso, a aplicação dos princípios SOLID, YAGNI, KISS e DRY trouxe uma maior clareza e simplicidade ao código, evitando duplicações desnecessárias e garantindo a extensibilidade do projeto.
+A utilização do Clean Architecture ajudou a manter uma separação clara de responsabilidades, facilitando a evolução e a manutenção do sistema. Além disso, a aplicação dos princípios SOLID, YAGNI, KISS e DRY trouxe uma maior clareza e simplicidade ao código, evitando duplicações desnecessárias e garantindo a extensibilidade do projeto.
 
 ## Tecnologias e ferramentas utilizadas
 
@@ -45,7 +45,7 @@ A utilização da Clean Architecture ajudou a manter uma separação clara de re
 
 ## Documentação
 
-Convido você a acessar a documentação da API de Gerenciamento Escolar para conhecer mais sobre esse projeto incrível! Lá você encontrará informações detalhadas sobre as rotas disponíveis, os parâmetros necessários e as respostas retornadas, [clique aqui](https://school-management-api-5ucj.onrender.com/docs) para acessar.
+Convido você a acessar a documentação da API para conhecer mais sobre o projeto. Lá você encontrará informações detalhadas sobre as rotas disponíveis, os parâmetros necessários e as respostas retornadas, [clique aqui](https://school-management-api-5ucj.onrender.com/docs) para acessar.
 
 ## Instalação
 
@@ -64,7 +64,8 @@ $ yarn
 ### Configurando o banco de dados
 
 1. Instale o [Docker](https://www.docker.com)
-2. Inicialize o Docker e rode o comando `yarn docker`
+2. Copie o arquivo `.env-example` e renomeie para `.env`
+3. Inicialize o Docker e rode o comando `yarn docker`
 
 ### Rodando o servidor de desenvolvimento
 
