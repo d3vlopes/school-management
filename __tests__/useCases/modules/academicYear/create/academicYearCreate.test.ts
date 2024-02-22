@@ -41,7 +41,7 @@ describe('AcademicYearCreateUseCase', () => {
 
     const input = requestMockFactory['invalid-year'].year
     const min = 1994
-    const max = 2023
+    const max = new Date().getFullYear()
 
     expect(spyOnValidatorStub).toHaveBeenCalledWith(input, min, max)
 
